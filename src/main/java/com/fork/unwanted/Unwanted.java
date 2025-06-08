@@ -1,6 +1,7 @@
 package com.fork.unwanted;
 
 import com.fork.unwanted.blocks.ModBlocks;
+import com.fork.unwanted.items.ModCreativeModeTabs;
 import com.fork.unwanted.items.ModItems;
 import org.slf4j.Logger;
 
@@ -29,6 +30,8 @@ public class Unwanted {
         modEventBus.addListener(this::commonSetup);
 
         NeoForge.EVENT_BUS.register(this);
+
+        ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
