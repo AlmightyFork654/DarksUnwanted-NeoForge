@@ -1,6 +1,7 @@
 package com.fork.unwanted.items;
 
 import com.fork.unwanted.Unwanted;
+import com.fork.unwanted.items.custom.PureBlazePowderItem;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -14,8 +15,8 @@ public class ModItems {
 
         //Misc
 
-//    public static final DeferredItem<Item> PURE_BLAZE_POWDER = ITEMS.register("pure_blaze_powder",
-//            () -> new PureBlazePowderItem(new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> PURE_BLAZE_POWDER = ITEMS.register("pure_blaze_powder",
+            () -> new PureBlazePowderItem(new Item.Properties().fireResistant()));
 
     public static final DeferredItem<Item> BLAZING_WATER = ITEMS.register("blazing_water",
         () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE)));
