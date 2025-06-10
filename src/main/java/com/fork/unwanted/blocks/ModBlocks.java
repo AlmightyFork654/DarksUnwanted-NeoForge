@@ -28,19 +28,19 @@ public class ModBlocks {
 
         //ores
 
-    public static final DeferredBlock<Block> RUBY_ORE = registerBlock("ruby_ore",
+    public static final DeferredBlock<DropExperienceBlock> RUBY_ORE = registerBlock("ruby_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)
                     .strength(6f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> TORRID_STEEL_ORE = registerBlock("torrid_steel_ore",
+    public static final DeferredBlock<DropExperienceBlock> TORRID_STEEL_ORE = registerBlock("torrid_steel_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
                     .strength(6f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> EMBARIUM_ORE = registerBlock("embarium_ore",
+    public static final DeferredBlock<DropExperienceBlock> EMBARIUM_ORE = registerBlock("embarium_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .strength(6f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> DEEPSLATE_EMBARIUM_ORE = registerBlock("deepslate_embarium_ore",
+    public static final DeferredBlock<DropExperienceBlock> DEEPSLATE_EMBARIUM_ORE = registerBlock("deepslate_embarium_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
                     .strength(6f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> PROFUNDIUM_ORE = registerBlock("profundium_ore",
+    public static final DeferredBlock<DropExperienceBlock> PROFUNDIUM_ORE = registerBlock("profundium_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
                     .strength(6f).requiresCorrectToolForDrops()));
 
@@ -52,7 +52,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> TORRID_STEEL_BLOCK = registerBlock("torrid_steel_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).strength(5F, 6F).destroyTime(8).requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> TORRID_STEEL_BARS = registerBlock("torrid_steel_bars",
+    public static final DeferredBlock<IronBarsBlock> TORRID_STEEL_BARS = registerBlock("torrid_steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.METAL).strength(5F, 6F).destroyTime(5).requiresCorrectToolForDrops().noOcclusion()));
 
 //    public static final DeferredBlock<Block> EMBARIUM_BLOCK = registerBlock("embarium_block",
@@ -147,92 +147,88 @@ public class ModBlocks {
 //    public static final DeferredBlock<Block> CHISELED_E_MARBLE = registerBlock("chiseled_e_marble",
 //            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> MARBLE_PILLAR = registerBlock("marble_pillar",
+    public static final DeferredBlock<RotatedPillarBlock> MARBLE_PILLAR = registerBlock("marble_pillar",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     //marble stairs
-//    public static final DeferredBlock<Block> MARBLE_STAIRS = registerBlock("marble_stairs",
-//            () -> new StairBlock(() -> ModBlocks.MARBLE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> SMOOTH_MARBLE_STAIRS = registerBlock("smooth_marble_stairs",
-//            () -> new StairBlock(() -> ModBlocks.SMOOTH_MARBLE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> POLISHED_MARBLE_STAIRS = registerBlock("polished_marble_stairs",
-//            () -> new StairBlock(() -> ModBlocks.POLISHED_MARBLE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> MARBLE_BRICKS_STAIRS = registerBlock("marble_bricks_stairs",
-//            () -> new StairBlock(() -> ModBlocks.MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> CRACKED_MARBLE_BRICKS_STAIRS = registerBlock("cracked_marble_bricks_stairs",
-//            () -> new StairBlock(() -> ModBlocks.CRACKED_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> MOSSY_MARBLE_BRICKS_STAIRS = registerBlock("mossy_marble_bricks_stairs",
-//            () -> new StairBlock(() -> ModBlocks.MOSSY_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> MARBLE_STAIRS = registerBlock("marble_stairs",
+            () -> new StairBlock(ModBlocks.MARBLE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> SMOOTH_MARBLE_STAIRS = registerBlock("smooth_marble_stairs",
+            () -> new StairBlock(ModBlocks.SMOOTH_MARBLE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> POLISHED_MARBLE_STAIRS = registerBlock("polished_marble_stairs",
+            () -> new StairBlock(ModBlocks.POLISHED_MARBLE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> MARBLE_BRICKS_STAIRS = registerBlock("marble_bricks_stairs",
+            () -> new StairBlock(ModBlocks.MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> CRACKED_MARBLE_BRICKS_STAIRS = registerBlock("cracked_marble_bricks_stairs",
+            () -> new StairBlock(ModBlocks.CRACKED_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> MOSSY_MARBLE_BRICKS_STAIRS = registerBlock("mossy_marble_bricks_stairs",
+            () -> new StairBlock(ModBlocks.MOSSY_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     //marble slabs
-    public static final DeferredBlock<Block> MARBLE_SLAB = registerBlock("marble_slab",
+    public static final DeferredBlock<SlabBlock> MARBLE_SLAB = registerBlock("marble_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> SMOOTH_MARBLE_SLAB = registerBlock("smooth_marble_slab",
+    public static final DeferredBlock<SlabBlock> SMOOTH_MARBLE_SLAB = registerBlock("smooth_marble_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> POLISHED_MARBLE_SLAB = registerBlock("polished_marble_slab",
+    public static final DeferredBlock<SlabBlock> POLISHED_MARBLE_SLAB = registerBlock("polished_marble_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> MARBLE_BRICKS_SLAB = registerBlock("marble_bricks_slab",
+    public static final DeferredBlock<SlabBlock> MARBLE_BRICKS_SLAB = registerBlock("marble_bricks_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> CRACKED_MARBLE_BRICKS_SLAB = registerBlock("cracked_marble_bricks_slab",
+    public static final DeferredBlock<SlabBlock> CRACKED_MARBLE_BRICKS_SLAB = registerBlock("cracked_marble_bricks_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> MOSSY_MARBLE_BRICKS_SLAB = registerBlock("mossy_marble_bricks_slab",
+    public static final DeferredBlock<SlabBlock> MOSSY_MARBLE_BRICKS_SLAB = registerBlock("mossy_marble_bricks_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     //marble walls
-    public static final DeferredBlock<Block> MARBLE_WALL = registerBlock("marble_wall",
+    public static final DeferredBlock<WallBlock> MARBLE_WALL = registerBlock("marble_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> SMOOTH_MARBLE_WALL = registerBlock("smooth_marble_wall",
+    public static final DeferredBlock<WallBlock> SMOOTH_MARBLE_WALL = registerBlock("smooth_marble_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> POLISHED_MARBLE_WALL = registerBlock("polished_marble_wall",
+    public static final DeferredBlock<WallBlock> POLISHED_MARBLE_WALL = registerBlock("polished_marble_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(3).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> MARBLE_BRICKS_WALL = registerBlock("marble_bricks_wall",
+    public static final DeferredBlock<WallBlock> MARBLE_BRICKS_WALL = registerBlock("marble_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> CRACKED_MARBLE_BRICKS_WALL = registerBlock("cracked_marble_bricks_wall",
+    public static final DeferredBlock<WallBlock> CRACKED_MARBLE_BRICKS_WALL = registerBlock("cracked_marble_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> MOSSY_MARBLE_BRICKS_WALL = registerBlock("mossy_marble_bricks_wall",
+    public static final DeferredBlock<WallBlock> MOSSY_MARBLE_BRICKS_WALL = registerBlock("mossy_marble_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     // non-blocks
 
     //doors
 
-//    public static final DeferredBlock<Block> TORRID_STEEL_DOOR = registerBlock("torrid_steel_door",
-//            () -> new DoorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_DOOR).sound(SoundType.METAL)
-//                    .strength(5F, 6F).destroyTime(32).noOcclusion(), BlockSetType.IRON));
-//
-//    public static final DeferredBlock<Block> TORRID_STEEL_BARS_DOOR = registerBlock("torrid_steel_bars_door",
-//            () -> new DoorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).sound(SoundType.METAL)
-//                    .strength(5F, 6F).destroyTime(16).noOcclusion(), BlockSetType.IRON));
-//
-//    //trapdoors
-//
-//    public static final DeferredBlock<Block> TORRID_STEEL_TRAPDOOR = registerBlock("torrid_steel_trapdoor",
-//            () -> new TrapDoorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_TRAPDOOR).sound(SoundType.METAL)
-//                    .strength(5F, 6F).destroyTime(32).noOcclusion(), BlockSetType.IRON));
-//
-//    public static final DeferredBlock<Block> TORRID_STEEL_BARS_TRAPDOOR = registerBlock("torrid_steel_bars_trapdoor",
-//            () -> new TrapDoorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).sound(SoundType.METAL)
-//                    .strength(5F, 6F).destroyTime(16).noOcclusion(), BlockSetType.IRON));
-//
-//    //buttons
-//
-//    public static final DeferredBlock<Block> TORRID_STEEL_BUTTON = registerBlock("torrid_steel_button",
-//            () -> new ButtonBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BUTTON).sound(SoundType.METAL)
-//                    .strength(5F, 6F).destroyTime(4).noCollission(), BlockSetType.IRON, 40, false));
-//
-//    public static final DeferredBlock<Block> MARBLE_BUTTON = registerBlock("marble_button",
-//            () -> new ButtonBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
-//                    .strength(1.5F, 3F).destroyTime(2).noCollission(), BlockSetType.STONE, 30, false));
-//
-//    //pressure plates
-//
-//    public static final DeferredBlock<Block> TORRID_STEEL_PRESSURE_PLATE = registerBlock("torrid_steel_pressure_plate",
-//            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, BlockBehaviour.Properties.ofFullCopy(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)
-//                    .sound(SoundType.METAL).strength(5F, 6F).destroyTime(4), BlockSetType.IRON));
-//
-//    public static final DeferredBlock<Block> MARBLE_PRESSURE_PLATE = registerBlock("marble_pressure_plate",
-//            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE)
-//                    .sound(SoundType.STONE).strength(1.5F, 3F).destroyTime(2), BlockSetType.STONE));
+    public static final DeferredBlock<Block> TORRID_STEEL_DOOR = registerBlock("torrid_steel_door",
+            () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_DOOR).sound(SoundType.METAL)
+                    .strength(5F, 6F).destroyTime(32).noOcclusion()));
+    public static final DeferredBlock<Block> TORRID_STEEL_BARS_DOOR = registerBlock("torrid_steel_bars_door",
+            () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).sound(SoundType.METAL)
+                    .strength(5F, 6F).destroyTime(16).noOcclusion()));
+
+    //trapdoors
+
+    public static final DeferredBlock<Block> TORRID_STEEL_TRAPDOOR = registerBlock("torrid_steel_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_TRAPDOOR).sound(SoundType.METAL)
+                    .strength(5F, 6F).destroyTime(32).noOcclusion()));
+    public static final DeferredBlock<Block> TORRID_STEEL_BARS_TRAPDOOR = registerBlock("torrid_steel_bars_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).sound(SoundType.METAL)
+                    .strength(5F, 6F).destroyTime(16).noOcclusion()));
+
+    //buttons
+
+    public static final DeferredBlock<ButtonBlock> TORRID_STEEL_BUTTON = registerBlock("torrid_steel_button",
+            () -> new ButtonBlock(BlockSetType.IRON, 40, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BUTTON).sound(SoundType.METAL)
+                    .strength(5F, 6F).destroyTime(4).noCollission()));
+    public static final DeferredBlock<ButtonBlock> MARBLE_BUTTON = registerBlock("marble_button",
+            () -> new ButtonBlock(BlockSetType.STONE, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
+                    .strength(1.5F, 3F).destroyTime(2).noCollission()));
+
+    //pressure plates
+
+    public static final DeferredBlock<PressurePlateBlock> TORRID_STEEL_PRESSURE_PLATE = registerBlock("torrid_steel_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)
+                    .sound(SoundType.METAL).strength(5F, 6F).destroyTime(4)));
+    public static final DeferredBlock<PressurePlateBlock> MARBLE_PRESSURE_PLATE = registerBlock("marble_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE)
+                    .sound(SoundType.STONE).strength(1.5F, 3F).destroyTime(2)));
 
 //nature
 
@@ -307,39 +303,38 @@ public class ModBlocks {
 
 //    ebony non-blocks
 
-//    public static final DeferredBlock<Block> EBONY_STAIRS = registerBlock("ebony_stairs",
-//            () -> new StairBlock(() -> ModBlocks.EBONY_PLANKS.get().defaultBlockState(),
-//                    BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).strength(1F, 2F)));
-    public static final DeferredBlock<Block> EBONY_SLAB = registerBlock("ebony_slab",
+    public static final DeferredBlock<StairBlock> EBONY_STAIRS = registerBlock("ebony_stairs",
+            () -> new StairBlock(ModBlocks.EBONY_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).strength(1F, 2F)));
+    public static final DeferredBlock<SlabBlock> EBONY_SLAB = registerBlock("ebony_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB)
                     .strength(1F, 2F)));
 
-//    public static final DeferredBlock<Block> EBONY_FENCE = registerBlock("ebony_fence",
-//            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE)
-//                    .strength(1F, 2F)));
-//    public static final DeferredBlock<Block> EBONY_FENCE_GATE = registerBlock("ebony_fence_gate",
-//            () -> new FenceGateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE)
-//                    .strength(1F, 2F), WoodType.OAK));
-//
-//    public static final DeferredBlock<Block> EBONY_BUTTON = registerBlock("ebony_button",
-//            () -> new ButtonBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)
-//                    .strength(1F, 2F).noCollission().destroyTime(2), BlockSetType.OAK, 20, true));
-//    public static final DeferredBlock<Block> EBONY_PRESSURE_PLATE = registerBlock("ebony_pressure_plate",
-//            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE)
-//                    .strength(1F, 2F).destroyTime(2), BlockSetType.OAK));
-//
-//    public static final DeferredBlock<Block> EBONY_DOOR = registerBlock("ebony_door",
-//            () -> new DoorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR)
-//                    .strength(1F, 2F).noOcclusion(), BlockSetType.OAK));
-//    public static final DeferredBlock<Block> EBONY_TRAPDOOR = registerBlock("ebony_trapdoor",
-//            () -> new TrapDoorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR)
-//                    .strength(1F, 2F).noOcclusion(), BlockSetType.OAK));
+    public static final DeferredBlock<FenceBlock> EBONY_FENCE = registerBlock("ebony_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE)
+                    .strength(1F, 2F)));
+    public static final DeferredBlock<FenceGateBlock> EBONY_FENCE_GATE = registerBlock("ebony_fence_gate",
+            () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE)
+                    .strength(1F, 2F)));
+
+    public static final DeferredBlock<ButtonBlock> EBONY_BUTTON = registerBlock("ebony_button",
+            () -> new ButtonBlock(BlockSetType.OAK, 20, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)
+                    .strength(1F, 2F).noCollission().destroyTime(2)));
+    public static final DeferredBlock<PressurePlateBlock> EBONY_PRESSURE_PLATE = registerBlock("ebony_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE)
+                    .strength(1F, 2F).destroyTime(2)));
+
+    public static final DeferredBlock<DoorBlock> EBONY_DOOR = registerBlock("ebony_door",
+            () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR)
+                    .strength(1F, 2F).noOcclusion()));
+    public static final DeferredBlock<TrapDoorBlock> EBONY_TRAPDOOR = registerBlock("ebony_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR)
+                    .strength(1F, 2F).noOcclusion()));
 //
 //    public static final DeferredBlock<Block> EBONY_SIGN = BLOCKS.register("ebony_sign",
 //            () -> new ModStandingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_SIGN), ModWoodTypes.EBONY));
 //    public static final DeferredBlock<Block> EBONY_WALL_SIGN = BLOCKS.register("ebony_wall_sign",
 //            () -> new ModWallSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WALL_SIGN), ModWoodTypes.EBONY));
-//
 //    public static final DeferredBlock<Block> EBONY_HANGING_SIGN = BLOCKS.register("ebony_hanging_sign",
 //            () -> new ModHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_HANGING_SIGN), ModWoodTypes.EBONY));
 //    public static final DeferredBlock<Block> EBONY_WALL_HANGING_SIGN = BLOCKS.register("ebony_wall_hanging_sign",
