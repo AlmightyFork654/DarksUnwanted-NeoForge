@@ -1,7 +1,9 @@
 package com.fork.unwanted.blocks;
 
 import com.fork.unwanted.Unwanted;
+import com.fork.unwanted.blocks.custom.BouncerBlock;
 import com.fork.unwanted.blocks.custom.EmbariumLampBlock;
+import com.fork.unwanted.blocks.custom.SpeederBlock;
 import com.fork.unwanted.items.ModItems;
 import com.fork.unwanted.sfx.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -84,41 +86,41 @@ public class ModBlocks {
 
     //bouncy
 
-//    public static final DeferredBlock<Block> WHITE_BOUNCER_BLOCK = registerBlock("white_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> BLACK_BOUNCER_BLOCK = registerBlock("black_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> GRAY_BOUNCER_BLOCK = registerBlock("gray_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> LIGHT_GRAY_BOUNCER_BLOCK = registerBlock("light_gray_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> BROWN_BOUNCER_BLOCK = registerBlock("brown_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> BLUE_BOUNCER_BLOCK = registerBlock("blue_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> CYAN_BOUNCER_BLOCK = registerBlock("cyan_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> LIGHT_BLUE_BOUNCER_BLOCK = registerBlock("light_blue_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> GREEN_BOUNCER_BLOCK = registerBlock("green_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> LIME_BOUNCER_BLOCK = registerBlock("lime_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> MAGENTA_BOUNCER_BLOCK = registerBlock("magenta_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> ORANGE_BOUNCER_BLOCK = registerBlock("orange_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> PINK_BOUNCER_BLOCK = registerBlock("pink_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> PURPLE_BOUNCER_BLOCK = registerBlock("purple_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> RED_BOUNCER_BLOCK = registerBlock("red_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
-//    public static final DeferredBlock<Block> YELLOW_BOUNCER_BLOCK = registerBlock("yellow_bouncer_block",
-//            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> WHITE_BOUNCER_BLOCK = registerBlock("white_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> BLACK_BOUNCER_BLOCK = registerBlock("black_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> GRAY_BOUNCER_BLOCK = registerBlock("gray_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> LIGHT_GRAY_BOUNCER_BLOCK = registerBlock("light_gray_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> BROWN_BOUNCER_BLOCK = registerBlock("brown_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> BLUE_BOUNCER_BLOCK = registerBlock("blue_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> CYAN_BOUNCER_BLOCK = registerBlock("cyan_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> LIGHT_BLUE_BOUNCER_BLOCK = registerBlock("light_blue_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> GREEN_BOUNCER_BLOCK = registerBlock("green_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> LIME_BOUNCER_BLOCK = registerBlock("lime_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> MAGENTA_BOUNCER_BLOCK = registerBlock("magenta_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> ORANGE_BOUNCER_BLOCK = registerBlock("orange_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> PINK_BOUNCER_BLOCK = registerBlock("pink_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> PURPLE_BOUNCER_BLOCK = registerBlock("purple_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> RED_BOUNCER_BLOCK = registerBlock("red_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
+    public static final DeferredBlock<Block> YELLOW_BOUNCER_BLOCK = registerBlock("yellow_bouncer_block",
+            () -> new BouncerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 1F).friction(0.5F).destroyTime(1).instabreak().dynamicShape()));
 
-//    public static final DeferredBlock<Block> SPEEDER_BLOCK = registerBlock("speeder_block",
-//            () -> new SpeederBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 3F).friction(1.0F)));
+    public static final DeferredBlock<Block> SPEEDER_BLOCK = registerBlock("speeder_block",
+            () -> new SpeederBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE).sound(SoundType.SLIME_BLOCK).strength(1F, 3F).friction(1.0F)));
 
     //marble
     public static final DeferredBlock<Block> MARBLE = registerBlock("marble",
