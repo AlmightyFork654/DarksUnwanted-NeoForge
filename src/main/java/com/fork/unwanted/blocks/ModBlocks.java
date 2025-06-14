@@ -1,9 +1,7 @@
 package com.fork.unwanted.blocks;
 
 import com.fork.unwanted.Unwanted;
-import com.fork.unwanted.blocks.custom.BouncerBlock;
-import com.fork.unwanted.blocks.custom.EmbariumLampBlock;
-import com.fork.unwanted.blocks.custom.SpeederBlock;
+import com.fork.unwanted.blocks.custom.*;
 import com.fork.unwanted.items.ModItems;
 import com.fork.unwanted.sfx.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -142,14 +140,14 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MOSSY_MARBLE_BRICKS = registerBlock("mossy_marble_bricks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
-//    public static final DeferredBlock<Block> CHISELED_W_MARBLE = registerBlock("chiseled_w_marble",
-//            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> CHISELED_S_MARBLE = registerBlock("chiseled_s_marble",
-//            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> CHISELED_C_MARBLE = registerBlock("chiseled_c_marble",
-//            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
-//    public static final DeferredBlock<Block> CHISELED_E_MARBLE = registerBlock("chiseled_e_marble",
-//            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CHISELED_W_MARBLE = registerBlock("chiseled_w_marble",
+            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CHISELED_S_MARBLE = registerBlock("chiseled_s_marble",
+            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CHISELED_C_MARBLE = registerBlock("chiseled_c_marble",
+            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CHISELED_E_MARBLE = registerBlock("chiseled_e_marble",
+            () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<RotatedPillarBlock> MARBLE_PILLAR = registerBlock("marble_pillar",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
@@ -236,25 +234,25 @@ public class ModBlocks {
 
 //nature
 
-//    public static final DeferredBlock<Block> TORRID_BUSH = registerBlock("torrid_bush",
-//            () -> new NetherFlowerBlock(MobEffects.FIRE_RESISTANCE,15 ,BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS).noOcclusion()));
-//
-//    public static final DeferredBlock<Block> POTTED_TORRID_BUSH = registerBlockWithoutBlockItem("potted_torrid_bush",
-//            () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, ModBlocks.TORRID_BUSH, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_WARPED_FUNGUS).noOcclusion()));
+    public static final DeferredBlock<Block> TORRID_BUSH = registerBlock("torrid_bush",
+            () -> new NetherFlowerBlock(MobEffects.FIRE_RESISTANCE,15 ,BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS).noOcclusion()));
+
+    public static final DeferredBlock<Block> POTTED_TORRID_BUSH = registerBlockWithoutBlockItem("potted_torrid_bush",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, ModBlocks.TORRID_BUSH, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_WARPED_FUNGUS).noOcclusion()));
 
 //tree
 
-//    public static final DeferredBlock<Block> EBONY_LOG = registerBlock("ebony_log",
-//            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
-//
-//    public static final DeferredBlock<Block> EBONY_WOOD = registerBlock("ebony_wood",
-//            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
-//
-//    public static final DeferredBlock<Block> STRIPPED_EBONY_LOG = registerBlock("stripped_ebony_log",
-//            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
-//
-//    public static final DeferredBlock<Block> STRIPPED_EBONY_WOOD = registerBlock("stripped_ebony_wood",
-//            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final DeferredBlock<Block> EBONY_LOG = registerBlock("ebony_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+
+    public static final DeferredBlock<Block> EBONY_WOOD = registerBlock("ebony_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
+
+    public static final DeferredBlock<Block> STRIPPED_EBONY_LOG = registerBlock("stripped_ebony_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+
+    public static final DeferredBlock<Block> STRIPPED_EBONY_WOOD = registerBlock("stripped_ebony_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
 
     public static final DeferredBlock<Block> EBONY_PLANKS = registerBlock("ebony_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
@@ -345,7 +343,9 @@ public class ModBlocks {
 //            () -> new ModWallHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WALL_HANGING_SIGN), ModWoodTypes.EBONY));
 
 
-
+    private static <T extends Block> DeferredBlock<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
