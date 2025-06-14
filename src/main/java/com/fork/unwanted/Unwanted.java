@@ -3,6 +3,7 @@ package com.fork.unwanted;
 import com.fork.unwanted.blocks.ModBlocks;
 import com.fork.unwanted.items.ModCreativeModeTabs;
 import com.fork.unwanted.items.ModItems;
+import com.fork.unwanted.sfx.ModSounds;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -35,6 +36,7 @@ public class Unwanted {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModSounds.register(modEventBus);
 
 //        // Register the item to a creative tab
 //        modEventBus.addListener(this::addCreative);

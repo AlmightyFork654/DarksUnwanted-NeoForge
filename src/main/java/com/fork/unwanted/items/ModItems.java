@@ -3,6 +3,7 @@ package com.fork.unwanted.items;
 import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.items.armor_and_tools.*;
 import com.fork.unwanted.items.custom.PureBlazePowderItem;
+import com.fork.unwanted.sfx.ModSounds;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -88,11 +89,11 @@ public class ModItems {
 
         //music
 
-//    public static final DeferredItem<Item> DARKNESS_MUSIC_DISK = ITEMS.register("darkness_music_disc",
-//            () -> new ModDiskItem(15, ModSounds.DARKNESS, 69));
-//
-//    public static final DeferredItem<Item> CAVE_WHISPERS_MUSIC_DISK = ITEMS.register("cave_whispers_music_disc",
-//            () -> new ModDiskItem(15, ModSounds.CAVE_WHISPERS, 132));
+    public static final DeferredItem<Item> DARKNESS_MUSIC_DISK = ITEMS.register("darkness_music_disc",
+            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.DARKNESS_KEY).stacksTo(1)));
+
+    public static final DeferredItem<Item> CAVE_WHISPERS_MUSIC_DISK = ITEMS.register("cave_whispers_music_disc",
+            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.CAVE_WHISPERS_KEY)));
 
         // tools
 
