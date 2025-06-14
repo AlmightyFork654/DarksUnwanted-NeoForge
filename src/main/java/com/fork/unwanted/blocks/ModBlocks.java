@@ -1,7 +1,9 @@
 package com.fork.unwanted.blocks;
 
 import com.fork.unwanted.Unwanted;
+import com.fork.unwanted.blocks.custom.EmbariumLampBlock;
 import com.fork.unwanted.items.ModItems;
+import com.fork.unwanted.sfx.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -55,16 +57,16 @@ public class ModBlocks {
     public static final DeferredBlock<IronBarsBlock> TORRID_STEEL_BARS = registerBlock("torrid_steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.METAL).strength(5F, 6F).destroyTime(5).requiresCorrectToolForDrops().noOcclusion()));
 
-//    public static final DeferredBlock<Block> EMBARIUM_BLOCK = registerBlock("embarium_block",
-//            () -> new GlassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(ModSounds.EMBARIUM_SOUNDS)
-//                    .strength(0.3F, 0.3F).destroyTime(3).requiresCorrectToolForDrops().lightLevel((blockState) -> 8)));
+    public static final DeferredBlock<Block> EMBARIUM_BLOCK = registerBlock("embarium_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(ModSounds.EMBARIUM_SOUNDS)
+                    .strength(0.3F, 0.3F).destroyTime(3).requiresCorrectToolForDrops().lightLevel((blockState) -> 8).noOcclusion()));
 
     public static final DeferredBlock<Block> PROFUNDIUM_BLOCK = registerBlock("profundium_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).sound(SoundType.METAL).strength(50F, 50F).destroyTime(10)));
 
-//    public static final DeferredBlock<Block> EMBARIUM_LAMP_BLOCK = registerBlock("embarium_lamp_block",
-//            () -> new EmbariumLampBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP).sound(SoundType.AMETHYST_CLUSTER)
-//                    .strength(0.3F, 0.3F).destroyTime(3).requiresCorrectToolForDrops().lightLevel((blockState) -> blockState.getValue(EmbariumLampBlock.CLICKED) ? 15 : 0)));
+    public static final DeferredBlock<Block> EMBARIUM_LAMP_BLOCK = registerBlock("embarium_lamp_block",
+            () -> new EmbariumLampBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP).sound(SoundType.AMETHYST_CLUSTER)
+                    .strength(0.3F, 0.3F).destroyTime(3).requiresCorrectToolForDrops().lightLevel((blockState) -> blockState.getValue(EmbariumLampBlock.CLICKED) ? 15 : 0)));
 
     //crafting
 
