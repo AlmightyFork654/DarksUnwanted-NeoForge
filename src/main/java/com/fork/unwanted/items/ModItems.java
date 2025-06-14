@@ -1,6 +1,7 @@
 package com.fork.unwanted.items;
 
 import com.fork.unwanted.Unwanted;
+import com.fork.unwanted.items.armor_and_tools.*;
 import com.fork.unwanted.items.custom.PureBlazePowderItem;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -109,58 +110,56 @@ public class ModItems {
     
     //armor&tools
 
-//    //embarium
-//    public static final DeferredItem<Item> EMBARIUM_SWORD = ITEMS.register("embarium_sword",
-//            () -> new RegenSwordItem(ModTiers.EMBARIUM, 3, -2.4F, new Item.Properties()));
-//    public static final DeferredItem<Item> EMBARIUM_PICKAXE = ITEMS.register("embarium_pickaxe",
-//            () -> new SpeedPickaxeItem(ModTiers.EMBARIUM, 1, -2.8F, new Item.Properties()));
-//    public static final DeferredItem<Item> EMBARIUM_AXE = ITEMS.register("embarium_axe",
-//            () -> new AxeItem(ModTiers.EMBARIUM, 6.0F, -3.1F, new Item.Properties()));
-//    public static final DeferredItem<Item> EMBARIUM_SHOVEL = ITEMS.register("embarium_shovel",
-//            () -> new ShovelItem(ModTiers.EMBARIUM, 1.5F, -3.0F, new Item.Properties()));
-//    public static final DeferredItem<Item> EMBARIUM_HOE = ITEMS.register("embarium_hoe",
-//            () -> new HoeItem(ModTiers.EMBARIUM, -2, -1.0F, new Item.Properties()));
-//
-//    //torrid steel
-//    public static final DeferredItem<Item> TORRID_STEEL_SWORD = ITEMS.register("torrid_steel_sword",
-//            () -> new FireSwordItem(ModTiers.TORRID, 3, -2.4F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_STEEL_PICKAXE = ITEMS.register("torrid_steel_pickaxe",
-//            () -> new PickaxeItem(ModTiers.TORRID, 1, -2.8F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_STEEL_AXE = ITEMS.register("torrid_steel_axe",
-//            () -> new AxeItem(ModTiers.TORRID, 5.0F, -3.1F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_STEEL_SHOVEL = ITEMS.register("torrid_steel_shovel",
-//            () -> new ShovelItem(ModTiers.TORRID, 0.5F, -3.0F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_STEEL_HOE = ITEMS.register("torrid_steel_hoe",
-//            () -> new HoeItem(ModTiers.TORRID, -3, -1.0F, new Item.Properties().fireResistant()));
-//
-//
-//    //embarium torrid steel
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_SWORD = ITEMS.register("torrid_embarium_sword",
-//            () -> new SuperSwordItem(ModTiers.TORRID_EMBARIUM, 3, -2.4F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_PICKAXE = ITEMS.register("torrid_embarium_pickaxe",
-//            () -> new SuperPickaxeItem(ModTiers.TORRID_EMBARIUM, 1, -2.8F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_AXE = ITEMS.register("torrid_embarium_axe",
-//            () -> new AxeItem(ModTiers.TORRID_EMBARIUM, 5.0F, -3.1F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_SHOVEL = ITEMS.register("torrid_embarium_shovel",
-//            () -> new ShovelItem(ModTiers.TORRID_EMBARIUM, 0.5F, -3.0F, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_HOE = ITEMS.register("torrid_embarium_hoe",
-//            () -> new HoeItem(ModTiers.TORRID_EMBARIUM, -3, -1.0F, new Item.Properties().fireResistant()));
-//
-//    //profundium
-//    public static final DeferredItem<Item> PROFUNDIUM_SWORD = ITEMS.register("profundium_sword",
-//            () -> new SwordItem(ModTiers.PROFUNDIUM, 4, -1.4F, (new Item.Properties()).fireResistant()));
-//    public static final DeferredItem<Item> PROFUNDIUM_PICKAXE = ITEMS.register("profundium_pickaxe",
-//            () -> new PickaxeItem(ModTiers.PROFUNDIUM, 2, -2.4F, (new Item.Properties()).fireResistant()));
-//    public static final DeferredItem<Item> PROFUNDIUM_AXE = ITEMS.register("profundium_axe",
-//            () -> new AxeItem(ModTiers.PROFUNDIUM, 6.0F, -2.0F, (new Item.Properties()).fireResistant()));
-//    public static final DeferredItem<Item> PROFUNDIUM_SHOVEL = ITEMS.register("profundium_shovel",
-//            () -> new ShovelItem(ModTiers.PROFUNDIUM, 2.5F, -2.0F, (new Item.Properties()).fireResistant()));
-//    public static final DeferredItem<Item> PROFUNDIUM_HOE = ITEMS.register("profundium_hoe",
-//            () -> new HoeItem(ModTiers.PROFUNDIUM, -3, -1.0F, (new Item.Properties()).fireResistant()));
-//
-//    //advanced
-//
-//    //advanced wood&leather
+    //embarium
+    public static final DeferredItem<SwordItem> EMBARIUM_SWORD = ITEMS.register("embarium_sword",
+            () -> new SwordItem(ModToolTiers.EMBARIUM, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.EMBARIUM, 3, -2.4F))));
+    public static final DeferredItem<PickaxeItem> EMBARIUM_PICKAXE = ITEMS.register("embarium_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.EMBARIUM, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.EMBARIUM, 1, -2.8F))));
+    public static final DeferredItem<AxeItem> EMBARIUM_AXE = ITEMS.register("embarium_axe",
+            () -> new AxeItem(ModToolTiers.EMBARIUM, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.EMBARIUM, 6, -3.1F))));
+    public static final DeferredItem<ShovelItem> EMBARIUM_SHOVEL = ITEMS.register("embarium_shovel",
+            () -> new ShovelItem(ModToolTiers.EMBARIUM, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.EMBARIUM, 1.5f, -3.0F))));
+    public static final DeferredItem<HoeItem> EMBARIUM_HOE = ITEMS.register("embarium_hoe",
+            () -> new HoeItem(ModToolTiers.EMBARIUM, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.EMBARIUM, -2, -1.0F))));
+
+    //torrid steel
+    public static final DeferredItem<FireSwordItem> TORRID_STEEL_SWORD = ITEMS.register("torrid_steel_sword",
+            () -> new FireSwordItem(ModToolTiers.TORRID, new Item.Properties().fireResistant().attributes(FireSwordItem.createAttributes(ModToolTiers.TORRID, 3, -2.4F))));
+    public static final DeferredItem<PickaxeItem> TORRID_STEEL_PICKAXE = ITEMS.register("torrid_steel_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.TORRID, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(ModToolTiers.TORRID, 1, -2.8F))));
+    public static final DeferredItem<AxeItem> TORRID_STEEL_AXE = ITEMS.register("torrid_steel_axe",
+            () -> new AxeItem(ModToolTiers.TORRID, new Item.Properties().fireResistant().attributes(AxeItem.createAttributes(ModToolTiers.TORRID, 5.0F, -3.1F))));
+    public static final DeferredItem<ShovelItem> TORRID_STEEL_SHOVEL = ITEMS.register("torrid_steel_shovel",
+            () -> new ShovelItem(ModToolTiers.TORRID, new Item.Properties().fireResistant().attributes(ShovelItem.createAttributes(ModToolTiers.TORRID, 0.5F, -3.0F))));
+    public static final DeferredItem<HoeItem> TORRID_STEEL_HOE = ITEMS.register("torrid_steel_hoe",
+            () -> new HoeItem(ModToolTiers.TORRID, new Item.Properties().fireResistant().attributes(HoeItem.createAttributes(ModToolTiers.TORRID, -3, -1.0F))));
+
+
+    //embarium torrid steel
+    public static final DeferredItem<FireSwordItem> TORRID_EMBARIUM_SWORD = ITEMS.register("torrid_embarium_sword",
+            () -> new FireSwordItem(ModToolTiers.TORRID_EMBARIUM, new Item.Properties().fireResistant().attributes(FireSwordItem.createAttributes(ModToolTiers.TORRID_EMBARIUM, 3, -2.4F))));
+    public static final DeferredItem<PickaxeItem> TORRID_EMBARIUM_PICKAXE = ITEMS.register("torrid_embarium_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.TORRID_EMBARIUM, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(ModToolTiers.TORRID_EMBARIUM, 1, -2.8F))));
+    public static final DeferredItem<AxeItem> TORRID_EMBARIUM_AXE = ITEMS.register("torrid_embarium_axe",
+            () -> new AxeItem(ModToolTiers.TORRID_EMBARIUM, new Item.Properties().fireResistant().attributes(AxeItem.createAttributes(ModToolTiers.TORRID_EMBARIUM, 5.0F, -3.1F))));
+    public static final DeferredItem<ShovelItem> TORRID_EMBARIUM_SHOVEL = ITEMS.register("torrid_embarium_shovel",
+            () -> new ShovelItem(ModToolTiers.TORRID_EMBARIUM, new Item.Properties().fireResistant().attributes(ShovelItem.createAttributes(ModToolTiers.TORRID_EMBARIUM, 0.5F, -3.0F))));
+    public static final DeferredItem<HoeItem> TORRID_EMBARIUM_HOE = ITEMS.register("torrid_embarium_hoe",
+            () -> new HoeItem(ModToolTiers.TORRID_EMBARIUM, new Item.Properties().fireResistant().attributes(HoeItem.createAttributes(ModToolTiers.TORRID_EMBARIUM, -3, -1.0F))));
+
+    //profundium
+    public static final DeferredItem<Item> PROFUNDIUM_SWORD = ITEMS.register("profundium_sword",
+            () -> new SwordItem(ModToolTiers.PROFUNDIUM, (new Item.Properties()).fireResistant().attributes(SwordItem.createAttributes(ModToolTiers.PROFUNDIUM, 4, -1.4F))));
+    public static final DeferredItem<PickaxeItem> PROFUNDIUM_PICKAXE = ITEMS.register("profundium_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.PROFUNDIUM, (new Item.Properties()).fireResistant().attributes(PickaxeItem.createAttributes(ModToolTiers.PROFUNDIUM, 2, -2.4F))));
+    public static final DeferredItem<AxeItem> PROFUNDIUM_AXE = ITEMS.register("profundium_axe",
+            () -> new AxeItem(ModToolTiers.PROFUNDIUM, (new Item.Properties()).fireResistant().attributes(AxeItem.createAttributes(ModToolTiers.PROFUNDIUM, 6.0F, -2.0F))));
+    public static final DeferredItem<ShovelItem> PROFUNDIUM_SHOVEL = ITEMS.register("profundium_shovel",
+            () -> new ShovelItem(ModToolTiers.PROFUNDIUM, (new Item.Properties()).fireResistant().attributes(ShovelItem.createAttributes(ModToolTiers.PROFUNDIUM, 2.5F, -2.0F))));
+    public static final DeferredItem<HoeItem> PROFUNDIUM_HOE = ITEMS.register("profundium_hoe",
+            () -> new HoeItem(ModToolTiers.PROFUNDIUM, (new Item.Properties()).fireResistant().attributes(HoeItem.createAttributes(ModToolTiers.PROFUNDIUM, -3, -1.0F))));
+
+    // advanced wood&leather
 //
 //    //advanced stone&chainmail
 //
@@ -185,43 +184,43 @@ public class ModItems {
 //    public static final DeferredItem<Item> MECHANICAL_ELYTRA = ITEMS.register("mechanical_elytra",
 //            () -> new MechanicalElytraItem(new Item.Properties().stacksTo(1)));
 //
-//    //embarium
-//
-//    public static final DeferredItem<Item> EMBARIUM_HELMET = ITEMS.register("embarium_helmet",
-//            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties()));
-//    public static final DeferredItem<Item> EMBARIUM_CHESTPLATE = ITEMS.register("embarium_chestplate",
-//            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
-//    public static final DeferredItem<Item> EMBARIUM_LEGGINGS = ITEMS.register("embarium_leggings",
-//            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties()));
-//    public static final DeferredItem<Item> EMBARIUM_BOOTS = ITEMS.register("embarium_boots",
-//            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties()));
-//
-//    public static final DeferredItem<Item> TORRID_HELMET = ITEMS.register("torrid_steel_helmet",
-//            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_CHESTPLATE = ITEMS.register("torrid_steel_chestplate",
-//            () -> new FireArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_LEGGINGS = ITEMS.register("torrid_steel_leggings",
-//            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_BOOTS = ITEMS.register("torrid_steel_boots",
-//            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
-//
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_HELMET = ITEMS.register("torrid_embarium_helmet",
-//            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("torrid_embarium_chestplate",
-//            () -> new SuperArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_LEGGINGS = ITEMS.register("torrid_embarium_leggings",
-//            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> TORRID_EMBARIUM_BOOTS = ITEMS.register("torrid_embarium_boots",
-//            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
-//
-//    public static final DeferredItem<Item> PROFUNDIUM_HELMET = ITEMS.register("profundium_helmet",
-//            () -> new ProArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> PROFUNDIUM_CHESTPLATE = ITEMS.register("profundium_chestplate",
-//            () -> new ProArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> PROFUNDIUM_LEGGINGS = ITEMS.register("profundium_leggings",
-//            () -> new ProArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
-//    public static final DeferredItem<Item> PROFUNDIUM_BOOTS = ITEMS.register("profundium_boots",
-//            () -> new ProArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
+    //embarium
+
+    public static final DeferredItem<Item> EMBARIUM_HELMET = ITEMS.register("embarium_helmet",
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final DeferredItem<Item> EMBARIUM_CHESTPLATE = ITEMS.register("embarium_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final DeferredItem<Item> EMBARIUM_LEGGINGS = ITEMS.register("embarium_leggings",
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final DeferredItem<Item> EMBARIUM_BOOTS = ITEMS.register("embarium_boots",
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    public static final DeferredItem<Item> TORRID_HELMET = ITEMS.register("torrid_steel_helmet",
+            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> TORRID_CHESTPLATE = ITEMS.register("torrid_steel_chestplate",
+            () -> new FireArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> TORRID_LEGGINGS = ITEMS.register("torrid_steel_leggings",
+            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> TORRID_BOOTS = ITEMS.register("torrid_steel_boots",
+            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
+
+    public static final DeferredItem<Item> TORRID_EMBARIUM_HELMET = ITEMS.register("torrid_embarium_helmet",
+            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("torrid_embarium_chestplate",
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> TORRID_EMBARIUM_LEGGINGS = ITEMS.register("torrid_embarium_leggings",
+            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> TORRID_EMBARIUM_BOOTS = ITEMS.register("torrid_embarium_boots",
+            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
+
+    public static final DeferredItem<Item> PROFUNDIUM_HELMET = ITEMS.register("profundium_helmet",
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> PROFUNDIUM_CHESTPLATE = ITEMS.register("profundium_chestplate",
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> PROFUNDIUM_LEGGINGS = ITEMS.register("profundium_leggings",
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> PROFUNDIUM_BOOTS = ITEMS.register("profundium_boots",
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
 
     //Block Items
 
