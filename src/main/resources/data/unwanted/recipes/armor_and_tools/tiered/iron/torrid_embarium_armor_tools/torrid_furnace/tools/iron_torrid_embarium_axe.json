@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:torrid_furnace",
+  "ingredients": [
+    {
+      "item": "unwanted:torrid_steel_ingot"
+    },
+    {
+      "item": "unwanted:iron_embarium_axe"
+    }
+  ],
+  "output": {
+    "item": "unwanted:iron_torrid_embarium_axe"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "N",
+    "I",
+    "N"
+  ],
+  "key": {
+    "I": {
+      "item": "unwanted:torrid_steel_ingot"
+    },
+    "N": {
+      "item": "unwanted:torrid_steel_nugget"
+    }
+  },
+  "result": {
+    "item": "minecraft:chain"
+  },
+  "group": "chain"
+}

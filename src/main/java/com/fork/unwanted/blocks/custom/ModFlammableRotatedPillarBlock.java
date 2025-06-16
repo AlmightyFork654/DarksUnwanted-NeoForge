@@ -17,32 +17,33 @@ public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         return true;
     }
 
     @Override
-    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         return 5;
     }
 
     @Override
-    public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+    public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         return 5;
     }
 
-    @Nullable
     @Override
-    public BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility tool, boolean simulate) {
+    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context,
+                                                     ItemAbility itemAbility, boolean simulate) {
         if(context.getItemInHand().getItem() instanceof AxeItem) {
-            if(state.is(ModBlocks.EBONY_LOG.get())) {
+            if(state.is(ModBlocks.EBONY_LOG)) {
                 return ModBlocks.STRIPPED_EBONY_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
-            if(state.is(ModBlocks.EBONY_WOOD.get())) {
+
+            if(state.is(ModBlocks.EBONY_WOOD)) {
                 return ModBlocks.STRIPPED_EBONY_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
         }
 
-        return super.getToolModifiedState(state, context, tool, simulate);
+        return super.getToolModifiedState(state, context, itemAbility, simulate);
     }
 }

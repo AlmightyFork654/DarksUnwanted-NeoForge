@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:torrid_furnace",
+  "ingredients": [
+    {
+      "item": "unwanted:torrid_steel_ingot"
+    },
+    {
+      "item": "unwanted:stone_embarium_pickaxe"
+    }
+  ],
+  "output": {
+    "item": "unwanted:stone_torrid_embarium_pickaxe"
+  }
+}

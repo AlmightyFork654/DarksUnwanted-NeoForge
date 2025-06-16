@@ -1,0 +1,34 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "unwanted:block/torrid_steel_bars",
+		"edge": "unwanted:block/torrid_steel_bars"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 7],
+			"to": [8, 16, 8],
+			"faces": {
+				"east": {"uv": [14, 0, 13, 16], "texture": "#edge"},
+				"west": {"uv": [9, 0, 10, 16], "texture": "#edge"}
+			}
+		},
+		{
+			"from": [7, 0, 7],
+			"to": [9, 16, 7],
+			"faces": {
+				"north": {"uv": [1, 0, 3, 16], "texture": "#edge"},
+				"south": {"uv": [7, 0, 5, 16], "texture": "#edge"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "torrid_steel_bars_cap_alt",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

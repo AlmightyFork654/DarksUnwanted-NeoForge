@@ -4,6 +4,7 @@ import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.blocks.custom.*;
 import com.fork.unwanted.items.ModItems;
 import com.fork.unwanted.sfx.ModSounds;
+import com.fork.unwanted.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -198,19 +199,19 @@ public class ModBlocks {
 
     //doors
 
-    public static final DeferredBlock<Block> TORRID_STEEL_DOOR = registerBlock("torrid_steel_door",
+    public static final DeferredBlock<DoorBlock> TORRID_STEEL_DOOR = registerBlock("torrid_steel_door",
             () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_DOOR).sound(SoundType.METAL)
                     .strength(5F, 6F).destroyTime(32).noOcclusion()));
-    public static final DeferredBlock<Block> TORRID_STEEL_BARS_DOOR = registerBlock("torrid_steel_bars_door",
+    public static final DeferredBlock<DoorBlock> TORRID_STEEL_BARS_DOOR = registerBlock("torrid_steel_bars_door",
             () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).sound(SoundType.METAL)
                     .strength(5F, 6F).destroyTime(16).noOcclusion()));
 
     //trapdoors
 
-    public static final DeferredBlock<Block> TORRID_STEEL_TRAPDOOR = registerBlock("torrid_steel_trapdoor",
+    public static final DeferredBlock<TrapDoorBlock> TORRID_STEEL_TRAPDOOR = registerBlock("torrid_steel_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_TRAPDOOR).sound(SoundType.METAL)
                     .strength(5F, 6F).destroyTime(32).noOcclusion()));
-    public static final DeferredBlock<Block> TORRID_STEEL_BARS_TRAPDOOR = registerBlock("torrid_steel_bars_trapdoor",
+    public static final DeferredBlock<TrapDoorBlock> TORRID_STEEL_BARS_TRAPDOOR = registerBlock("torrid_steel_bars_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).sound(SoundType.METAL)
                     .strength(5F, 6F).destroyTime(16).noOcclusion()));
 
@@ -244,16 +245,12 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> EBONY_LOG = registerBlock("ebony_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
-
     public static final DeferredBlock<Block> EBONY_WOOD = registerBlock("ebony_wood",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
-
     public static final DeferredBlock<Block> STRIPPED_EBONY_LOG = registerBlock("stripped_ebony_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
-
     public static final DeferredBlock<Block> STRIPPED_EBONY_WOOD = registerBlock("stripped_ebony_wood",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
-
     public static final DeferredBlock<Block> EBONY_PLANKS = registerBlock("ebony_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
                 @Override
@@ -296,11 +293,11 @@ public class ModBlocks {
                 }
             });
 
-//    public static final DeferredBlock<Block> EBONY_SAPLING = registerBlock("ebony_sapling",
-//            () -> new SaplingBlock(new EbonyTreeGrower(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
-//
-//    public static final DeferredBlock<Block> POTTED_EBONY_SAPLING = registerBlockWithoutBlockItem("potted_ebony_sapling",
-//            () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, ModBlocks.EBONY_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING).noOcclusion()));
+    public static final DeferredBlock<Block> EBONY_SAPLING = registerBlock("ebony_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.EBONY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+    public static final DeferredBlock<Block> POTTED_EBONY_SAPLING = registerBlockWithoutBlockItem("potted_ebony_sapling",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, ModBlocks.EBONY_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING).noOcclusion()));
 
 
 //    ebony non-blocks

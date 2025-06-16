@@ -1,0 +1,51 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "unwanted:block/torrid_steel_bars",
+		"edge": "unwanted:block/torrid_steel_bars"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 8],
+			"to": [8, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 8, 16], "texture": "#edge"},
+				"west": {"uv": [8, 0, 0, 16], "texture": "#edge"}
+			}
+		},
+		{
+			"from": [7, 0, 9],
+			"to": [9, 16, 16],
+			"faces": {
+				"south": {"uv": [1, 0, 3, 16], "texture": "#edge", "cullface": "south"},
+				"up": {"uv": [5, 0, 7, 7], "texture": "#edge"},
+				"down": {"uv": [7, 9, 5, 16], "texture": "#edge"}
+			}
+		},
+		{
+			"from": [7, 0.001, 9],
+			"to": [9, 0.001, 16],
+			"faces": {
+				"up": {"uv": [13, 9, 15, 16], "texture": "#edge"},
+				"down": {"uv": [11, 9, 9, 16], "texture": "#edge"}
+			}
+		},
+		{
+			"from": [7, 15.999, 9],
+			"to": [9, 15.999, 16],
+			"faces": {
+				"up": {"uv": [9, 0, 11, 7], "texture": "#edge"},
+				"down": {"uv": [7, 0, 5, 7], "texture": "#edge"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "torrid_steel_bars_side_alt",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

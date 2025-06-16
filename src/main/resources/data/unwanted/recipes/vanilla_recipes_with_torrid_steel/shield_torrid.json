@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WoW",
+    "WWW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "o": {
+      "item": "unwanted:torrid_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "minecraft:shield"
+  },
+  "group": "shield"
+}
