@@ -7,13 +7,16 @@ import com.fork.unwanted.entity.ModEntities;
 import com.fork.unwanted.entity.client.ModBoatRenderer;
 import com.fork.unwanted.items.ModCreativeModeTabs;
 import com.fork.unwanted.items.ModItems;
+import com.fork.unwanted.items.armor_and_tools.layers.ElytraGliderArmorStandLayer;
+import com.fork.unwanted.items.armor_and_tools.layers.MechanicalElytraArmorStandLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.ProfundiumElytraArmorStandLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.ProfundiumElytraLayer;
+import com.fork.unwanted.items.armor_and_tools.layers.MechanicalElytraLayer;
+import com.fork.unwanted.items.armor_and_tools.layers.ElytraGliderLayer;
 import com.fork.unwanted.misc.ModWoodTypes;
 import com.fork.unwanted.mob_effects.ModEffects;
 import com.fork.unwanted.mob_effects.ModPotions;
 import com.fork.unwanted.sfx.ModSounds;
-import com.fork.unwanted.worldgen.tree.ModTreeGrowers;
 import com.fork.unwanted.worldgen.tree.custom.ModFoliagePlacers;
 import com.fork.unwanted.worldgen.tree.custom.ModTrunkPlacerTypes;
 import net.minecraft.client.model.EntityModel;
@@ -443,13 +446,12 @@ public class Unwanted {
             event.accept(ModItems.PROFUNDIUM_AXE);
             event.accept(ModItems.PROFUNDIUM_SHOVEL);
             event.accept(ModItems.PROFUNDIUM_HOE);
-//            event.accept(ModItems.ELYTRA_GLIDER);
-//            event.accept(ModItems.MECHANICAL_ELYTRA);
+            event.accept(ModItems.ELYTRA_GLIDER);
+            event.accept(ModItems.MECHANICAL_ELYTRA);
 //            event.accept(ModItems.WOODEN_SPEAR);
 //            event.accept(ModItems.IRON_SPEAR);
             event.accept(ModItems.CHISEL);
             event.accept(ModItems.NETHERITE_CHISEL);
-//            event.accept(ModItems.RUBY_DETECTOR);
         }
     }
 
@@ -501,11 +503,15 @@ private void registerElytraLayer(EntityRenderersEvent.AddLayers addLayersEvent) 
         LivingEntityRenderer<? extends Player, ? extends EntityModel<? extends Player>> livingEntityRenderer = addLayersEvent.getSkin(s);
         if (livingEntityRenderer instanceof PlayerRenderer playerRenderer) {
             playerRenderer.addLayer(new ProfundiumElytraLayer(playerRenderer, entityModels));
+            playerRenderer.addLayer(new ElytraGliderLayer(playerRenderer, entityModels));
+            playerRenderer.addLayer(new MechanicalElytraLayer(playerRenderer, entityModels));
         }
     });
     LivingEntityRenderer<ArmorStand, ? extends EntityModel<ArmorStand>> livingEntityRenderer = addLayersEvent.getRenderer(EntityType.ARMOR_STAND);
     if (livingEntityRenderer instanceof ArmorStandRenderer armorStandRenderer) {
         armorStandRenderer.addLayer(new ProfundiumElytraArmorStandLayer(armorStandRenderer, entityModels));
+        armorStandRenderer.addLayer(new MechanicalElytraArmorStandLayer(armorStandRenderer, entityModels));
+        armorStandRenderer.addLayer(new ElytraGliderArmorStandLayer(armorStandRenderer, entityModels));
     }
 }
 }
