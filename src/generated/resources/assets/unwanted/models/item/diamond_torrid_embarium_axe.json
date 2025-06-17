@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "unwanted:item/diamond_torrid_embarium_axe"
+  }
+}

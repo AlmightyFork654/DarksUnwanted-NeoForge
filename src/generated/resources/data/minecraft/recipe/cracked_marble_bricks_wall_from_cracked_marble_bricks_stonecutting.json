@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "unwanted:cracked_marble_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "unwanted:cracked_marble_bricks_wall"
+  }
+}

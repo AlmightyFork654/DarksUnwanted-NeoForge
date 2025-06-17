@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "e": {
+      "item": "unwanted:ebony_planks"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "ses",
+    "ses"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unwanted:ebony_fence_gate"
+  }
+}

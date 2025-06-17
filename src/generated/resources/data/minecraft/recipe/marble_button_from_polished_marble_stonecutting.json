@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "unwanted:polished_marble"
+  },
+  "result": {
+    "count": 4,
+    "id": "unwanted:marble_button"
+  }
+}

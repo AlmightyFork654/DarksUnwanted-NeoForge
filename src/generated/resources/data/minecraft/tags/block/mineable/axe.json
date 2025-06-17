@@ -1,0 +1,14 @@
+{
+  "values": [
+    "#unwanted:ebony_logs",
+    "unwanted:ebony_planks",
+    "unwanted:ebony_slab",
+    "unwanted:ebony_stairs",
+    "unwanted:ebony_fence",
+    "unwanted:ebony_fence_gate",
+    "unwanted:ebony_door",
+    "unwanted:ebony_trapdoor",
+    "unwanted:ebony_pressure_plate",
+    "unwanted:ebony_button"
+  ]
+}

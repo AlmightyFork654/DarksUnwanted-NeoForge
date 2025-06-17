@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "c": {
+      "item": "minecraft:yellow_carpet"
+    },
+    "s": {
+      "item": "minecraft:slime_block"
+    },
+    "w": {
+      "item": "minecraft:yellow_wool"
+    }
+  },
+  "pattern": [
+    "ccc",
+    "wsw",
+    "www"
+  ],
+  "result": {
+    "count": 8,
+    "id": "unwanted:yellow_bouncer_block"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "unwanted:item/stone_embarium_hoe"
+  }
+}

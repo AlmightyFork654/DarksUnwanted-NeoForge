@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "e": {
+      "item": "unwanted:embarium"
+    },
+    "g": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "p": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "pgp",
+    "geg",
+    "pgp"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unwanted:embarium_lamp_block"
+  }
+}
