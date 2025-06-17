@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "unwanted:block/chiseled_s_marble",
-    "side": "unwanted:block/chiseled_s_marble",
-    "top": "unwanted:block/chiseled_s_marble_top"
-  }
-}

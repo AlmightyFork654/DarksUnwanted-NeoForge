@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": [
-    "minecraft:dark_forest",
-    "minecraft:forest"
-  ],
-  "features": "unwanted:ebony_placed",
-  "step": "vegetal_decoration"
-}
