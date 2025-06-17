@@ -3,6 +3,7 @@ package com.fork.unwanted.blocks;
 import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.blocks.custom.*;
 import com.fork.unwanted.items.ModItems;
+import com.fork.unwanted.misc.ModWoodTypes;
 import com.fork.unwanted.sfx.ModSounds;
 import com.fork.unwanted.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
@@ -329,15 +330,15 @@ public class ModBlocks {
     public static final DeferredBlock<TrapDoorBlock> EBONY_TRAPDOOR = registerBlock("ebony_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR)
                     .strength(1F, 2F).noOcclusion()));
-//
-//    public static final DeferredBlock<Block> EBONY_SIGN = BLOCKS.register("ebony_sign",
-//            () -> new ModStandingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_SIGN), ModWoodTypes.EBONY));
-//    public static final DeferredBlock<Block> EBONY_WALL_SIGN = BLOCKS.register("ebony_wall_sign",
-//            () -> new ModWallSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WALL_SIGN), ModWoodTypes.EBONY));
-//    public static final DeferredBlock<Block> EBONY_HANGING_SIGN = BLOCKS.register("ebony_hanging_sign",
-//            () -> new ModHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_HANGING_SIGN), ModWoodTypes.EBONY));
-//    public static final DeferredBlock<Block> EBONY_WALL_HANGING_SIGN = BLOCKS.register("ebony_wall_hanging_sign",
-//            () -> new ModWallHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WALL_HANGING_SIGN), ModWoodTypes.EBONY));
+
+    public static final DeferredBlock<Block> EBONY_SIGN = BLOCKS.register("ebony_sign",
+            () -> new ModStandingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_SIGN), ModWoodTypes.EBONY));
+    public static final DeferredBlock<Block> EBONY_WALL_SIGN = BLOCKS.register("ebony_wall_sign",
+            () -> new ModWallSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WALL_SIGN), ModWoodTypes.EBONY));
+    public static final DeferredBlock<Block> EBONY_HANGING_SIGN = BLOCKS.register("ebony_hanging_sign",
+            () -> new ModHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_HANGING_SIGN), ModWoodTypes.EBONY));
+    public static final DeferredBlock<Block> EBONY_WALL_HANGING_SIGN = BLOCKS.register("ebony_wall_hanging_sign",
+            () -> new ModWallHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WALL_HANGING_SIGN), ModWoodTypes.EBONY));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {

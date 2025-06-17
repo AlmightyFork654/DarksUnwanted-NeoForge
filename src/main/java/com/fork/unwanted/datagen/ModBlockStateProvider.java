@@ -112,8 +112,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockItem(ModBlocks.TORRID_STEEL_BARS);
 
-//        signBlock(((StandingSignBlock) ModBlocks.EBONY_SIGN.get()), ((WallSignBlock) ModBlocks.EBONY_WALL_SIGN.get()), blockTexture(ModBlocks.EBONY_PLANKS.get()));
-//        hangingSignBlock(ModBlocks.EBONY_HANGING_SIGN.get(), ModBlocks.EBONY_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.EBONY_PLANKS.get()));
+        signBlock(((StandingSignBlock) ModBlocks.EBONY_SIGN.get()), ((WallSignBlock) ModBlocks.EBONY_WALL_SIGN.get()), blockTexture(ModBlocks.EBONY_PLANKS.get()));
+        hangingSignBlock((CeilingHangingSignBlock) ModBlocks.EBONY_HANGING_SIGN.get(), (WallHangingSignBlock) ModBlocks.EBONY_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.EBONY_PLANKS.get()));
 
 //        horizontalBlock(ModBlocks.GEM_CUTTING_STATION.get(), new ModelFile.UncheckedModelFile(modLoc("block/gem_cutting_station")));
 //        horizontalBlock(ModBlocks.GEM_INFUSER.get(), new ModelFile.UncheckedModelFile(modLoc("block/gem_infuser")));

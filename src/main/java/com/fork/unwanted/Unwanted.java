@@ -1,15 +1,35 @@
 package com.fork.unwanted;
 
 import com.fork.unwanted.blocks.ModBlocks;
+import com.fork.unwanted.blocks.entity.ModBlockEntities;
 import com.fork.unwanted.component.ModDataComponents;
+import com.fork.unwanted.entity.ModEntities;
+import com.fork.unwanted.entity.client.ModBoatRenderer;
 import com.fork.unwanted.items.ModCreativeModeTabs;
 import com.fork.unwanted.items.ModItems;
+import com.fork.unwanted.items.armor_and_tools.layers.ProfundiumElytraArmorStandLayer;
+import com.fork.unwanted.items.armor_and_tools.layers.ProfundiumElytraLayer;
+import com.fork.unwanted.misc.ModWoodTypes;
 import com.fork.unwanted.mob_effects.ModEffects;
 import com.fork.unwanted.mob_effects.ModPotions;
 import com.fork.unwanted.sfx.ModSounds;
 import com.fork.unwanted.worldgen.tree.ModTreeGrowers;
 import com.fork.unwanted.worldgen.tree.custom.ModFoliagePlacers;
 import com.fork.unwanted.worldgen.tree.custom.ModTrunkPlacerTypes;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.ArmorStandRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -43,6 +63,8 @@ public class Unwanted {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         ModSounds.register(modEventBus);
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
@@ -50,6 +72,7 @@ public class Unwanted {
         ModTrunkPlacerTypes.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::registerElytraLayer);
 
 //        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
 //        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -57,7 +80,10 @@ public class Unwanted {
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.TORRID_BUSH.getId(), ModBlocks.POTTED_TORRID_BUSH);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.EBONY_SAPLING.getId(), ModBlocks.POTTED_EBONY_SAPLING);
+        });
     }
 
     // Add the example block item to the building blocks tab
@@ -80,8 +106,8 @@ public class Unwanted {
             event.accept(ModItems.WOODEN_SPEAR_HEAD);
             event.accept(ModItems.DARKNESS_MUSIC_DISK);
             event.accept(ModItems.CAVE_WHISPERS_MUSIC_DISK);
-//            event.accept(ModItems.EBONY_BOAT);
-//            event.accept(ModItems.EBONY_CHEST_BOAT);
+            event.accept(ModItems.EBONY_BOAT);
+            event.accept(ModItems.EBONY_CHEST_BOAT);
 
 //            event.accept(ModItems.TEA_CUP);
             event.accept(ModItems.CUP_OF_WATER);
@@ -150,8 +176,8 @@ public class Unwanted {
             event.accept(ModBlocks.EBONY_LEAVES);
             event.accept(ModBlocks.EBONY_SAPLING);
             event.accept(ModBlocks.TORRID_BUSH);
-//            event.accept(ModItems.EBONY_SIGN);
-//            event.accept(ModItems.EBONY_HANGING_SIGN);
+            event.accept(ModItems.EBONY_SIGN);
+            event.accept(ModItems.EBONY_HANGING_SIGN);
             event.accept(ModBlocks.TORRID_STEEL_DOOR);
             event.accept(ModBlocks.TORRID_STEEL_TRAPDOOR);
             event.accept(ModBlocks.TORRID_STEEL_BARS_DOOR);
@@ -440,6 +466,46 @@ public class Unwanted {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            Sheets.addWoodType(ModWoodTypes.EBONY);
+
+            EntityRenderers.register(ModEntities.MOD_BOAT.get(), p_174010_ -> new ModBoatRenderer(p_174010_, false));
+            EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), p_174010_ -> new ModBoatRenderer(p_174010_, true));
         }
     }
+
+//    @OnlyIn(Dist.CLIENT)
+//    private void registerElytraLayer(EntityRenderersEvent event) {
+//        if(event instanceof EntityRenderersEvent.AddLayers addLayersEvent){
+//            EntityModelSet entityModels = addLayersEvent.getEntityModels();
+//            addLayersEvent.getSkins().forEach(s -> {
+//                LivingEntityRenderer<? extends Player, ? extends EntityModel<? extends Player>> livingEntityRenderer = addLayersEvent.getSkin(s);
+//                if(livingEntityRenderer instanceof PlayerRenderer playerRenderer){
+////                    playerRenderer.addLayer(new ElytraGliderLayer(playerRenderer, entityModels));
+////                    playerRenderer.addLayer(new MechanicalElytraLayer(playerRenderer, entityModels));
+//                    playerRenderer.addLayer(new ProfundiumElytraLayer(playerRenderer, entityModels));
+//                }
+//            });
+//            LivingEntityRenderer<ArmorStand, ? extends EntityModel<ArmorStand>> livingEntityRenderer = addLayersEvent.getRenderer(EntityType.ARMOR_STAND);
+//            if(livingEntityRenderer instanceof ArmorStandRenderer armorStandRenderer){
+////                armorStandRenderer.addLayer(new ElytraGliderArmorStandLayer(armorStandRenderer, entityModels));
+//                armorStandRenderer.addLayer(new ProfundiumElytraArmorStandLayer(armorStandRenderer, entityModels));
+////                armorStandRenderer.addLayer(new MechanicalElytraArmorStandLayer(armorStandRenderer, entityModels));
+//            }
+//        }
+//    }
+
+@OnlyIn(Dist.CLIENT)
+private void registerElytraLayer(EntityRenderersEvent.AddLayers addLayersEvent) {
+    EntityModelSet entityModels = addLayersEvent.getEntityModels();
+    addLayersEvent.getSkins().forEach(s -> {
+        LivingEntityRenderer<? extends Player, ? extends EntityModel<? extends Player>> livingEntityRenderer = addLayersEvent.getSkin(s);
+        if (livingEntityRenderer instanceof PlayerRenderer playerRenderer) {
+            playerRenderer.addLayer(new ProfundiumElytraLayer(playerRenderer, entityModels));
+        }
+    });
+    LivingEntityRenderer<ArmorStand, ? extends EntityModel<ArmorStand>> livingEntityRenderer = addLayersEvent.getRenderer(EntityType.ARMOR_STAND);
+    if (livingEntityRenderer instanceof ArmorStandRenderer armorStandRenderer) {
+        armorStandRenderer.addLayer(new ProfundiumElytraArmorStandLayer(armorStandRenderer, entityModels));
+    }
+}
 }

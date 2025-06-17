@@ -410,11 +410,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.EBONY_PLANKS.get()), has(ModBlocks.EBONY_PLANKS.get()))
                 .save(recipeOutput);
 
-//        woodenBoat(recipeOutput, ModItems.EBONY_BOAT.get(), ModBlocks.EBONY_PLANKS.get());
-//        chestBoat(recipeOutput, ModItems.EBONY_CHEST_BOAT.get(), ModBlocks.EBONY_PLANKS.get());
-//
-//        ModsignBuilder(ModItems.EBONY_SIGN.get(), ModBlocks.EBONY_PLANKS.get());
-//        hangingSign(recipeOutput, ModItems.EBONY_HANGING_SIGN.get(), ModBlocks.STRIPPED_EBONY_LOG.get());
+        woodenBoat(recipeOutput, ModItems.EBONY_BOAT.get(), ModBlocks.EBONY_PLANKS.get());
+        chestBoat(recipeOutput, ModItems.EBONY_CHEST_BOAT.get(), ModBlocks.EBONY_PLANKS.get());
+
+        ModsignBuilder(ModItems.EBONY_SIGN.get(), ModBlocks.EBONY_PLANKS.get());
+        hangingSign(recipeOutput, ModItems.EBONY_HANGING_SIGN.get(), ModBlocks.STRIPPED_EBONY_LOG.get());
 
         //items
 
@@ -508,6 +508,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 //                .define('m', ModItems.MARBLE_SHARD.get())
 //                .unlockedBy(getHasName(ModItems.MARBLE_SHARD.get()), has(ModItems.MARBLE_SHARD.get()))
 //                .save(recipeOutput);
+    }
+
+    protected static RecipeBuilder ModsignBuilder(ItemLike p_176727_, ItemLike p_176728_) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, p_176727_, 3).group("sign").define('#', p_176728_).define('X', Items.STICK).pattern("###").pattern("###").pattern(" X ");
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

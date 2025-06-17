@@ -1,7 +1,10 @@
 package com.fork.unwanted.items;
 
 import com.fork.unwanted.Unwanted;
+import com.fork.unwanted.blocks.ModBlocks;
+import com.fork.unwanted.entity.custom.ModBoatEntity;
 import com.fork.unwanted.items.armor_and_tools.*;
+import com.fork.unwanted.items.custom.ModBoatItem;
 import com.fork.unwanted.items.custom.PureBlazePowderItem;
 import com.fork.unwanted.sfx.ModSounds;
 import net.minecraft.world.item.*;
@@ -23,10 +26,10 @@ public class ModItems {
     public static final DeferredItem<Item> BLAZING_WATER = ITEMS.register("blazing_water",
         () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE)));
 
-//    public static final DeferredItem<Item> EBONY_BOAT = ITEMS.register("ebony_boat",
-//            () -> new ModBoatItem(false, ModBoatEntity.Type.EBONY, new Item.Properties()));
-//    public static final DeferredItem<Item> EBONY_CHEST_BOAT = ITEMS.register("ebony_chest_boat",
-//            () -> new ModBoatItem(true, ModBoatEntity.Type.EBONY, new Item.Properties()));
+    public static final DeferredItem<Item> EBONY_BOAT = ITEMS.register("ebony_boat",
+            () -> new ModBoatItem(false, ModBoatEntity.Type.EBONY, new Item.Properties()));
+    public static final DeferredItem<Item> EBONY_CHEST_BOAT = ITEMS.register("ebony_chest_boat",
+            () -> new ModBoatItem(true, ModBoatEntity.Type.EBONY, new Item.Properties()));
 
     public static final DeferredItem<Item> WOODEN_SPEAR_HEAD = ITEMS.register("wooden_spear_head",
             ()-> new Item(new Item.Properties()));
@@ -463,7 +466,7 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final DeferredItem<ArmorItem> LEATHER_EMBARIUM_LEGGINGS = ITEMS.register("leather_embarium_leggings",
             () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.LEGGINGS, new Item.Properties()));
-    public static final DeferredItem LEATHER_EMBARIUM_BOOTS = ITEMS.register("leather_embarium_boots",
+    public static final DeferredItem<ArmorItem> LEATHER_EMBARIUM_BOOTS = ITEMS.register("leather_embarium_boots",
             () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_HELMET = ITEMS.register("leather_torrid_helmet",
@@ -667,10 +670,10 @@ public class ModItems {
 
         //wood
 
-//    public static final DeferredItem<Item> EBONY_SIGN = ITEMS.register("ebony_sign",
-//            () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.EBONY_SIGN.get(), ModBlocks.EBONY_WALL_SIGN.get()));
-//    public static final DeferredItem<Item> EBONY_HANGING_SIGN = ITEMS.register("ebony_hanging_sign",
-//            () -> new HangingSignItem(ModBlocks.EBONY_HANGING_SIGN.get(), ModBlocks.EBONY_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> EBONY_SIGN = ITEMS.register("ebony_sign",
+            () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.EBONY_SIGN.get(), ModBlocks.EBONY_WALL_SIGN.get()));
+    public static final DeferredItem<Item> EBONY_HANGING_SIGN = ITEMS.register("ebony_hanging_sign",
+            () -> new HangingSignItem(ModBlocks.EBONY_HANGING_SIGN.get(), ModBlocks.EBONY_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 
 
     public static void register(IEventBus eventBus) {

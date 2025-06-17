@@ -170,15 +170,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         add(ModBlocks.EBONY_LEAVES.get(),
                 (block -> createLeavesDrops(ModBlocks.EBONY_LEAVES.get(), ModBlocks.EBONY_SAPLING.get(), 0.2f))); // replace w EBONY_SAPLING
-//
-//        add(ModBlocks.EBONY_SIGN.get(), block ->
-//                createSingleItemTable(ModItems.EBONY_SIGN.get()));
-//        add(ModBlocks.EBONY_WALL_SIGN.get(), block ->
-//                createSingleItemTable(ModItems.EBONY_SIGN.get()));
-//        add(ModBlocks.EBONY_HANGING_SIGN.get(), block ->
-//                createSingleItemTable(ModItems.EBONY_HANGING_SIGN.get()));
-//        add(ModBlocks.EBONY_WALL_HANGING_SIGN.get(), block ->
-//                createSingleItemTable(ModItems.EBONY_HANGING_SIGN.get()));
+
+        add(ModBlocks.EBONY_SIGN.get(), block ->
+                createSingleItemTable(ModItems.EBONY_SIGN.get()));
+        add(ModBlocks.EBONY_WALL_SIGN.get(), block ->
+                createSingleItemTable(ModItems.EBONY_SIGN.get()));
+        add(ModBlocks.EBONY_HANGING_SIGN.get(), block ->
+                createSingleItemTable(ModItems.EBONY_HANGING_SIGN.get()));
+        add(ModBlocks.EBONY_WALL_HANGING_SIGN.get(), block ->
+                createSingleItemTable(ModItems.EBONY_HANGING_SIGN.get()));
 
 
     }

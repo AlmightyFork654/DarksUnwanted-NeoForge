@@ -27,17 +27,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.STRIPPED_EBONY_WOOD.get(),
                         ModBlocks.STRIPPED_EBONY_LOG.get());
 
-//        this.tag(BlockTags.MINEABLE_WITH_AXE)
-//                .addTag(CustomTags.Blocks.EBONY_LOGS)
-//                .add(ModBlocks.EBONY_PLANKS.get(),
-//                    ModBlocks.EBONY_SLAB.get(),
-//                    ModBlocks.EBONY_STAIRS.get(),
-//                    ModBlocks.EBONY_FENCE.get(),
-//                    ModBlocks.EBONY_FENCE_GATE.get(),
-//                    ModBlocks.EBONY_DOOR.get(),
-//                    ModBlocks.EBONY_TRAPDOOR.get(),
-//                    ModBlocks.EBONY_PRESSURE_PLATE.get(),
-//                    ModBlocks.EBONY_BUTTON.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(ModTags.Blocks.EBONY_LOGS)
+                .add(ModBlocks.EBONY_PLANKS.get(),
+                    ModBlocks.EBONY_SLAB.get(),
+                    ModBlocks.EBONY_STAIRS.get(),
+                    ModBlocks.EBONY_FENCE.get(),
+                    ModBlocks.EBONY_FENCE_GATE.get(),
+                    ModBlocks.EBONY_DOOR.get(),
+                    ModBlocks.EBONY_TRAPDOOR.get(),
+                    ModBlocks.EBONY_PRESSURE_PLATE.get(),
+                    ModBlocks.EBONY_BUTTON.get());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.RUBY_ORE.get(),
@@ -52,28 +52,28 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.TORRID_STEEL_BLOCK.get(),
                         ModBlocks.TORRID_STEEL_BARS.get(),
                         ModBlocks.MARBLE.get(),
-//                      ModBlocks.MARBLE_WALL.get(),
+                      ModBlocks.MARBLE_WALL.get(),
                         ModBlocks.MARBLE_STAIRS.get(),
                         ModBlocks.MARBLE_SLAB.get(),
                         ModBlocks.MARBLE_PILLAR.get(),
                         ModBlocks.POLISHED_MARBLE.get(),
-//                      ModBlocks.POLISHED_MARBLE_WALL.get(),
+                      ModBlocks.POLISHED_MARBLE_WALL.get(),
                         ModBlocks.POLISHED_MARBLE_STAIRS.get(),
                         ModBlocks.POLISHED_MARBLE_SLAB.get(),
                         ModBlocks.SMOOTH_MARBLE.get(),
-//                      ModBlocks.SMOOTH_MARBLE_WALL.get(),
+                      ModBlocks.SMOOTH_MARBLE_WALL.get(),
                         ModBlocks.SMOOTH_MARBLE_SLAB.get(),
                         ModBlocks.SMOOTH_MARBLE_STAIRS.get(),
                         ModBlocks.MARBLE_BRICKS.get(),
-//                      ModBlocks.MARBLE_BRICKS_WALL.get(),
+                      ModBlocks.MARBLE_BRICKS_WALL.get(),
                         ModBlocks.MARBLE_BRICKS_SLAB.get(),
                         ModBlocks.MARBLE_BRICKS_STAIRS.get(),
                         ModBlocks.CRACKED_MARBLE_BRICKS.get(),
-//                      ModBlocks.CRACKED_MARBLE_BRICKS_WALL.get(),
+                      ModBlocks.CRACKED_MARBLE_BRICKS_WALL.get(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_SLAB.get(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_STAIRS.get(),
                         ModBlocks.MOSSY_MARBLE_BRICKS.get(),
-//                      ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get(),
+                      ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get(),
                         ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get(),
                         ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS.get(),
                         ModBlocks.CHISELED_C_MARBLE.get(),
@@ -84,13 +84,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 //                        ModBlocks.TORRID_FURNACE.get(),
 //                        ModBlocks.GEM_INFUSER.get(),
 //                        ModBlocks.GEM_CUTTING_STATION.get(),
-//                      ModBlocks.MARBLE_BUTTON.get(),
+//                        ModBlocks.KETTLE.get(),
+                        ModBlocks.MARBLE_BUTTON.get(),
                         ModBlocks.MARBLE_PRESSURE_PLATE.get(),
                         ModBlocks.TORRID_STEEL_DOOR.get(),
                         ModBlocks.TORRID_STEEL_BARS_DOOR.get(),
                         ModBlocks.TORRID_STEEL_TRAPDOOR.get(),
                         ModBlocks.TORRID_STEEL_BARS_TRAPDOOR.get(),
-                        //                  ModBlocks.TORRID_STEEL_BUTTON.get(),
+                        ModBlocks.TORRID_STEEL_BUTTON.get(),
                         ModBlocks.TORRID_STEEL_PRESSURE_PLATE.get());
 
         this.tag(Tags.Blocks.ORES)
@@ -113,7 +114,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.LOGS_THAT_BURN).addTag(ModTags.Blocks.EBONY_LOGS);
 
         this.tag(BlockTags.PLANKS).add(ModBlocks.EBONY_PLANKS.get());
-//        this.tag(BlockTags.SAPLINGS).add(ModBlocks.EBONY_SAPLING.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.EBONY_SAPLING.get());
         this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.TORRID_BUSH.get());
 
         this.tag(BlockTags.SLABS)

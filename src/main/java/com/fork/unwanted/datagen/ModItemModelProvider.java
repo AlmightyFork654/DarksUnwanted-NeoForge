@@ -336,12 +336,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         saplingItem(ModBlocks.TORRID_BUSH);
         saplingItem(ModBlocks.EBONY_SAPLING);
+
+        basicItem(ModItems.EBONY_SIGN.get());
+        basicItem(ModItems.EBONY_HANGING_SIGN.get());
 //
-//        basicItem(ModItems.EBONY_SIGN);
-//        basicItem(ModItems.EBONY_HANGING_SIGN);
-//
-//        basicItem(ModItems.EBONY_BOAT);
-//        basicItem(ModItems.EBONY_CHEST_BOAT);
+        basicItem(ModItems.EBONY_BOAT.get());
+        basicItem(ModItems.EBONY_CHEST_BOAT.get());
 
 //        evenSimplerBlockItem(ModBlocks.GEM_CUTTING_STATION);
 //        evenSimplerBlockItem(ModBlocks.GEM_INFUSER);
