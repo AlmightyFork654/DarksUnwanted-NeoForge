@@ -304,8 +304,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.PROFUNDIUM_TORRID_EMBARIUM_LEGGINGS);
         trimmedArmorItem(ModItems.PROFUNDIUM_TORRID_EMBARIUM_BOOTS);
 
-//        basicItem(ModItems.ELYTRA_GLIDER);
-//        basicItem(ModItems.MECHANICAL_ELYTRA);
+        basicItem(ModItems.ELYTRA_GLIDER.get());
+        basicItem(ModItems.MECHANICAL_ELYTRA.get());
 
 //        //block-items
 
@@ -320,8 +320,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         fenceItem(ModBlocks.EBONY_FENCE, ModBlocks.EBONY_PLANKS);
 
-//        basicItem(ModBlocks.TORRID_STEEL_BARS.asItem()); //simpleBlockItemBlockTexture
-
+        IronBarsItem(ModBlocks.TORRID_STEEL_BARS);
         basicItem(ModBlocks.TORRID_STEEL_DOOR.asItem());
         basicItem(ModBlocks.TORRID_STEEL_BARS_DOOR.asItem());
         basicItem(ModBlocks.EBONY_DOOR.asItem());
@@ -339,7 +338,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.EBONY_SIGN.get());
         basicItem(ModItems.EBONY_HANGING_SIGN.get());
-//
+
         basicItem(ModItems.EBONY_BOAT.get());
         basicItem(ModItems.EBONY_CHEST_BOAT.get());
 
@@ -448,5 +447,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/handheld")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"item/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder IronBarsItem(DeferredBlock<IronBarsBlock> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"block/" + item.getId().getPath()));
     }
 }

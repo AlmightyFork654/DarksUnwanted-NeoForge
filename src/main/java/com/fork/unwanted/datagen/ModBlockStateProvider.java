@@ -44,7 +44,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.CHISELED_S_MARBLE);
         blockItem(ModBlocks.CHISELED_W_MARBLE);
         blockItem(ModBlocks.CHISELED_E_MARBLE);
-        logBlock(ModBlocks.MARBLE_PILLAR.get());
+        logBlock(((RotatedPillarBlock) ModBlocks.MARBLE_PILLAR.get()));
+        blockItem(ModBlocks.MARBLE_PILLAR);
 
         stairsBlock(ModBlocks.MARBLE_STAIRS.get(), blockTexture(ModBlocks.MARBLE.get()));
         stairsBlock(ModBlocks.POLISHED_MARBLE_STAIRS.get(), blockTexture(ModBlocks.POLISHED_MARBLE.get()));
@@ -109,8 +110,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         buttonBlock(ModBlocks.EBONY_BUTTON.get(), blockTexture(ModBlocks.EBONY_PLANKS.get()));
         pressurePlateBlock(ModBlocks.EBONY_PRESSURE_PLATE.get(), blockTexture(ModBlocks.EBONY_PLANKS.get()));
         blockItem(ModBlocks.EBONY_PRESSURE_PLATE);
-
-        blockItem(ModBlocks.TORRID_STEEL_BARS);
 
         signBlock(((StandingSignBlock) ModBlocks.EBONY_SIGN.get()), ((WallSignBlock) ModBlocks.EBONY_WALL_SIGN.get()), blockTexture(ModBlocks.EBONY_PLANKS.get()));
         hangingSignBlock((CeilingHangingSignBlock) ModBlocks.EBONY_HANGING_SIGN.get(), (WallHangingSignBlock) ModBlocks.EBONY_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.EBONY_PLANKS.get()));
@@ -179,10 +178,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void blockItem(DeferredBlock<?> deferredBlock) {
-        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("tutorialmod:block/" + deferredBlock.getId().getPath()));
+        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("unwanted:block/" + deferredBlock.getId().getPath()));
     }
 
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
-        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("tutorialmod:block/" + deferredBlock.getId().getPath() + appendix));
+        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("unwanted:block/" + deferredBlock.getId().getPath() + appendix));
     }
 }

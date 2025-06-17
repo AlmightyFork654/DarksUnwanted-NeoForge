@@ -457,24 +457,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 //        upgradeSmithing(recipeOutput, ModItems.CHISEL.get(), Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, RecipeCategory.TOOLS, ModItems.NETHERITE_CHISEL.get());
 
 
-//        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, ModItems.ELYTRA_GLIDER.get())
-//                .pattern("sss")
-//                .pattern("f f")
-//                .pattern("f f")
-//                .define('s', Items.STICK)
-//                .define('f', Items.PHANTOM_MEMBRANE)
-//                .unlockedBy(getHasName(Items.PHANTOM_MEMBRANE), has(Items.PHANTOM_MEMBRANE))
-//                .save(recipeOutput);
-//
-//        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, ModItems.MECHANICAL_ELYTRA.get())
-//                .pattern("tpt")
-//                .pattern("tet")
-//                .pattern("t t")
-//                .define('t', ModItems.TORRID_STEEL_INGOT.get())
-//                .define('e', Items.ELYTRA)
-//                .define('p', ModItems.PROFUNDIUM_INGOT.get())
-//                .unlockedBy(getHasName(Items.ELYTRA), has(Items.ELYTRA))
-//                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, ModItems.ELYTRA_GLIDER.get())
+                .pattern("sss")
+                .pattern("f f")
+                .pattern("f f")
+                .define('s', Items.STICK)
+                .define('f', Items.PHANTOM_MEMBRANE)
+                .unlockedBy(getHasName(Items.PHANTOM_MEMBRANE), has(Items.PHANTOM_MEMBRANE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, ModItems.MECHANICAL_ELYTRA.get())
+                .pattern("tpt")
+                .pattern("tet")
+                .pattern("t t")
+                .define('t', ModItems.TORRID_STEEL_INGOT.get())
+                .define('e', Items.ELYTRA)
+                .define('p', ModItems.PROFUNDIUM_INGOT.get())
+                .unlockedBy(getHasName(Items.ELYTRA), has(Items.ELYTRA))
+                .save(recipeOutput);
 
 //        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOODEN_SPEAR.get())
 //                .pattern("  k")
