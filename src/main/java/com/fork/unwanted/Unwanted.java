@@ -5,34 +5,45 @@ import com.fork.unwanted.blocks.entity.ModBlockEntities;
 import com.fork.unwanted.component.ModDataComponents;
 import com.fork.unwanted.entity.ModEntities;
 import com.fork.unwanted.entity.client.ModBoatRenderer;
+import com.fork.unwanted.entity.client.ModModelLayers;
 import com.fork.unwanted.items.ModCreativeModeTabs;
 import com.fork.unwanted.items.ModItems;
+import com.fork.unwanted.items.armor_and_tools.MechanicalElytraItem;
 import com.fork.unwanted.items.armor_and_tools.layers.ElytraGliderArmorStandLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.MechanicalElytraArmorStandLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.ProfundiumElytraArmorStandLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.ProfundiumElytraLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.MechanicalElytraLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.ElytraGliderLayer;
+import com.fork.unwanted.items.spear.ThrownSpearRenderer;
+import com.fork.unwanted.misc.KeyBindings;
 import com.fork.unwanted.misc.ModWoodTypes;
 import com.fork.unwanted.mob_effects.ModEffects;
 import com.fork.unwanted.mob_effects.ModPotions;
 import com.fork.unwanted.sfx.ModSounds;
 import com.fork.unwanted.worldgen.tree.custom.ModFoliagePlacers;
 import com.fork.unwanted.worldgen.tree.custom.ModTrunkPlacerTypes;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.ArmorStandRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -76,6 +87,8 @@ public class Unwanted {
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::registerElytraLayer);
+
+        NeoForge.EVENT_BUS.addListener(this::onKeyInput);
 
 //        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
 //        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -448,8 +461,8 @@ public class Unwanted {
             event.accept(ModItems.PROFUNDIUM_HOE);
             event.accept(ModItems.ELYTRA_GLIDER);
             event.accept(ModItems.MECHANICAL_ELYTRA);
-//            event.accept(ModItems.WOODEN_SPEAR);
-//            event.accept(ModItems.IRON_SPEAR);
+            event.accept(ModItems.WOODEN_SPEAR);
+            event.accept(ModItems.IRON_SPEAR);
             event.accept(ModItems.CHISEL);
             event.accept(ModItems.NETHERITE_CHISEL);
         }
@@ -472,6 +485,15 @@ public class Unwanted {
 
             EntityRenderers.register(ModEntities.MOD_BOAT.get(), p_174010_ -> new ModBoatRenderer(p_174010_, false));
             EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), p_174010_ -> new ModBoatRenderer(p_174010_, true));
+
+            EntityRenderers.register(ModEntities.WOODEN_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.WOODEN_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/wooden_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.IRON_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.IRON_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/iron_spear_in_hand.png")));
+        }
+
+        @SubscribeEvent
+        public static void registerKeys(RegisterKeyMappingsEvent event) {
+            event.register(KeyBindings.KEY_BINDINGS.boost);
+            event.register(KeyBindings.KEY_BINDINGS.craw);
         }
     }
 
@@ -496,22 +518,50 @@ public class Unwanted {
 //        }
 //    }
 
-@OnlyIn(Dist.CLIENT)
-private void registerElytraLayer(EntityRenderersEvent.AddLayers addLayersEvent) {
-    EntityModelSet entityModels = addLayersEvent.getEntityModels();
-    addLayersEvent.getSkins().forEach(s -> {
-        LivingEntityRenderer<? extends Player, ? extends EntityModel<? extends Player>> livingEntityRenderer = addLayersEvent.getSkin(s);
-        if (livingEntityRenderer instanceof PlayerRenderer playerRenderer) {
-            playerRenderer.addLayer(new ProfundiumElytraLayer(playerRenderer, entityModels));
-            playerRenderer.addLayer(new ElytraGliderLayer(playerRenderer, entityModels));
-            playerRenderer.addLayer(new MechanicalElytraLayer(playerRenderer, entityModels));
+    @OnlyIn(Dist.CLIENT)
+    private void registerElytraLayer(EntityRenderersEvent.AddLayers addLayersEvent) {
+        EntityModelSet entityModels = addLayersEvent.getEntityModels();
+        addLayersEvent.getSkins().forEach(s -> {
+            LivingEntityRenderer<? extends Player, ? extends EntityModel<? extends Player>> livingEntityRenderer = addLayersEvent.getSkin(s);
+            if (livingEntityRenderer instanceof PlayerRenderer playerRenderer) {
+                playerRenderer.addLayer(new ProfundiumElytraLayer(playerRenderer, entityModels));
+                playerRenderer.addLayer(new ElytraGliderLayer(playerRenderer, entityModels));
+                playerRenderer.addLayer(new MechanicalElytraLayer(playerRenderer, entityModels));
+            }
+        });
+        LivingEntityRenderer<ArmorStand, ? extends EntityModel<ArmorStand>> livingEntityRenderer = addLayersEvent.getRenderer(EntityType.ARMOR_STAND);
+        if (livingEntityRenderer instanceof ArmorStandRenderer armorStandRenderer) {
+            armorStandRenderer.addLayer(new ProfundiumElytraArmorStandLayer(armorStandRenderer, entityModels));
+            armorStandRenderer.addLayer(new MechanicalElytraArmorStandLayer(armorStandRenderer, entityModels));
+            armorStandRenderer.addLayer(new ElytraGliderArmorStandLayer(armorStandRenderer, entityModels));
         }
-    });
-    LivingEntityRenderer<ArmorStand, ? extends EntityModel<ArmorStand>> livingEntityRenderer = addLayersEvent.getRenderer(EntityType.ARMOR_STAND);
-    if (livingEntityRenderer instanceof ArmorStandRenderer armorStandRenderer) {
-        armorStandRenderer.addLayer(new ProfundiumElytraArmorStandLayer(armorStandRenderer, entityModels));
-        armorStandRenderer.addLayer(new MechanicalElytraArmorStandLayer(armorStandRenderer, entityModels));
-        armorStandRenderer.addLayer(new ElytraGliderArmorStandLayer(armorStandRenderer, entityModels));
     }
-}
+
+    private static final long COOLDOWN = 5000; // 5 seconds cooldown
+    private static long lastBoostTime = 0;
+
+    // Client-only key input handler
+    private void onKeyInput(InputEvent.Key event) {
+        LocalPlayer player = Minecraft.getInstance().player;
+
+        if (player != null) {
+            // Assuming KeyBindings.KEY_BINDINGS.boost is defined in your mod
+            if (KeyBindings.KEY_BINDINGS.boost.isDown() && player.isFallFlying() &&
+                    player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof MechanicalElytraItem) {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastBoostTime >= COOLDOWN) {
+                    boostPlayer(player);
+                    lastBoostTime = currentTime;
+                } else {
+                    Minecraft.getInstance().player.displayClientMessage(
+                            Component.literal("Can Not Boost Yet."), true);
+                }
+            }
+        }
+    }
+
+    private void boostPlayer(LocalPlayer player) {
+        float boostSpeed = 3.0f; // Adjust boost speed as needed
+        player.setDeltaMovement(player.getLookAngle().scale(boostSpeed));
+    }
 }
