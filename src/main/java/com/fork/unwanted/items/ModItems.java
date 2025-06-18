@@ -2,13 +2,16 @@ package com.fork.unwanted.items;
 
 import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.blocks.ModBlocks;
+import com.fork.unwanted.entity.ModEntities;
 import com.fork.unwanted.entity.custom.ModBoatEntity;
 import com.fork.unwanted.items.armor_and_tools.*;
 import com.fork.unwanted.items.custom.ModBoatItem;
 import com.fork.unwanted.items.custom.PureBlazePowderItem;
+import com.fork.unwanted.items.spear.SpearItem;
 import com.fork.unwanted.sfx.ModSounds;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -106,11 +109,11 @@ public class ModItems {
     public static final DeferredItem<Item> NETHERITE_CHISEL = ITEMS.register("netherite_chisel",
             () -> new Item(new Item.Properties().fireResistant().stacksTo(1).durability(1024)));
 
-//    public static final DeferredItem<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear",
-//            () -> new WoodenSpearItem(new Item.Properties().durability(32), 3.0D, -1F));
-//
-//    public static final DeferredItem<Item> IRON_SPEAR = ITEMS.register("iron_spear",
-//            () -> new IronSpearItem(new Item.Properties().durability(64), 5.0D, -1F));
+    public static final DeferredItem<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear",
+            () -> new SpearItem(new Item.Properties().durability(32), 3f, 2, ModItems.WOODEN_SPEAR_HEAD.get(), ModEntities.WOODEN_SPEAR.get()));
+
+    public static final DeferredItem<Item> IRON_SPEAR = ITEMS.register("iron_spear",
+            () -> new SpearItem(new Item.Properties().durability(64), 5f, 2, Items.IRON_INGOT, ModEntities.IRON_SPEAR.get()));
     
     //armor&tools
 

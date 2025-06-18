@@ -476,21 +476,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.ELYTRA), has(Items.ELYTRA))
                 .save(recipeOutput);
 
-//        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOODEN_SPEAR.get())
-//                .pattern("  k")
-//                .pattern(" s ")
-//                .pattern("s  ")
-//                .define('k', ModItems.WOODEN_SPEAR_HEAD.get()).define('s', Items.STICK)
-//                .unlockedBy(getHasName(ModItems.WOODEN_SPEAR_HEAD.get()), has(ModItems.WOODEN_SPEAR_HEAD.get()))
-//                .save(recipeOutput);
-//
-//        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IRON_SPEAR.get())
-//                .pattern("  k")
-//                .pattern(" s ")
-//                .pattern("s  ")
-//                .define('k', Items.IRON_INGOT).define('s', Items.STICK)
-//                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
-//                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOODEN_SPEAR.get())
+                .pattern("  k")
+                .pattern(" s ")
+                .pattern("s  ")
+                .define('k', ModItems.WOODEN_SPEAR_HEAD.get()).define('s', Items.STICK)
+                .unlockedBy(getHasName(ModItems.WOODEN_SPEAR_HEAD.get()), has(ModItems.WOODEN_SPEAR_HEAD.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IRON_SPEAR.get())
+                .pattern("  k")
+                .pattern(" s ")
+                .pattern("s  ")
+                .define('k', Items.IRON_INGOT).define('s', Items.STICK)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOODEN_SPEAR_HEAD.get(), 2)
                 .pattern("  w")

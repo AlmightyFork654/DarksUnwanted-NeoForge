@@ -4,7 +4,7 @@ import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.blocks.ModBlocks;
 import com.fork.unwanted.blocks.entity.ModBlockEntities;
 import com.fork.unwanted.entity.client.ModModelLayers;
-import net.minecraft.client.gui.screens.MenuScreens;
+import com.fork.unwanted.items.spear.SpearModel;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -65,7 +65,7 @@ public class ModEventClientBusEvents {
         event.registerLayerDefinition(ModModelLayers.EBONY_BOAT_LAYER, BoatModel::createBodyModel);
         event.registerLayerDefinition(ModModelLayers.EBONY_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
 
-//        event.registerLayerDefinition(ModModelLayers.WOODEN_SPEAR, SpearModel::createLayer);
-//        event.registerLayerDefinition(ModModelLayers.IRON_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.WOODEN_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.IRON_SPEAR, SpearModel::createLayer);
     }
 }
