@@ -1,473 +1,447 @@
-//package com.fork.unwanted.items.food;
-//
-//import com.fork.unwanted.mob_effects.ModEffects;
-//import net.minecraft.advancements.CriteriaTriggers;
-//import net.minecraft.core.BlockPos;
-//import net.minecraft.nbt.CompoundTag;
-//import net.minecraft.nbt.ListTag;
-//import net.minecraft.nbt.Tag;
-//import net.minecraft.network.chat.Component;
-//import net.minecraft.network.chat.MutableComponent;
-//import net.minecraft.server.level.ServerLevel;
-//import net.minecraft.server.level.ServerPlayer;
-//import net.minecraft.stats.Stats;
-//import net.minecraft.world.InteractionHand;
-//import net.minecraft.world.InteractionResultHolder;
-//import net.minecraft.world.effect.MobEffectInstance;
-//import net.minecraft.world.effect.MobEffects;
-//import net.minecraft.world.entity.LivingEntity;
-//import net.minecraft.world.entity.player.Player;
-//import net.minecraft.world.item.*;
-//import net.minecraft.world.level.Level;
-//import net.minecraft.world.level.gameevent.GameEvent;
-//
-//import javax.annotation.Nullable;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class TeaItem extends Item {
-//    private static final int DRINK_DURATION = 32;
-//
-//    public TeaItem(Item.Properties properties) {
-//        super(properties);
-//    }
-//
-//    @Override
-//    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-//        super.finishUsingItem(stack, world, entity);
-//
-//        Player player = entity instanceof Player ? (Player)entity : null;
-//        if (entity instanceof ServerPlayer) {
-//            ServerPlayer serverplayer = (ServerPlayer) entity;
-//            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, stack);
-//            serverplayer.awardStat(Stats.ITEM_USED.get(this));
-//        }
-//
-//        if (!world.isClientSide) {
-//            CompoundTag tag = stack.getTag();
-//            if (tag != null) {
-//                // Remove specified effects
-//                List<MobEffectInstance> effectsToRemove = getEffectsToRemove(tag);
-//                for (MobEffectInstance effectInstance : effectsToRemove) {
-//                    if (entity.hasEffect(effectInstance.getEffect())) {
-//                        entity.removeEffect(effectInstance.getEffect());
-//                    }
-//                }
-//
-//                // Add specified effects
-//                List<MobEffectInstance> effectsToAdd = getEffectsToAdd(tag);
-//                for (MobEffectInstance effectInstance : effectsToAdd) {
-//                    entity.addEffect(new MobEffectInstance(effectInstance));
-//                }
-//
-//                TryTeleport(stack.getTag(), entity);
-//            }
-//        }
-//
-//        if (player == null || !player.getAbilities().instabuild) {
-//            if (stack.isEmpty()) {
-//                stack.shrink(1);
-//                return new ItemStack(ModItems.TEA_CUP.get());
-//            }
-//
-//            if (player != null) {
-//                stack.shrink(1);
-//                player.getInventory().add(new ItemStack(ModItems.TEA_CUP.get()));
-//            }
-//        }
-//
-//        entity.gameEvent(GameEvent.DRINK);
-//        return stack;
-//    }
-//
-//    @Override
-//    public int getUseDuration(ItemStack stack) {
-//
-//        if (stack.hasTag()) {
-//            CompoundTag tag = stack.getTag();
-//            if (tag.contains("Mods")) {
-//                ListTag mods = tag.getList("Mods", Tag.TAG_STRING);
-//                for (Tag ModTag : mods) {
-//                    String mod = ModTag.getAsString();
-//
-//                    if (mod.equals("gunpowder")) {
-//                        return DRINK_DURATION / 2;
-//                    }
-//                }
-//            }
-//        }
-//        return DRINK_DURATION;
-//    }
-//
-//    @Override
-//    public UseAnim getUseAnimation(ItemStack stack) {
-//        return UseAnim.DRINK;
-//    }
-//
-//    @Override
-//    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-//        return ItemUtils.startUsingInstantly(world, player, hand);
-//    }
-//
-//    @Override
-//    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-//        CompoundTag tag = stack.getTag();
-//        if (tag != null) {
-//            tooltip.add(Component.literal("§cRemoved effects:"));
-//            List<MobEffectInstance> effectsToRemove = getEffectsToRemove(tag);
-//            for (MobEffectInstance effectInstance : effectsToRemove) {
-//                MutableComponent component = Component.translatable(effectInstance.getDescriptionId());
-//                tooltip.add(component.withStyle(effectInstance.getEffect().getCategory().getTooltipFormatting()));
-//            }
-//            tooltip.add(Component.literal(""));
-//            tooltip.add(Component.literal("§9Added effects:"));
-//            List<MobEffectInstance> effectsToAdd = getEffectsToAdd(tag);
-//            PotionUtils.addPotionTooltip(effectsToAdd, tooltip, 1.0F);
-//
-//            tooltip.add(Component.literal(""));
-//            if (tag.contains("TP")) {
-//                String tp = tag.getString("TP");
-//                tooltip.add(Component.literal("§bTeleports to: " + tp));
-//                tooltip.add(Component.literal(""));
-//            }
-//
-//            tooltip.add(Component.literal("§aMods:"));
-//            if (tag.contains("Mods")) {
-//                int redCount = 0;
-//                int glowCount = 0;
-//                ListTag mods = tag.getList("Mods", Tag.TAG_STRING);
-//                for (Tag ModTag : mods) {
-//                    String mod = ModTag.getAsString();
-//                    if (mod.equals("redstone")) {
-//                        redCount ++;
-//                    }
-//                    if (mod.equals("glowstone")) {
-//                        glowCount ++;
-//                    }
-//                }
-//                if (redCount > 0) {
-//                    tooltip.add(Component.literal("§aRedstone " + redCount + "x"));
-//                }
-//                if (glowCount > 0) {
-//                    tooltip.add(Component.literal("§aGlowstone Dust " + glowCount + "x"));
-//                }
-//                if (mods.toString().contains("gunpowder")) {
-//                    tooltip.add(Component.literal("§aGunpowder"));
-//                }
-//            }
-//        }
-//    }
-//
-//    private List<MobEffectInstance> getEffectsToRemove(CompoundTag tag) {
-//        List<MobEffectInstance> effects = new ArrayList<>();
-//        String teaType = tag.getString("TeaType");
-//
-//        switch (teaType) {
-//            case "grassy":
-//                effects.add(new MobEffectInstance(MobEffects.POISON));
-//                break;
-//            case "warped":
-//                effects.add(new MobEffectInstance(ModEffects.FRAGILE.get()));
-//                break;
-//            case "crimson":
-//                effects.add(new MobEffectInstance(MobEffects.WEAKNESS));
-//                break;
-//            case "leavy":
-//                effects.add(new MobEffectInstance(MobEffects.CONFUSION));
-//                break;
-//            case "kelped":
-//                effects.add(new MobEffectInstance(MobEffects.DIG_SLOWDOWN));
-//                break;
-//            case "viney":
-//                effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN));
-//                break;
-//            case "glowy":
-//                effects.add(new MobEffectInstance(MobEffects.GLOWING));
-//                break;
-//            case "sculked":
-//                effects.add(new MobEffectInstance(MobEffects.DARKNESS));
-//                effects.add(new MobEffectInstance(MobEffects.BLINDNESS));
-//                break;
-//            case "rooted":
-//                effects.add(new MobEffectInstance(MobEffects.HUNGER));
-//                break;
-//        }
-//
-//        if (tag.contains("Additives")) {
-//            ListTag additives = tag.getList("Additives", Tag.TAG_STRING);
-//            for (Tag additiveTag : additives) {
-//                String additive = additiveTag.getAsString();
-//
-//                if (additive.equals("white_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.BAD_OMEN));
-//                }
-//                if (additive.equals("end_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.LEVITATION));
-//                }
-//                if (additive.equals("wither_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.WITHER));
-//                }
-//            }
-//        }
-//
-//        return effects;
-//    }
-//
-//    private List<MobEffectInstance> getEffectsToAdd(CompoundTag tag) {
-//        List<MobEffectInstance> effects = new ArrayList<>();
-//
-//        if (tag.contains("Additives")) {
-//            ListTag additives = tag.getList("Additives", Tag.TAG_STRING);
-//            for (Tag additiveTag : additives) {
-//                String additive = additiveTag.getAsString();
-//
-//                // fruits
-//                if (additive.equals("red_stuff")) {
-//                    if (!additives.toString().contains("golden_fruit")) {
-//                        if (!additives.toString().contains("god_apple")) {
-//                            effects.add(new MobEffectInstance(MobEffects.REGENERATION, 300, 0));
-//                        }
-//                    }
-//                }
-//                if (additive.equals("golden_fruit")) {
-//                    if (!additives.toString().contains("god_apple")) {
-//                        effects.add(new MobEffectInstance(MobEffects.REGENERATION, 600, 1));
-//                        effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0));
-//                    }
-//                }
-//                if (additive.equals("god_apple")) {
-//                    effects.add(new MobEffectInstance(MobEffects.REGENERATION, 800, 1));
-//                    effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3));
-//                    effects.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 0));
-//                    effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000, 0));
-//                }
-//                if (additive.equals("sweet")) {
-//                    effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0));
-//                    effects.add(new MobEffectInstance(MobEffects.JUMP, 300, 0));
-//                }
-//                if (additive.equals("glowing_fruit")) {
-//                    effects.add(new MobEffectInstance(MobEffects.GLOWING, 300, 0));
-//                }
-//
-//                // flowers
-//                if (additive.equals("pink_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.INVISIBILITY, 300, 0));
-//                }
-//                if (additive.equals("yellow_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 300, 0));
-//                    effects.add(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0));
-//                }
-//                if (additive.equals("white_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 300, 0));
-//                }
-//                if (additive.equals("grey_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.SATURATION, 300, 0));
-//                }
-//                if (additive.equals("blue_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.WATER_BREATHING, 300, 0));
-//                    effects.add(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 300, 0));
-//                    effects.add(new MobEffectInstance(MobEffects.CONDUIT_POWER, 300, 0));
-//                }
-//                if (additive.equals("purple_flower_1")) {
-//                    if (!additives.toString().contains("sweet")) {
-//                        effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0));
-//                    }
-//                }
-//                if (additive.equals("purple_flower_2")) {
-//                    if (!additives.toString().contains("sweet")) {
-//                        effects.add(new MobEffectInstance(MobEffects.JUMP, 300, 0));
-//                    }
-//                }
-//                if (additive.equals("red_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 300, 0));
-//                    effects.add(new MobEffectInstance(MobEffects.HEAL, 300, 0));
-//                }
-//                if (additive.equals("end_flower")) {
-//                    effects.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 300, 0));
-//                }
-//                if (additive.equals("fire_flower")) {
-//                    if (!additives.toString().contains("god_apple")) {
-//                        effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300, 0));
-//                    }
-//                    effects.add(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0));
-//                }
-//                if (additive.equals("pot_flower")) {
-//                    if ((!additives.toString().contains("god_apple"))) {
-//                        if ((!additives.toString().contains("golden_fruit"))) {
-//                            effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 300, 0));
-//                        }
-//                        effects.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300, 0));
-//                    }
-//                }
-//
-//                // other
-//                if (additive.equals("wing")) {
-//                    effects.add(new MobEffectInstance(MobEffects.LEVITATION, 300, 0));
-//                }
-//                if (additive.equals("fire")) {
-//                    if (!additives.toString().contains("fire_flower")) {
-//                        effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300, 0));
-//                    }
-//                }
-//                if (additive.equals("torrid")) {
-//                    if (!additives.toString().contains("yellow_flower")) {
-//                        effects.add(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0));
-//                    }
-//                }
-//            }
-//        }
-//
-//        return ModifyEffects(effects, tag);
-//    }
-//
-//    private List<MobEffectInstance> ModifyEffects(List<MobEffectInstance> effectInstanceList, CompoundTag tag) {
-//
-//        if (tag.contains("Mods")) {
-//            ListTag mods = tag.getList("Mods", Tag.TAG_STRING);
-//            for (Tag ModTag : mods) {
-//                String mod = ModTag.getAsString();
-//
-//                if (mod.equals("redstone")) {
-//                    for (MobEffectInstance effect : effectInstanceList) {
-//                        effect.update(new MobEffectInstance(effect.getEffect(), effect.getDuration() + 100, effect.getAmplifier()));
-//                    }
-//                }
-//                if (mod.equals("glowstone")) {
-//                    for (MobEffectInstance effect : effectInstanceList) {
-//                        if (effect.getAmplifier() < 4) {
-//                            effect.update(new MobEffectInstance(effect.getEffect(), effect.getDuration(), effect.getAmplifier() + 1));
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
-//
-//        return effectInstanceList;
-//    }
-//
-//    private void TryTeleport(CompoundTag tag, LivingEntity entity) {
-//
-//        if (tag.contains("TP")) {
-//            String tpTarget = tag.getString("TP");
-//
-//            if (tpTarget.equals("spawn")) {
-//                if (entity instanceof ServerPlayer) {
-//                    ServerPlayer player = (ServerPlayer) entity;
-//                    BlockPos respawnPos = player.getRespawnPosition();
-//                    ServerLevel overworld = player.getServer().getLevel(Level.OVERWORLD);
-//
-//                    if (respawnPos != null) {
-//                        if (player.level().dimension() == Level.OVERWORLD) {
-//                            player.teleportTo(respawnPos.getX(), respawnPos.getY(), respawnPos.getZ());
-//                        }
-//                        else if (player.level().dimension() == Level.NETHER){
-//                            player.changeDimension(overworld);
-//                            player.teleportTo(respawnPos.getX(), respawnPos.getY(), respawnPos.getZ());
-//                        }
-//                        else if (player.level().dimension() == Level.END){
-//                            player.changeDimension(overworld);
-//                            player.teleportTo(respawnPos.getX(), respawnPos.getY(), respawnPos.getZ());
-//                        }
-//                    }
-//                }
-//            }
-//            else if (tpTarget.equals("overworld")) {
-//                if (entity instanceof ServerPlayer) {
-//                    ServerPlayer player = (ServerPlayer) entity;
-//                    ServerLevel overworld = player.getServer().getLevel(Level.OVERWORLD);
-//
-//                    if (player.level().dimension() == Level.OVERWORLD) {
-//                        BlockPos safePos = findSafePosition(overworld, new BlockPos(1, overworld.getLogicalHeight() / 2, 1));
-//
-//                        if (safePos != null) {
-//                            player.teleportTo(safePos.getX(), safePos.getY(), safePos.getZ());
-//                        }
-//                    }
-//                    else if (player.level().dimension() == Level.NETHER) {
-//                        int overX = player.blockPosition().getX() * 8;
-//                        int overZ = player.blockPosition().getZ() * 8;
-//
-//                        BlockPos safePos = findSafePosition(overworld, new BlockPos(overX, overworld.getLogicalHeight() / 2, overZ));
-//
-//                        if (safePos != null) {
-//                            player.changeDimension(overworld);
-//                            player.teleportTo(safePos.getX(), safePos.getY(), safePos.getZ());
-//                        }
-//                    }
-//                    else if (player.level().dimension() == Level.END) {
-//                        BlockPos safePos = findSafePosition(overworld, new BlockPos(1, overworld.getLogicalHeight() / 2, 1));
-//                        if (safePos != null) {
-//                            player.changeDimension(overworld);
-//                            player.teleportTo(safePos.getX(), safePos.getY(), safePos.getZ());
-//                        }
-//                    }
-//                }
-//            }
-//            else if (tpTarget.equals("nether")) {
-//                if (entity instanceof ServerPlayer) {
-//                    ServerPlayer player = (ServerPlayer) entity;
-//                    ServerLevel nether = player.getServer().getLevel(Level.NETHER);
-//
-//                    if (player.level().dimension() == Level.NETHER) {
-//                        BlockPos safePos = findSafePosition(nether, new BlockPos(1, nether.getLogicalHeight() / 2, 1));
-//
-//                        if (safePos != null) {
-//                            player.teleportTo(safePos.getX(), safePos.getY(), safePos.getZ());
-//                        }
-//                    }
-//                    else if (player.level().dimension() == Level.OVERWORLD) {
-//                        int netherX = player.blockPosition().getX() / 8;
-//                        int netherZ = player.blockPosition().getZ() / 8;
-//
-//                        BlockPos safePos = findSafePosition(nether, new BlockPos(netherX, nether.getLogicalHeight() / 2, netherZ));
-//
-//                        if (safePos != null) {
-//                            player.changeDimension(nether);
-//                            player.teleportTo(safePos.getX(), safePos.getY(), safePos.getZ());
-//                        }
-//                    }
-//                    else if (player.level().dimension() == Level.END) {
-//                        BlockPos safePos = findSafePosition(nether, new BlockPos(1, nether.getLogicalHeight() / 2, 1));
-//                        if (safePos != null) {
-//                            player.changeDimension(nether);
-//                            player.teleportTo(safePos.getX(), safePos.getY(), safePos.getZ());
-//                        }
-//                    }
-//                }
-//            }
-//            else if (tpTarget.equals("end")) {
-//                if (entity instanceof ServerPlayer) {
-//                    ServerPlayer player = (ServerPlayer) entity;
-//                    ServerLevel end = player.getServer().getLevel(Level.END);
-//
-//                    if (player.level().dimension() == Level.NETHER) {
-//                        player.changeDimension(end);
-//                    }
-//                    else if (player.level().dimension() == Level.OVERWORLD) {
-//                        player.changeDimension(end);
-//                    }
-//                    else if (player.level().dimension() == Level.END) {
-//                        player.teleportTo(100, 49, 0);
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//
-//
-//    private BlockPos findSafePosition(ServerLevel world, BlockPos initialPos) {
-//        int minY = 0;
-//        int maxY = world.getLogicalHeight() - 3;
-//        BlockPos.MutableBlockPos checkPos = new BlockPos.MutableBlockPos(initialPos.getX(), minY, initialPos.getZ());
-//
-//        for (int y = maxY - 3; y >= minY; y--) {
-//            checkPos.setY(y);
-//            if (world.getBlockState(checkPos).isSolid() && world.getBlockState(checkPos.above()).isAir() && world.getBlockState(checkPos.above(2)).isAir()) {
-//                return checkPos.above();
-//            }
-//        }
-//        return null;
-//    }
-//}
+package com.fork.unwanted.items.food;
+
+import com.fork.unwanted.component.ModDataComponents;
+import com.fork.unwanted.items.ModItems;
+import com.fork.unwanted.mob_effects.ModEffects;
+import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.portal.DimensionTransition;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class TeaItem extends Item {
+    private static final int DRINK_DURATION = 32;
+
+    public TeaItem(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
+        super.finishUsingItem(stack, world, entity);
+
+        Player player = entity instanceof Player ? (Player) entity : null;
+        if (entity instanceof ServerPlayer serverplayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, stack);
+            serverplayer.awardStat(Stats.ITEM_USED.get(this));
+        }
+
+        if (!world.isClientSide) {
+            // Remove specified effects
+            List<MobEffectInstance> effectsToRemove = getEffectsToRemove(stack);
+            for (MobEffectInstance effectInstance : effectsToRemove) {
+                if (entity.hasEffect(effectInstance.getEffect())) {
+                    entity.removeEffect(effectInstance.getEffect());
+                }
+            }
+
+            // Add specified effects
+            List<MobEffectInstance> effectsToAdd = getEffectsToAdd(stack);
+            for (MobEffectInstance effectInstance : effectsToAdd) {
+                entity.addEffect(new MobEffectInstance(effectInstance));
+            }
+
+            tryTeleport(stack, entity);
+        }
+
+        if (player == null || !player.getAbilities().instabuild) {
+            if (stack.isEmpty()) {
+                stack.shrink(1);
+                return new ItemStack(ModItems.TEA_CUP.get());
+            }
+
+            if (player != null) {
+                stack.shrink(1);
+                player.getInventory().add(new ItemStack(ModItems.TEA_CUP.get()));
+            }
+        }
+
+        entity.gameEvent(GameEvent.DRINK);
+        return stack;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
+        String[] modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        if (Arrays.asList(modifiers).contains("gunpowder")) {
+            return DRINK_DURATION / 2;
+        }
+        return DRINK_DURATION;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.DRINK;
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(world, player, hand);
+    }
+
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        String teaType = stack.getOrDefault(ModDataComponents.TEA_TYPE.get(), "");
+        String[] additions = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
+        String[] modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        String teleport = stack.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
+
+        tooltip.add(Component.literal("§cRemoved effects:"));
+        List<MobEffectInstance> effectsToRemove = getEffectsToRemove(stack);
+        for (MobEffectInstance effectInstance : effectsToRemove) {
+            MutableComponent component = Component.translatable(effectInstance.getDescriptionId());
+            if (isBeneficial(effectInstance.getEffect())) {
+                component.withStyle(ChatFormatting.GREEN);
+            } else if (isHarmful(effectInstance.getEffect())) {
+                component.withStyle(ChatFormatting.RED);
+            } else {
+                component.withStyle(ChatFormatting.GRAY);
+            }
+            tooltip.add(component);
+        }
+        tooltip.add(Component.literal(""));
+        tooltip.add(Component.literal("§9Added effects:"));
+        List<MobEffectInstance> effectsToAdd = getEffectsToAdd(stack);
+        for (MobEffectInstance effect : effectsToAdd) {
+            MutableComponent component = Component.translatable(effect.getDescriptionId());
+            if (effect.getAmplifier() > 0) {
+                component = Component.translatable("potion.withAmplifier", component, Component.translatable("potion.potency." + effect.getAmplifier()));
+            }
+            if (effect.getDuration() > 20) {
+                component = Component.translatable("potion.withDuration", component, effect.getDuration() / 20 + "s");
+            }
+            if (isBeneficial(effect.getEffect())) {
+                component.withStyle(ChatFormatting.GREEN);
+            } else if (isHarmful(effect.getEffect())) {
+                component.withStyle(ChatFormatting.RED);
+            } else {
+                component.withStyle(ChatFormatting.GRAY);
+            }
+            tooltip.add(component);
+        }
+
+        tooltip.add(Component.literal(""));
+        if (!teleport.isEmpty()) {
+            tooltip.add(Component.literal("§bTeleports to: " + teleport));
+            tooltip.add(Component.literal(""));
+        }
+
+        tooltip.add(Component.literal("§aMods:"));
+        int redCount = 0;
+        int glowCount = 0;
+        for (String mod : modifiers) {
+            if (mod.equals("redstone")) {
+                redCount++;
+            } else if (mod.equals("glowstone")) {
+                glowCount++;
+            }
+        }
+        if (redCount > 0) {
+            tooltip.add(Component.literal("§aRedstone " + redCount + "x"));
+        }
+        if (glowCount > 0) {
+            tooltip.add(Component.literal("§aGlowstone Dust " + glowCount + "x"));
+        }
+        if (Arrays.asList(modifiers).contains("gunpowder")) {
+            tooltip.add(Component.literal("§aGunpowder"));
+        }
+    }
+
+    private boolean isBeneficial(Holder<MobEffect> effect) {
+        return effect == MobEffects.REGENERATION ||
+                effect == MobEffects.ABSORPTION ||
+                effect == MobEffects.DAMAGE_RESISTANCE ||
+                effect == MobEffects.FIRE_RESISTANCE ||
+                effect == MobEffects.MOVEMENT_SPEED ||
+                effect == MobEffects.JUMP ||
+                effect == MobEffects.INVISIBILITY ||
+                effect == MobEffects.DAMAGE_BOOST ||
+                effect == MobEffects.DIG_SPEED ||
+                effect == MobEffects.HERO_OF_THE_VILLAGE ||
+                effect == MobEffects.SATURATION ||
+                effect == MobEffects.WATER_BREATHING ||
+                effect == MobEffects.DOLPHINS_GRACE ||
+                effect == MobEffects.CONDUIT_POWER ||
+                effect == MobEffects.HEALTH_BOOST ||
+                effect == MobEffects.HEAL ||
+                effect == MobEffects.NIGHT_VISION ||
+                effect == MobEffects.SLOW_FALLING;
+    }
+
+    private boolean isHarmful(Holder<MobEffect> effect) {
+        return effect == MobEffects.POISON ||
+                effect == MobEffects.WEAKNESS ||
+                effect == MobEffects.CONFUSION ||
+                effect == MobEffects.DIG_SLOWDOWN ||
+                effect == MobEffects.MOVEMENT_SLOWDOWN ||
+                effect == MobEffects.GLOWING ||
+                effect == MobEffects.DARKNESS ||
+                effect == MobEffects.BLINDNESS ||
+                effect == MobEffects.HUNGER ||
+                effect == MobEffects.BAD_OMEN ||
+                effect == MobEffects.LEVITATION ||
+                effect == MobEffects.WITHER ||
+                effect == ModEffects.FRAGILE;
+    }
+
+    private List<MobEffectInstance> getEffectsToRemove(ItemStack stack) {
+        List<MobEffectInstance> effects = new ArrayList<>();
+        String teaType = stack.getOrDefault(ModDataComponents.TEA_TYPE.get(), "");
+
+        switch (teaType) {
+            case "grassy":
+                effects.add(new MobEffectInstance(MobEffects.POISON));
+                break;
+            case "warped":
+                effects.add(new MobEffectInstance(ModEffects.FRAGILE));
+                break;
+            case "crimson":
+                effects.add(new MobEffectInstance(MobEffects.WEAKNESS));
+                break;
+            case "leavy":
+                effects.add(new MobEffectInstance(MobEffects.CONFUSION));
+                break;
+            case "kelped":
+                effects.add(new MobEffectInstance(MobEffects.DIG_SLOWDOWN));
+                break;
+            case "viney":
+                effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN));
+                break;
+            case "glowy":
+                effects.add(new MobEffectInstance(MobEffects.GLOWING));
+                break;
+            case "sculked":
+                effects.add(new MobEffectInstance(MobEffects.DARKNESS));
+                effects.add(new MobEffectInstance(MobEffects.BLINDNESS));
+                break;
+            case "rooted":
+                effects.add(new MobEffectInstance(MobEffects.HUNGER));
+                break;
+        }
+
+        String[] additives = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
+        for (String additive : additives) {
+            if (additive.equals("white_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.BAD_OMEN));
+            }
+            if (additive.equals("end_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.LEVITATION));
+            }
+            if (additive.equals("wither_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.WITHER));
+            }
+        }
+
+        return effects;
+    }
+
+    private List<MobEffectInstance> getEffectsToAdd(ItemStack stack) {
+        List<MobEffectInstance> effects = new ArrayList<>();
+        String[] additives = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
+
+        for (String additive : additives) {
+            // fruits
+            if (additive.equals("red_stuff")) {
+                if (!Arrays.asList(additives).contains("golden_fruit") && !Arrays.asList(additives).contains("god_apple")) {
+                    effects.add(new MobEffectInstance(MobEffects.REGENERATION, 300, 0));
+                }
+            }
+            if (additive.equals("golden_fruit")) {
+                if (!Arrays.asList(additives).contains("god_apple")) {
+                    effects.add(new MobEffectInstance(MobEffects.REGENERATION, 600, 1));
+                    effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0));
+                }
+            }
+            if (additive.equals("god_apple")) {
+                effects.add(new MobEffectInstance(MobEffects.REGENERATION, 800, 1));
+                effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3));
+                effects.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 0));
+                effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000, 0));
+            }
+            if (additive.equals("sweet")) {
+                effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0));
+                effects.add(new MobEffectInstance(MobEffects.JUMP, 300, 0));
+            }
+            if (additive.equals("glowing_fruit")) {
+                effects.add(new MobEffectInstance(MobEffects.GLOWING, 300, 0));
+            }
+
+            // flowers
+            if (additive.equals("pink_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.INVISIBILITY, 300, 0));
+            }
+            if (additive.equals("yellow_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 300, 0));
+                effects.add(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0));
+            }
+            if (additive.equals("white_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 300, 0));
+            }
+            if (additive.equals("grey_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.SATURATION, 300, 0));
+            }
+            if (additive.equals("blue_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.WATER_BREATHING, 300, 0));
+                effects.add(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 300, 0));
+                effects.add(new MobEffectInstance(MobEffects.CONDUIT_POWER, 300, 0));
+            }
+            if (additive.equals("purple_flower_1")) {
+                if (!Arrays.asList(additives).contains("sweet")) {
+                    effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0));
+                }
+            }
+            if (additive.equals("purple_flower_2")) {
+                if (!Arrays.asList(additives).contains("sweet")) {
+                    effects.add(new MobEffectInstance(MobEffects.JUMP, 300, 0));
+                }
+            }
+            if (additive.equals("red_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 300, 0));
+                effects.add(new MobEffectInstance(MobEffects.HEAL, 300, 0));
+            }
+            if (additive.equals("end_flower")) {
+                effects.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 300, 0));
+            }
+            if (additive.equals("fire_flower")) {
+                if (!Arrays.asList(additives).contains("god_apple")) {
+                    effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300, 0));
+                }
+                effects.add(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0));
+            }
+            if (additive.equals("pot_flower")) {
+                if (!Arrays.asList(additives).contains("god_apple") && !Arrays.asList(additives).contains("golden_fruit")) {
+                    effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 300, 0));
+                }
+                effects.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300, 0));
+            }
+
+            // other
+            if (additive.equals("wing")) {
+                effects.add(new MobEffectInstance(MobEffects.LEVITATION, 300, 0));
+            }
+            if (additive.equals("fire")) {
+                if (!Arrays.asList(additives).contains("fire_flower")) {
+                    effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300, 0));
+                }
+            }
+            if (additive.equals("torrid")) {
+                if (!Arrays.asList(additives).contains("yellow_flower")) {
+                    effects.add(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0));
+                }
+            }
+        }
+
+        return modifyEffects(effects, stack);
+    }
+
+    private List<MobEffectInstance> modifyEffects(List<MobEffectInstance> effectInstanceList, ItemStack stack) {
+        String[] modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        List<MobEffectInstance> modifiedEffects = new ArrayList<>();
+        for (MobEffectInstance effect : effectInstanceList) {
+            int duration = effect.getDuration();
+            int amplifier = effect.getAmplifier();
+
+            for (String mod : modifiers) {
+                if (mod.equals("redstone")) {
+                    duration += 100;
+                }
+                if (mod.equals("glowstone") && amplifier < 4) {
+                    amplifier++;
+                }
+            }
+            modifiedEffects.add(new MobEffectInstance(effect.getEffect(), duration, amplifier));
+        }
+        return modifiedEffects;
+    }
+
+    private void tryTeleport(ItemStack stack, LivingEntity entity) {
+        String teleport = stack.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
+        if (!teleport.isEmpty() && entity instanceof ServerPlayer player) {
+            ServerLevel currentLevel = player.serverLevel();
+            ServerLevel targetLevel = null;
+            BlockPos targetPos = null;
+            float yRot = player.getYRot();
+            float xRot = player.getXRot();
+
+            if (teleport.equals("spawn")) {
+                BlockPos respawnPos = player.getRespawnPosition();
+                if (respawnPos != null) {
+                    targetLevel = player.getServer().getLevel(Level.OVERWORLD);
+                    targetPos = respawnPos;
+                }
+            } else if (teleport.equals("overworld")) {
+                targetLevel = player.getServer().getLevel(Level.OVERWORLD);
+                if (currentLevel.dimension() == Level.OVERWORLD) {
+                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
+                } else if (currentLevel.dimension() == Level.NETHER) {
+                    int overX = player.blockPosition().getX() * 8;
+                    int overZ = player.blockPosition().getZ() * 8;
+                    targetPos = findSafePosition(targetLevel, new BlockPos(overX, targetLevel.getLogicalHeight() / 2, overZ));
+                } else if (currentLevel.dimension() == Level.END) {
+                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
+                }
+            } else if (teleport.equals("nether")) {
+                targetLevel = player.getServer().getLevel(Level.NETHER);
+                if (currentLevel.dimension() == Level.NETHER) {
+                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
+                } else if (currentLevel.dimension() == Level.OVERWORLD) {
+                    int netherX = player.blockPosition().getX() / 8;
+                    int netherZ = player.blockPosition().getZ() / 8;
+                    targetPos = findSafePosition(targetLevel, new BlockPos(netherX, targetLevel.getLogicalHeight() / 2, netherZ));
+                } else if (currentLevel.dimension() == Level.END) {
+                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
+                }
+            } else if (teleport.equals("end")) {
+                targetLevel = player.getServer().getLevel(Level.END);
+                targetPos = new BlockPos(100, 49, 0);
+            }
+
+            if (targetLevel != null && targetPos != null) {
+                DimensionTransition transition = new DimensionTransition(
+                        targetLevel,
+                        targetPos.getCenter(),
+                        player.getDeltaMovement(),
+                        yRot,
+                        xRot,
+                        DimensionTransition.DO_NOTHING
+                );
+                player.changeDimension(transition);
+            }
+        }
+    }
+
+    private BlockPos findSafePosition(ServerLevel world, BlockPos initialPos) {
+        int minY = 0;
+        int maxY = world.getLogicalHeight() - 3;
+        BlockPos.MutableBlockPos checkPos = new BlockPos.MutableBlockPos(initialPos.getX(), minY, initialPos.getZ());
+
+        for (int y = maxY - 3; y >= minY; y--) {
+            checkPos.setY(y);
+            if (world.getBlockState(checkPos).isSolid() &&
+                    world.getBlockState(checkPos.above()).isAir() &&
+                    world.getBlockState(checkPos.above(2)).isAir()) {
+                return checkPos.above();
+            }
+        }
+        return null;
+    }
+}
