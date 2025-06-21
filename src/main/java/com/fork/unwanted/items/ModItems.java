@@ -5,13 +5,15 @@ import com.fork.unwanted.blocks.ModBlocks;
 import com.fork.unwanted.entity.ModEntities;
 import com.fork.unwanted.entity.custom.ModBoatEntity;
 import com.fork.unwanted.items.armor_and_tools.*;
+import com.fork.unwanted.items.custom.GemInfuserItem;
 import com.fork.unwanted.items.custom.ModBoatItem;
 import com.fork.unwanted.items.custom.PureBlazePowderItem;
+import com.fork.unwanted.items.food.TeaCupItem;
+import com.fork.unwanted.items.food.TeaItem;
 import com.fork.unwanted.items.spear.SpearItem;
 import com.fork.unwanted.sfx.ModSounds;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -22,6 +24,9 @@ public class ModItems {
     //Items
 
         //Misc
+
+    public static final DeferredItem<Item> GEM_INFUSER_ITEM = ITEMS.register("gem_infuser",
+            () -> new GemInfuserItem(ModBlocks.GEM_INFUSER.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> PURE_BLAZE_POWDER = ITEMS.register("pure_blaze_powder",
             () -> new PureBlazePowderItem(new Item.Properties().fireResistant()));
@@ -37,30 +42,30 @@ public class ModItems {
     public static final DeferredItem<Item> WOODEN_SPEAR_HEAD = ITEMS.register("wooden_spear_head",
             ()-> new Item(new Item.Properties()));
 
-//    public static final DeferredItem<Item> TEA_CUP = ITEMS.register("tea_cup",
-//            ()-> new TeaCup(new Item.Properties()));
+    public static final DeferredItem<Item> TEA_CUP = ITEMS.register("tea_cup",
+            ()-> new TeaCupItem(new Item.Properties()));
 
     public static final DeferredItem<Item> CUP_OF_WATER = ITEMS.register("cup_of_water",
             ()-> new Item(new Item.Properties()));
 
-//    public static final DeferredItem<Item> GRASSY_TEA = ITEMS.register("grassy_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> WARPED_TEA = ITEMS.register("warped_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> CRIMSON_TEA = ITEMS.register("crimson_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> LEAVY_TEA = ITEMS.register("leavy_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> KELPED_TEA = ITEMS.register("kelped_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> VINEY_TEA = ITEMS.register("viney_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> GLOWY_TEA = ITEMS.register("glowy_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> SCULKED_TEA = ITEMS.register("sculked_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
-//    public static final DeferredItem<Item> ROOTED_TEA = ITEMS.register("rooted_tea",
-//            ()-> new ComplexTeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> GRASSY_TEA = ITEMS.register("grassy_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> WARPED_TEA = ITEMS.register("warped_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> CRIMSON_TEA = ITEMS.register("crimson_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> LEAVY_TEA = ITEMS.register("leavy_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> KELPED_TEA = ITEMS.register("kelped_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> VINEY_TEA = ITEMS.register("viney_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> GLOWY_TEA = ITEMS.register("glowy_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> SCULKED_TEA = ITEMS.register("sculked_tea",
+            ()-> new TeaItem(new Item.Properties()));
+    public static final DeferredItem<Item> ROOTED_TEA = ITEMS.register("rooted_tea",
+            ()-> new TeaItem(new Item.Properties()));
 
         //Stone
 
@@ -110,10 +115,10 @@ public class ModItems {
             () -> new Item(new Item.Properties().fireResistant().stacksTo(1).durability(1024)));
 
     public static final DeferredItem<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear",
-            () -> new SpearItem(new Item.Properties().durability(32), 3f, 2, ModItems.WOODEN_SPEAR_HEAD.get(), ModEntities.WOODEN_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(32), 3f, 5, ModItems.WOODEN_SPEAR_HEAD.get(), ModEntities.WOODEN_SPEAR.get()));
 
     public static final DeferredItem<Item> IRON_SPEAR = ITEMS.register("iron_spear",
-            () -> new SpearItem(new Item.Properties().durability(64), 5f, 2, Items.IRON_INGOT, ModEntities.IRON_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(64), 5f, 4, Items.IRON_INGOT, ModEntities.IRON_SPEAR.get()));
     
     //armor&tools
 

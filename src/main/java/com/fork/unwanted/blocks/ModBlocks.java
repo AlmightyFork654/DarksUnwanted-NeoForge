@@ -2,6 +2,10 @@ package com.fork.unwanted.blocks;
 
 import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.blocks.custom.*;
+import com.fork.unwanted.blocks.custom.crafters.GemCuttingStationBlock;
+import com.fork.unwanted.blocks.custom.crafters.GemInfuserBlock;
+import com.fork.unwanted.blocks.custom.crafters.KettleBlock;
+import com.fork.unwanted.blocks.custom.crafters.TorridFurnaceBlock;
 import com.fork.unwanted.items.ModItems;
 import com.fork.unwanted.misc.ModWoodTypes;
 import com.fork.unwanted.sfx.ModSounds;
@@ -72,17 +76,17 @@ public class ModBlocks {
 
     //crafting
 
-//    public static final DeferredBlock<Block> GEM_CUTTING_STATION = registerBlock("gem_cutting_station",
-//            () -> new GemCuttingStationBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
-//
-//    public static final DeferredBlock<Block> GEM_INFUSER = BLOCKS.register("gem_infuser",
-//            ()-> new GemInfuserBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
-//
-//    public static final DeferredBlock<Block> TORRID_FURNACE = registerBlock("torrid_furnace",
-//            () -> new TorridFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
-//
-//    public static final DeferredBlock<Block> KETTLE = registerBlock("kettle",
-//            () -> new KettleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
+    public static final DeferredBlock<Block> GEM_CUTTING_STATION = registerBlock("gem_cutting_station",
+            () -> new GemCuttingStationBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
+
+    public static final DeferredBlock<Block> GEM_INFUSER = BLOCKS.register("gem_infuser",
+            ()-> new GemInfuserBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
+
+    public static final DeferredBlock<Block> TORRID_FURNACE = registerBlock("torrid_furnace",
+            () -> new TorridFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
+
+    public static final DeferredBlock<Block> KETTLE = registerBlock("kettle",
+            () -> new KettleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
 
     //bouncy
 

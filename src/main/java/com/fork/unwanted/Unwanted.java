@@ -2,6 +2,8 @@ package com.fork.unwanted;
 
 import com.fork.unwanted.blocks.ModBlocks;
 import com.fork.unwanted.blocks.entity.ModBlockEntities;
+import com.fork.unwanted.blocks.entity.client.GemInfuserBlockRenderer;
+import com.fork.unwanted.blocks.entity.custom.renderer.GemInfuserBlockEntityRenderer;
 import com.fork.unwanted.component.ModDataComponents;
 import com.fork.unwanted.entity.ModEntities;
 import com.fork.unwanted.entity.client.ModBoatRenderer;
@@ -17,9 +19,12 @@ import com.fork.unwanted.items.armor_and_tools.layers.MechanicalElytraLayer;
 import com.fork.unwanted.items.armor_and_tools.layers.ElytraGliderLayer;
 import com.fork.unwanted.items.spear.ThrownSpearRenderer;
 import com.fork.unwanted.misc.KeyBindings;
+import com.fork.unwanted.misc.ModTags;
 import com.fork.unwanted.misc.ModWoodTypes;
 import com.fork.unwanted.mob_effects.ModEffects;
 import com.fork.unwanted.mob_effects.ModPotions;
+import com.fork.unwanted.recipe.ModRecipes;
+import com.fork.unwanted.screen.ModMenuTypes;
 import com.fork.unwanted.sfx.ModSounds;
 import com.fork.unwanted.worldgen.tree.custom.ModFoliagePlacers;
 import com.fork.unwanted.worldgen.tree.custom.ModTrunkPlacerTypes;
@@ -28,6 +33,7 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.ArmorStandRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -79,6 +85,8 @@ public class Unwanted {
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
         ModSounds.register(modEventBus);
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
@@ -125,17 +133,17 @@ public class Unwanted {
             event.accept(ModItems.EBONY_BOAT);
             event.accept(ModItems.EBONY_CHEST_BOAT);
 
-//            event.accept(ModItems.TEA_CUP);
+            event.accept(ModItems.TEA_CUP);
             event.accept(ModItems.CUP_OF_WATER);
-//            event.accept(ModItems.GRASSY_TEA);
-//            event.accept(ModItems.WARPED_TEA);
-//            event.accept(ModItems.CRIMSON_TEA);
-//            event.accept(ModItems.LEAVY_TEA);
-//            event.accept(ModItems.KELPED_TEA);
-//            event.accept(ModItems.VINEY_TEA);
-//            event.accept(ModItems.GLOWY_TEA);
-//            event.accept(ModItems.SCULKED_TEA);
-//            event.accept(ModItems.ROOTED_TEA);
+            event.accept(ModItems.GRASSY_TEA);
+            event.accept(ModItems.WARPED_TEA);
+            event.accept(ModItems.CRIMSON_TEA);
+            event.accept(ModItems.LEAVY_TEA);
+            event.accept(ModItems.KELPED_TEA);
+            event.accept(ModItems.VINEY_TEA);
+            event.accept(ModItems.GLOWY_TEA);
+            event.accept(ModItems.SCULKED_TEA);
+            event.accept(ModItems.ROOTED_TEA);
         }
 
         if(event.getTab() == ModCreativeModeTabs.BLOCKS_TAB.get()) {
@@ -225,10 +233,10 @@ public class Unwanted {
             event.accept(ModBlocks.WHITE_BOUNCER_BLOCK);
             event.accept(ModBlocks.SPEEDER_BLOCK);
             event.accept(ModBlocks.EMBARIUM_LAMP_BLOCK);
-//            event.accept(ModBlocks.GEM_CUTTING_STATION);
-//            event.accept(ModBlocks.GEM_INFUSER);
-//            event.accept(ModBlocks.TORRID_FURNACE);
-//            event.accept(ModBlocks.KETTLE);
+            event.accept(ModBlocks.GEM_CUTTING_STATION);
+            event.accept(ModBlocks.GEM_INFUSER);
+            event.accept(ModBlocks.TORRID_FURNACE);
+            event.accept(ModBlocks.KETTLE);
         }
 
 
@@ -482,6 +490,8 @@ public class Unwanted {
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             Sheets.addWoodType(ModWoodTypes.EBONY);
+
+            BlockEntityRenderers.register(ModBlockEntities.GEM_INFUSER_BLOCK_ENTITY.get(), GemInfuserBlockRenderer::new);
 
             EntityRenderers.register(ModEntities.MOD_BOAT.get(), p_174010_ -> new ModBoatRenderer(p_174010_, false));
             EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), p_174010_ -> new ModBoatRenderer(p_174010_, true));
