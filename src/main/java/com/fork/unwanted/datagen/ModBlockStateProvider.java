@@ -114,10 +114,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         signBlock(((StandingSignBlock) ModBlocks.EBONY_SIGN.get()), ((WallSignBlock) ModBlocks.EBONY_WALL_SIGN.get()), blockTexture(ModBlocks.EBONY_PLANKS.get()));
         hangingSignBlock((CeilingHangingSignBlock) ModBlocks.EBONY_HANGING_SIGN.get(), (WallHangingSignBlock) ModBlocks.EBONY_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.EBONY_PLANKS.get()));
 
-//        horizontalBlock(ModBlocks.GEM_CUTTING_STATION.get(), new ModelFile.UncheckedModelFile(modLoc("block/gem_cutting_station")));
-//        horizontalBlock(ModBlocks.GEM_INFUSER.get(), new ModelFile.UncheckedModelFile(modLoc("block/gem_infuser")));
-//        horizontalBlock(ModBlocks.TORRID_FURNACE.get(), new ModelFile.UncheckedModelFile(modLoc("block/torrid_furnace")));
-//        horizontalBlock(ModBlocks.KETTLE.get(), new ModelFile.UncheckedModelFile(modLoc("block/kettle")));
+        horizontalBlock(ModBlocks.GEM_CUTTING_STATION.get(), new ModelFile.UncheckedModelFile(modLoc("block/gem_cutting_station")));
+        horizontalBlock(ModBlocks.GEM_INFUSER.get(), new ModelFile.UncheckedModelFile(modLoc("block/gem_infuser")));
+        horizontalBlock(ModBlocks.TORRID_FURNACE.get(), new ModelFile.UncheckedModelFile(modLoc("block/torrid_furnace")));
+        horizontalBlock(ModBlocks.KETTLE.get(), new ModelFile.UncheckedModelFile(modLoc("block/kettle")));
 
         horizontalBlock(ModBlocks.RED_BOUNCER_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_bouncer_block")));
         horizontalBlock(ModBlocks.ORANGE_BOUNCER_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/orange_bouncer_block")));

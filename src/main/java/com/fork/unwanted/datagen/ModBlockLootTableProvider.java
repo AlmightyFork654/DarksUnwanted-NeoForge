@@ -154,10 +154,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.TORRID_BUSH.get(),
                 (block -> createSingleItemTableWithSilkTouch(ModBlocks.TORRID_BUSH.get(), ModItems.TORRID_STEEL_POWDER.get(), ConstantValue.exactly(2.0F))));
 
-//        dropSelf(ModBlocks.GEM_CUTTING_STATION.get());
-//        dropSelf(ModBlocks.GEM_INFUSER.get());
-//        dropSelf(ModBlocks.TORRID_FURNACE.get());
-//        dropSelf(ModBlocks.KETTLE.get());
+        dropSelf(ModBlocks.GEM_CUTTING_STATION.get());
+        dropSelf(ModBlocks.GEM_INFUSER.get());
+        dropSelf(ModBlocks.TORRID_FURNACE.get());
+        dropSelf(ModBlocks.KETTLE.get());
 
 
         add(ModBlocks.POTTED_TORRID_BUSH.get(),

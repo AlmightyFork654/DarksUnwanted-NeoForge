@@ -66,36 +66,42 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput);
         // shaped blocks
 
-//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GEM_CUTTING_STATION.get())
-//                .pattern("cgc")
-//                .pattern("ddd")
-//                .pattern("www")
-//                .define('w', ItemTags.PLANKS)
-//                .define('d', Items.POLISHED_DEEPSLATE_SLAB)
-//                .define('c', Items.COPPER_INGOT)
-//                .define('g', Items.GLASS)
-//                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
-//                .save(recipeOutput);
-//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GEM_INFUSER.get())
-//                .pattern(" i ")
-//                .pattern("rir")
-//                .pattern("ppp")
-//                .define('i', Items.IRON_INGOT)
-//                .define('r', Items.REDSTONE)
-//                .define('p', Items.POLISHED_BLACKSTONE_SLAB)
-//                .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
-//                .save(recipeOutput);
-//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TORRID_FURNACE.get())
-//                .pattern("ttt")
-//                .pattern("tft")
-//                .pattern("bbb")
-//                .define('b', Items.BASALT)
-//                .define('t', ModItems.TORRID_STEEL_INGOT.get())
-//                .define('f', Items.BLAST_FURNACE)
-//                .unlockedBy(getHasName(ModItems.TORRID_STEEL_INGOT.get()), has(ModItems.TORRID_STEEL_INGOT.get()))
-//                .save(recipeOutput);
-
-        //kettle
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GEM_CUTTING_STATION.get())
+                .pattern("cgc")
+                .pattern("ddd")
+                .pattern("www")
+                .define('w', ItemTags.PLANKS)
+                .define('d', Items.POLISHED_DEEPSLATE_SLAB)
+                .define('c', Items.COPPER_INGOT)
+                .define('g', Items.GLASS)
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GEM_INFUSER.get())
+                .pattern(" i ")
+                .pattern("rir")
+                .pattern("ppp")
+                .define('i', Items.IRON_INGOT)
+                .define('r', Items.REDSTONE)
+                .define('p', Items.POLISHED_BLACKSTONE_SLAB)
+                .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TORRID_FURNACE.get())
+                .pattern("ttt")
+                .pattern("tft")
+                .pattern("bbb")
+                .define('b', Items.BASALT)
+                .define('t', ModItems.TORRID_STEEL_INGOT.get())
+                .define('f', Items.BLAST_FURNACE)
+                .unlockedBy(getHasName(ModItems.TORRID_STEEL_INGOT.get()), has(ModItems.TORRID_STEEL_INGOT.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.KETTLE.get())
+                .pattern(" c ")
+                .pattern("ccc")
+                .pattern("lll")
+                .define('l', ItemTags.LOGS)
+                .define('c', Items.COPPER_INGOT)
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RED_BOUNCER_BLOCK.get(), 8)
                 .pattern("ccc")

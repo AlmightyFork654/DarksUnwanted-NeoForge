@@ -44,34 +44,34 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //items
-        basicItem(ModItems.ROUGH_RUBY.getId());
-        basicItem(ModItems.RUBY.getId());
-        basicItem(ModItems.PURE_RUBY.getId());
-        basicItem(ModItems.TORRID_STEEL_INGOT.getId());
-        basicItem(ModItems.TORRID_STEEL_NUGGET.getId());
-        basicItem(ModItems.TORRID_STEEL_POWDER.getId());
-        basicItem(ModItems.EMBARIUM.getId());
-        basicItem(ModItems.MARBLE_SHARD.getId());
-        basicItem(ModItems.BLAZING_WATER.getId());
-        basicItem(ModItems.PURE_BLAZE_POWDER.getId());
-        basicItem(ModItems.PROFUNDIUM_INGOT.getId());
-        basicItem(ModItems.PROFUNDIUM_SCRAP.getId());
-        basicItem(ModItems.PROFUNDIUM_FLAKE.getId());
+        basicItem(ModItems.ROUGH_RUBY.get());
+        basicItem(ModItems.RUBY.get());
+        basicItem(ModItems.PURE_RUBY.get());
+        basicItem(ModItems.TORRID_STEEL_INGOT.get());
+        basicItem(ModItems.TORRID_STEEL_NUGGET.get());
+        basicItem(ModItems.TORRID_STEEL_POWDER.get());
+        basicItem(ModItems.EMBARIUM.get());
+        basicItem(ModItems.MARBLE_SHARD.get());
+        basicItem(ModItems.BLAZING_WATER.get());
+        basicItem(ModItems.PURE_BLAZE_POWDER.get());
+        basicItem(ModItems.PROFUNDIUM_INGOT.get());
+        basicItem(ModItems.PROFUNDIUM_SCRAP.get());
+        basicItem(ModItems.PROFUNDIUM_FLAKE.get());
 
-//        basicItem(ModItems.TEA_CUP);
-        basicItem(ModItems.CUP_OF_WATER.getId());
-//        basicItem(ModItems.GRASSY_TEA);
-//        basicItem(ModItems.WARPED_TEA);
-//        basicItem(ModItems.CRIMSON_TEA);
-//        basicItem(ModItems.LEAVY_TEA);
-//        basicItem(ModItems.KELPED_TEA);
-//        basicItem(ModItems.VINEY_TEA);
-//        basicItem(ModItems.GLOWY_TEA);
-//        basicItem(ModItems.SCULKED_TEA);
-//        basicItem(ModItems.ROOTED_TEA);
+        basicItem(ModItems.TEA_CUP.get());
+        basicItem(ModItems.CUP_OF_WATER.get());
+        basicItem(ModItems.GRASSY_TEA.get());
+        basicItem(ModItems.WARPED_TEA.get());
+        basicItem(ModItems.CRIMSON_TEA.get());
+        basicItem(ModItems.LEAVY_TEA.get());
+        basicItem(ModItems.KELPED_TEA.get());
+        basicItem(ModItems.VINEY_TEA.get());
+        basicItem(ModItems.GLOWY_TEA.get());
+        basicItem(ModItems.SCULKED_TEA.get());
+        basicItem(ModItems.ROOTED_TEA.get());
 
-        basicItem(ModItems.DARKNESS_MUSIC_DISK.getId());
-        basicItem(ModItems.CAVE_WHISPERS_MUSIC_DISK.getId());
+        basicItem(ModItems.DARKNESS_MUSIC_DISK.get());
+        basicItem(ModItems.CAVE_WHISPERS_MUSIC_DISK.get());
 
         handheldItem(ModItems.CHISEL);
         handheldItem(ModItems.NETHERITE_CHISEL);
@@ -342,10 +342,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.EBONY_BOAT.get());
         basicItem(ModItems.EBONY_CHEST_BOAT.get());
 
-//        evenSimplerBlockItem(ModBlocks.GEM_CUTTING_STATION);
-//        evenSimplerBlockItem(ModBlocks.GEM_INFUSER);
-//        evenSimplerBlockItem(ModBlocks.TORRID_FURNACE);
-//        evenSimplerBlockItem(ModBlocks.KETTLE);
+        evenSimplerBlockItem(ModBlocks.GEM_CUTTING_STATION);
+        evenSimplerBlockItem(ModBlocks.GEM_INFUSER);
+        evenSimplerBlockItem(ModBlocks.TORRID_FURNACE);
+        evenSimplerBlockItem(ModBlocks.KETTLE);
 
         evenSimplerBlockItem(ModBlocks.SPEEDER_BLOCK);
         evenSimplerBlockItem(ModBlocks.RED_BOUNCER_BLOCK);
