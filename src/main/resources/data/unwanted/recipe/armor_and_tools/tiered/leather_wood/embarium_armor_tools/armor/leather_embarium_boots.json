@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:gem_infuser",
+  "ingredients": [
+    {
+      "item": "minecraft:leather_boots"
+    },
+    {
+      "item": "unwanted:embarium"
+    }
+  ],
+  "output": {
+    "id": "unwanted:leather_embarium_boots"
+  }
+}

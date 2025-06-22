@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:gem_infuser",
+  "ingredients": [
+    {
+      "item": "unwanted:iron_torrid_boots"
+    },
+    {
+      "item": "unwanted:embarium"
+    }
+  ],
+  "output": {
+    "id": "unwanted:iron_torrid_embarium_boots"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:gem_infuser",
+  "ingredients": [
+    {
+      "item": "unwanted:profundium_sword"
+    },
+    {
+      "item": "unwanted:embarium"
+    }
+  ],
+  "output": {
+    "id": "unwanted:profundium_embarium_sword"
+  }
+}

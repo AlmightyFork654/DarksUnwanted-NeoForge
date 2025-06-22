@@ -21,16 +21,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.levelgen.feature.EndPlatformFeature;
 import net.minecraft.world.level.portal.DimensionTransition;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TeaItem extends Item {
     private static final int DRINK_DURATION = 32;
+    private static final int COOLDOWN_TICKS = 300; // 15 seconds * 20 ticks/second
 
     public TeaItem(Properties properties) {
         super(properties);
@@ -82,8 +84,8 @@ public class TeaItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        String[] modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
-        if (Arrays.asList(modifiers).contains("gunpowder")) {
+        List<String> modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), List.of());
+        if (modifiers.contains("gunpowder")) {
             return DRINK_DURATION / 2;
         }
         return DRINK_DURATION;
@@ -96,13 +98,18 @@ public class TeaItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        String teleport = stack.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
+        if (!teleport.isEmpty() && player.getCooldowns().isOnCooldown(this)) {
+            return InteractionResultHolder.fail(stack);
+        }
         return ItemUtils.startUsingInstantly(world, player, hand);
     }
 
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         String teaType = stack.getOrDefault(ModDataComponents.TEA_TYPE.get(), "");
-        String[] additions = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
-        String[] modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        List<String> additions = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), List.of());
+        List<String> modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), List.of());
         String teleport = stack.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
 
         tooltip.add(Component.literal("§cRemoved effects:"));
@@ -161,7 +168,7 @@ public class TeaItem extends Item {
         if (glowCount > 0) {
             tooltip.add(Component.literal("§aGlowstone Dust " + glowCount + "x"));
         }
-        if (Arrays.asList(modifiers).contains("gunpowder")) {
+        if (modifiers.contains("gunpowder")) {
             tooltip.add(Component.literal("§aGunpowder"));
         }
     }
@@ -238,7 +245,7 @@ public class TeaItem extends Item {
                 break;
         }
 
-        String[] additives = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
+        List<String> additives = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), List.of());
         for (String additive : additives) {
             if (additive.equals("white_flower")) {
                 effects.add(new MobEffectInstance(MobEffects.BAD_OMEN));
@@ -256,17 +263,17 @@ public class TeaItem extends Item {
 
     private List<MobEffectInstance> getEffectsToAdd(ItemStack stack) {
         List<MobEffectInstance> effects = new ArrayList<>();
-        String[] additives = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
+        List<String> additives = stack.getOrDefault(ModDataComponents.TEA_ADDITION.get(), List.of());
 
         for (String additive : additives) {
             // fruits
             if (additive.equals("red_stuff")) {
-                if (!Arrays.asList(additives).contains("golden_fruit") && !Arrays.asList(additives).contains("god_apple")) {
+                if (!additives.contains("golden_fruit") && !additives.contains("god_apple")) {
                     effects.add(new MobEffectInstance(MobEffects.REGENERATION, 300, 0));
                 }
             }
             if (additive.equals("golden_fruit")) {
-                if (!Arrays.asList(additives).contains("god_apple")) {
+                if (!additives.contains("god_apple")) {
                     effects.add(new MobEffectInstance(MobEffects.REGENERATION, 600, 1));
                     effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0));
                 }
@@ -305,12 +312,12 @@ public class TeaItem extends Item {
                 effects.add(new MobEffectInstance(MobEffects.CONDUIT_POWER, 300, 0));
             }
             if (additive.equals("purple_flower_1")) {
-                if (!Arrays.asList(additives).contains("sweet")) {
+                if (!additives.contains("sweet")) {
                     effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0));
                 }
             }
             if (additive.equals("purple_flower_2")) {
-                if (!Arrays.asList(additives).contains("sweet")) {
+                if (!additives.contains("sweet")) {
                     effects.add(new MobEffectInstance(MobEffects.JUMP, 300, 0));
                 }
             }
@@ -322,13 +329,13 @@ public class TeaItem extends Item {
                 effects.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 300, 0));
             }
             if (additive.equals("fire_flower")) {
-                if (!Arrays.asList(additives).contains("god_apple")) {
+                if (!additives.contains("god_apple")) {
                     effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300, 0));
                 }
                 effects.add(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0));
             }
             if (additive.equals("pot_flower")) {
-                if (!Arrays.asList(additives).contains("god_apple") && !Arrays.asList(additives).contains("golden_fruit")) {
+                if (!additives.contains("god_apple") && !additives.contains("golden_fruit")) {
                     effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 300, 0));
                 }
                 effects.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300, 0));
@@ -339,12 +346,12 @@ public class TeaItem extends Item {
                 effects.add(new MobEffectInstance(MobEffects.LEVITATION, 300, 0));
             }
             if (additive.equals("fire")) {
-                if (!Arrays.asList(additives).contains("fire_flower")) {
+                if (!additives.contains("fire_flower")) {
                     effects.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300, 0));
                 }
             }
             if (additive.equals("torrid")) {
-                if (!Arrays.asList(additives).contains("yellow_flower")) {
+                if (!additives.contains("yellow_flower")) {
                     effects.add(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0));
                 }
             }
@@ -354,7 +361,7 @@ public class TeaItem extends Item {
     }
 
     private List<MobEffectInstance> modifyEffects(List<MobEffectInstance> effectInstanceList, ItemStack stack) {
-        String[] modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        List<String> modifiers = stack.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), List.of());
         List<MobEffectInstance> modifiedEffects = new ArrayList<>();
         for (MobEffectInstance effect : effectInstanceList) {
             int duration = effect.getDuration();
@@ -373,6 +380,27 @@ public class TeaItem extends Item {
         return modifiedEffects;
     }
 
+    private void createNetherPlatform(ServerLevel world, BlockPos pos) {
+        for (int x = -2; x <= 2; x++) {
+            for (int z = -2; z <= 2; z++) {
+                BlockPos platformPos = new BlockPos(pos.getX() + x, pos.getY(), pos.getZ() + z);
+                if (world.getRandom().nextBoolean()) {
+                    world.setBlockAndUpdate(platformPos, Blocks.CRYING_OBSIDIAN.defaultBlockState());
+                } else {
+                    world.setBlockAndUpdate(platformPos, Blocks.OBSIDIAN.defaultBlockState());
+                }
+            }
+        }
+        for (int layer = 1; layer <= 3; layer++) {
+            for (int x = -2; x <= 2; x++) {
+                for (int z = -2; z <= 2; z++) {
+                    BlockPos airPos = new BlockPos(pos.getX() + x, pos.getY() + layer, pos.getZ() + z);
+                    world.setBlockAndUpdate(airPos, Blocks.AIR.defaultBlockState());
+                }
+            }
+        }
+    }
+
     private void tryTeleport(ItemStack stack, LivingEntity entity) {
         String teleport = stack.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
         if (!teleport.isEmpty() && entity instanceof ServerPlayer player) {
@@ -383,39 +411,58 @@ public class TeaItem extends Item {
             float xRot = player.getXRot();
 
             if (teleport.equals("spawn")) {
+                targetLevel = player.getServer().getLevel(Level.OVERWORLD);
                 BlockPos respawnPos = player.getRespawnPosition();
                 if (respawnPos != null) {
-                    targetLevel = player.getServer().getLevel(Level.OVERWORLD);
-                    targetPos = respawnPos;
+                    targetPos = findSafePosition(targetLevel, respawnPos);
+                } else {
+                    targetPos = findSafePosition(targetLevel, targetLevel.getSharedSpawnPos());
                 }
             } else if (teleport.equals("overworld")) {
                 targetLevel = player.getServer().getLevel(Level.OVERWORLD);
                 if (currentLevel.dimension() == Level.OVERWORLD) {
-                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
+                    targetPos = findSafePosition(targetLevel, targetLevel.getSharedSpawnPos());
                 } else if (currentLevel.dimension() == Level.NETHER) {
                     int overX = player.blockPosition().getX() * 8;
                     int overZ = player.blockPosition().getZ() * 8;
                     targetPos = findSafePosition(targetLevel, new BlockPos(overX, targetLevel.getLogicalHeight() / 2, overZ));
                 } else if (currentLevel.dimension() == Level.END) {
-                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
+                    targetPos = findSafePosition(targetLevel, targetLevel.getSharedSpawnPos());
                 }
             } else if (teleport.equals("nether")) {
                 targetLevel = player.getServer().getLevel(Level.NETHER);
-                if (currentLevel.dimension() == Level.NETHER) {
-                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
-                } else if (currentLevel.dimension() == Level.OVERWORLD) {
+                if (currentLevel.dimension() == Level.OVERWORLD) {
                     int netherX = player.blockPosition().getX() / 8;
                     int netherZ = player.blockPosition().getZ() / 8;
-                    targetPos = findSafePosition(targetLevel, new BlockPos(netherX, targetLevel.getLogicalHeight() / 2, netherZ));
+                    targetPos = new BlockPos(netherX, 64, netherZ);
+                } else if (currentLevel.dimension() == Level.NETHER) {
+                    BlockPos respawnPos = player.getRespawnPosition();
+                    if (respawnPos != null) {
+                        targetPos = respawnPos;
+                    } else {
+                        targetPos = new BlockPos(0, 64, 0);
+                    }
                 } else if (currentLevel.dimension() == Level.END) {
-                    targetPos = findSafePosition(targetLevel, new BlockPos(1, targetLevel.getLogicalHeight() / 2, 1));
+                    targetPos = new BlockPos(0, 64, 0);
                 }
             } else if (teleport.equals("end")) {
                 targetLevel = player.getServer().getLevel(Level.END);
-                targetPos = new BlockPos(100, 49, 0);
+                if (currentLevel.dimension() == Level.OVERWORLD || currentLevel.dimension() == Level.NETHER) {
+                    int endX = player.blockPosition().getX();
+                    int endZ = player.blockPosition().getZ();
+                    targetPos = new BlockPos(endX, 49, endZ);
+                } else if (currentLevel.dimension() == Level.END) {
+                    targetPos = new BlockPos(100, 49, 0);
+                }
             }
 
             if (targetLevel != null && targetPos != null) {
+                player.sendSystemMessage(Component.literal("Loading dimension..."));
+                if (teleport.equals("end")) {
+                    EndPlatformFeature.createEndPlatform(targetLevel, targetPos.below(), true);
+                } else if (teleport.equals("nether")) {
+                    createNetherPlatform(targetLevel, targetPos.below());
+                }
                 DimensionTransition transition = new DimensionTransition(
                         targetLevel,
                         targetPos.getCenter(),
@@ -425,16 +472,17 @@ public class TeaItem extends Item {
                         DimensionTransition.DO_NOTHING
                 );
                 player.changeDimension(transition);
+                player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
             }
         }
     }
 
     private BlockPos findSafePosition(ServerLevel world, BlockPos initialPos) {
-        int minY = 0;
-        int maxY = world.getLogicalHeight() - 3;
+        int minY = world.getMinBuildHeight();
+        int maxY = world.getMaxBuildHeight() - 3;
         BlockPos.MutableBlockPos checkPos = new BlockPos.MutableBlockPos(initialPos.getX(), minY, initialPos.getZ());
 
-        for (int y = maxY - 3; y >= minY; y--) {
+        for (int y = maxY; y >= minY; y--) {
             checkPos.setY(y);
             if (world.getBlockState(checkPos).isSolid() &&
                     world.getBlockState(checkPos.above()).isAir() &&
@@ -442,6 +490,6 @@ public class TeaItem extends Item {
                 return checkPos.above();
             }
         }
-        return null;
+        return initialPos; // Fallback to initial position if no safe position is found
     }
 }

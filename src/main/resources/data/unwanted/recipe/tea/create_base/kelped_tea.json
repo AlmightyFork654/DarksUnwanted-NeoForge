@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:kettle",
+  "ingredients": [
+    {
+      "item": "unwanted:cup_of_water"
+    },
+    {
+      "tag": "unwanted:kelped"
+    }
+  ],
+  "output": {
+    "id": "unwanted:kelped_tea"
+  }
+}

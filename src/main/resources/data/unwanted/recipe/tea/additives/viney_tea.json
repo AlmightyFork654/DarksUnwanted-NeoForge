@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:kettle",
+  "ingredients": [
+    {
+      "item": "unwanted:viney_tea"
+    },
+    {
+      "tag": "unwanted:additives"
+    }
+  ],
+  "output": {
+    "id": "unwanted:viney_tea"
+  }
+}

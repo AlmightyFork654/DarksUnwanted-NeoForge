@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "unwanted:torrid_steel_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "id": "minecraft:iron_bars"
+  },
+  "show_notification": true,
+  "group": "bars"
+}

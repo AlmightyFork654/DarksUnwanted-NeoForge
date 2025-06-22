@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:torrid_furnace",
+  "ingredients": [
+    {
+      "item": "unwanted:torrid_steel_ingot"
+    },
+    {
+      "item": "unwanted:profundium_sword"
+    }
+  ],
+  "output": {
+    "id": "unwanted:profundium_torrid_sword"
+  }
+}

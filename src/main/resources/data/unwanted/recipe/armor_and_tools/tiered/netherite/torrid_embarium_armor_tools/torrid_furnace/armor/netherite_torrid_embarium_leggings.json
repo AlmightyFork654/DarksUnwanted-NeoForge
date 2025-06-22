@@ -1,0 +1,14 @@
+{
+  "type": "unwanted:torrid_furnace",
+  "ingredients": [
+    {
+      "item": "unwanted:torrid_steel_ingot"
+    },
+    {
+      "item": "unwanted:netherite_embarium_leggings"
+    }
+  ],
+  "output": {
+    "id": "unwanted:netherite_torrid_embarium_leggings"
+  }
+}

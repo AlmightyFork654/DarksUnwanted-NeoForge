@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "X#X",
+    "XRX"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "#": {
+      "item": "minecraft:stone_pressure_plate"
+    },
+    "X": {
+      "item": "unwanted:torrid_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "minecraft:detector_rail",
+    "count": 6
+  },
+  "group": "detector_rail"
+}

@@ -2,17 +2,13 @@ package com.fork.unwanted.component;
 
 import com.fork.unwanted.Unwanted;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
@@ -22,23 +18,18 @@ public class ModDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> TEA_TYPE = register("tea_type",
             builder -> builder.persistent(Codec.STRING));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<String[]>> TEA_ADDITION = register("tea_addition",
-            builder -> builder.persistent(Codec.STRING.listOf().xmap(
-                    list -> list.toArray(new String[0]), // Convert list to array for serialization
-                    array -> Arrays.asList(array) // Convert array to list for deserialization
-            )));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<String[]>> TEA_MODIFIER = register("tea_modifier",
-            builder -> builder.persistent(Codec.STRING.listOf().xmap(
-                    list -> list.toArray(new String[0]), // Convert list to array for serialization
-                    array -> Arrays.asList(array) // Convert array to list for deserialization
-            )));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<String>>> TEA_ADDITION = register("tea_addition",
+            builder -> builder.persistent(Codec.STRING.listOf()));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<String>>> TEA_MODIFIER = register("tea_modifier",
+            builder -> builder.persistent(Codec.STRING.listOf()));
+
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> TEA_TELEPORT = register("tea_teleport",
             builder -> builder.persistent(Codec.STRING));
 
-
-
-    private static <T>DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,
-                                                                                          UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
+    private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,
+                                                                                           UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
         return DATA_COMPONENT_TYPES.register(name, () -> builderOperator.apply(DataComponentType.builder()).build());
     }
 

@@ -5,15 +5,12 @@ chest boat crash
 
 todo:
 villagers + house gen
-crafting blocks, recipies, etc
-tea rework (new data component system)
-jei integration
 embarium lamp block retexture
 spear sounds line 70 in item class
-profundium gen only in certain biomes?
 check all recipes, loottables
 item renderers in crafters
 
-
-custom recipes (from custom crafters)
 gem infuser ani
+update smithing recipes
+dia advances -> netherite advanced recipes
+add new plants to tea

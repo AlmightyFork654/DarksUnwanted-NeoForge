@@ -3,14 +3,11 @@ package com.fork.unwanted.blocks.entity.custom;
 import com.fork.unwanted.blocks.entity.ModBlockEntities;
 import com.fork.unwanted.component.ModDataComponents;
 import com.fork.unwanted.misc.ModTags;
-import com.fork.unwanted.recipe.GemCuttingStationRecipe;
 import com.fork.unwanted.recipe.KettleRecipe;
 import com.fork.unwanted.recipe.ModRecipes;
-import com.fork.unwanted.recipe.input.GemCuttingStationRecipeInput;
 import com.fork.unwanted.recipe.input.KettleRecipeInput;
 import com.fork.unwanted.screen.KettleMenu;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -32,14 +29,10 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.Objects;
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Optional;
 
 public class KettleBlockEntity extends BlockEntity implements MenuProvider {
@@ -47,7 +40,7 @@ public class KettleBlockEntity extends BlockEntity implements MenuProvider {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
-            if (!level.isClientSide()){
+            if (!level.isClientSide()) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
@@ -82,10 +75,6 @@ public class KettleBlockEntity extends BlockEntity implements MenuProvider {
         };
     }
 
-//    public ItemStack getRenderStack() {
-//        return itemHandler.getStackInSlot(2);
-//    }
-
     @Override
     public Component getDisplayName() {
         return Component.literal("Kettle");
@@ -95,7 +84,6 @@ public class KettleBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
         return new KettleMenu(pContainerId, pInventory, this, this.data);
-
     }
 
     @Override
@@ -153,110 +141,9 @@ public class KettleBlockEntity extends BlockEntity implements MenuProvider {
                 ), level);
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, match.get().value().output()) //&& !IsAlreadyNBT(inventory)
+                && canInsertItemIntoOutputSlot(inventory, match.get().value().output())
                 && dataComponentsMatch(inventory, match.get().value().assemble(new KettleRecipeInput(inventory.getItem(0), inventory.getItem(1)), level.registryAccess()));
     }
-
-//    private static boolean IsAlreadyNBT(SimpleContainer container) {
-//
-//        ItemStack input = container.getItem(0);
-//        ItemStack ingredient = container.getItem(1);
-//
-//        if (input.hasTag()) {
-//            CompoundTag tag = input.getTag();
-//            if (tag.contains("TP") && ingredient.is(ModTags.Items.TELEPORTS)) {
-//                return true;
-//            }
-//            if (tag.contains("Additives")) {
-//                ListTag additives = tag.getList("Additives", Tag.TAG_STRING);
-//                for (Tag additiveTag : additives) {
-//                    String additive = additiveTag.getAsString();
-//
-//                    if (additive.equals("red_stuff") && ingredient.is(ModTags.Items.RED_STUFF)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("golden_fruit") && ingredient.is(ModTags.Items.GOLDEN_FRUIT)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("god_apple") && ingredient.is(ModTags.Items.GOD_APPLE)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("sweet") && ingredient.is(ModTags.Items.SWEET)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("glow_berries") && ingredient.is(ModTags.Items.GLOWING_FRUIT)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("pink_flower") && ingredient.is(ModTags.Items.PINK_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("yellow_flower") && ingredient.is(ModTags.Items.YELLOW_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("white_flower") && ingredient.is(ModTags.Items.WHITE_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("grey_flower") && ingredient.is(ModTags.Items.GREY_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("blue_flower") && ingredient.is(ModTags.Items.BLUE_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("purple_flower_1") && ingredient.is(ModTags.Items.PURPLE_FLOWER1)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("purple_flower_2") && ingredient.is(ModTags.Items.PURPLE_FLOWER2)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("red_flower") && ingredient.is(ModTags.Items.RED_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("end_flower") && ingredient.is(ModTags.Items.END)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("fire_flower") && ingredient.is(ModTags.Items.FIRE_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("pot_flower") && ingredient.is(ModTags.Items.POT_FLOWER)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("wing") && ingredient.is(ModTags.Items.WING)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("fire") && ingredient.is(ModTags.Items.FIRE)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("torrid") && ingredient.is(ModTags.Items.TORRID)) {
-//                        return true;
-//                    }
-//                    if (additive.equals("wither_flower") && ingredient.is(ModTags.Items.WITHER)) {
-//                        return true;
-//                    }
-//                }
-//            }
-//
-//            if (tag.contains("Mods")) {
-//                ListTag mods = tag.getList("Mods", Tag.TAG_STRING);
-//                int GlowCounter = 0;
-//                for (Tag ModsTag : mods) {
-//                    String mod = ModsTag.getAsString();
-//
-//                    if (mod.equals("gunpowder") && ingredient.is(Items.GUNPOWDER)) {
-//                        return true;
-//                    }
-//                    if (mod.equals("glowstone") && ingredient.is(Items.GLOWSTONE_DUST)) {
-//                        if (GlowCounter < 3) {
-//                            GlowCounter ++;
-//                        }
-//                        else {
-//                            return true;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return false;
-//    }
 
     private static void craftItem(KettleBlockEntity entity) {
         Level level = entity.level;
@@ -308,18 +195,18 @@ public class KettleBlockEntity extends BlockEntity implements MenuProvider {
         }
 
         String slot2TeaType = itemInSlot2.getOrDefault(ModDataComponents.TEA_TYPE.get(), "");
-        String[] slot2Additions = itemInSlot2.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
-        String[] slot2Modifiers = itemInSlot2.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        List<String> slot2Additions = itemInSlot2.getOrDefault(ModDataComponents.TEA_ADDITION.get(), List.of());
+        List<String> slot2Modifiers = itemInSlot2.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), List.of());
         String slot2Teleport = itemInSlot2.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
 
         String outputTeaType = output.getOrDefault(ModDataComponents.TEA_TYPE.get(), "");
-        String[] outputAdditions = output.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
-        String[] outputModifiers = output.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        List<String> outputAdditions = output.getOrDefault(ModDataComponents.TEA_ADDITION.get(), List.of());
+        List<String> outputModifiers = output.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), List.of());
         String outputTeleport = output.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
 
         return slot2TeaType.equals(outputTeaType)
-                && Arrays.equals(slot2Additions, outputAdditions)
-                && Arrays.equals(slot2Modifiers, outputModifiers)
+                && slot2Additions.equals(outputAdditions)
+                && slot2Modifiers.equals(outputModifiers)
                 && slot2Teleport.equals(outputTeleport);
     }
 
@@ -333,5 +220,4 @@ public class KettleBlockEntity extends BlockEntity implements MenuProvider {
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
-
 }

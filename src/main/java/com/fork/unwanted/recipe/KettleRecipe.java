@@ -20,7 +20,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public record KettleRecipe(Ingredient base, Ingredient ingredient, ItemStack output) implements Recipe<KettleRecipeInput> {
@@ -41,10 +40,10 @@ public record KettleRecipe(Ingredient base, Ingredient ingredient, ItemStack out
         }
 
         String teaType = baseItem.getOrDefault(ModDataComponents.TEA_TYPE.get(), "");
-        String[] additions = baseItem.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
-        String[] modifiers = baseItem.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        List<String> additions = baseItem.getOrDefault(ModDataComponents.TEA_ADDITION.get(), List.of());
+        List<String> modifiers = baseItem.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), List.of());
         String teleport = baseItem.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
-        int glowstoneCount = (int) Arrays.stream(modifiers).filter(mod -> mod.equals("glowstone")).count();
+        int glowstoneCount = (int) modifiers.stream().filter(mod -> mod.equals("glowstone")).count();
 
         if (ingredientItem.is(ModTags.Items.TELEPORTS) && !teleport.isEmpty()) {
             return false;
@@ -56,7 +55,7 @@ public record KettleRecipe(Ingredient base, Ingredient ingredient, ItemStack out
 
         if (ingredientItem.is(ModTags.Items.ADDITIVES)) {
             String additive = getAdditiveFromIngredient(ingredientItem);
-            return additive != null && !Arrays.asList(additions).contains(additive);
+            return additive != null && !additions.contains(additive);
         }
 
         return true;
@@ -69,8 +68,8 @@ public record KettleRecipe(Ingredient base, Ingredient ingredient, ItemStack out
         ItemStack ingredientItem = input.ingredient();
 
         String teaType = baseItem.getOrDefault(ModDataComponents.TEA_TYPE.get(), "");
-        String[] additions = baseItem.getOrDefault(ModDataComponents.TEA_ADDITION.get(), new String[0]);
-        String[] modifiers = baseItem.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), new String[0]);
+        List<String> additions = new ArrayList<>(baseItem.getOrDefault(ModDataComponents.TEA_ADDITION.get(), List.of()));
+        List<String> modifiers = new ArrayList<>(baseItem.getOrDefault(ModDataComponents.TEA_MODIFIER.get(), List.of()));
         String teleport = baseItem.getOrDefault(ModDataComponents.TEA_TELEPORT.get(), "");
 
         if (ingredientItem.is(ModTags.Items.BASE_TEA) && teaType.isEmpty()) {
@@ -80,25 +79,21 @@ public record KettleRecipe(Ingredient base, Ingredient ingredient, ItemStack out
         } else if (ingredientItem.is(ModTags.Items.MODS)) {
             String mod = getModFromIngredient(ingredientItem);
             if (mod != null) {
-                List<String> modList = new ArrayList<>(Arrays.asList(modifiers));
-                modList.add(mod);
-                modifiers = modList.toArray(new String[0]);
+                modifiers.add(mod);
             }
         } else if (ingredientItem.is(ModTags.Items.ADDITIVES)) {
             String additive = getAdditiveFromIngredient(ingredientItem);
             if (additive != null) {
-                List<String> addList = new ArrayList<>(Arrays.asList(additions));
-                addList.add(additive);
-                additions = addList.toArray(new String[0]);
+                additions.add(additive);
             }
         }
 
-        Arrays.sort(additions);
-        Arrays.sort(modifiers);
+        additions.sort(String::compareTo);
+        modifiers.sort(String::compareTo);
 
         outputCopy.set(ModDataComponents.TEA_TYPE, teaType);
-        outputCopy.set(ModDataComponents.TEA_ADDITION, additions);
-        outputCopy.set(ModDataComponents.TEA_MODIFIER, modifiers);
+        outputCopy.set(ModDataComponents.TEA_ADDITION, List.copyOf(additions));
+        outputCopy.set(ModDataComponents.TEA_MODIFIER, List.copyOf(modifiers));
         outputCopy.set(ModDataComponents.TEA_TELEPORT, teleport);
 
         return outputCopy;
