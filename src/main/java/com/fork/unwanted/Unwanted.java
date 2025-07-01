@@ -26,6 +26,7 @@ import com.fork.unwanted.mob_effects.ModPotions;
 import com.fork.unwanted.recipe.ModRecipes;
 import com.fork.unwanted.screen.ModMenuTypes;
 import com.fork.unwanted.sfx.ModSounds;
+import com.fork.unwanted.villager.ModVillagers;
 import com.fork.unwanted.worldgen.tree.custom.ModFoliagePlacers;
 import com.fork.unwanted.worldgen.tree.custom.ModTrunkPlacerTypes;
 import net.minecraft.client.Minecraft;
@@ -92,6 +93,7 @@ public class Unwanted {
         ModPotions.register(modEventBus);
         ModFoliagePlacers.register(modEventBus);
         ModTrunkPlacerTypes.register(modEventBus);
+        ModVillagers.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::registerElytraLayer);

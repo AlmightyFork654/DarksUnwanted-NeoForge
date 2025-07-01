@@ -4,13 +4,13 @@ chest boat crash
 
 
 todo:
-villagers + house gen
+house gen
 embarium lamp block retexture
 spear sounds line 70 in item class
 check all recipes, loottables
 item renderers in crafters
 
-gem infuser ani
+gem infuser block ani
 update smithing recipes
 dia advances -> netherite advanced recipes
 add new plants to tea

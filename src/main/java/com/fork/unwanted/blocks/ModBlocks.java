@@ -64,7 +64,7 @@ public class ModBlocks {
             () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.METAL).strength(5F, 6F).destroyTime(5).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final DeferredBlock<Block> EMBARIUM_BLOCK = registerBlock("embarium_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(ModSounds.EMBARIUM_SOUNDS)
+            () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(ModSounds.EMBARIUM_SOUNDS)
                     .strength(0.3F, 0.3F).destroyTime(3).requiresCorrectToolForDrops().lightLevel((blockState) -> 8).noOcclusion()));
 
     public static final DeferredBlock<Block> PROFUNDIUM_BLOCK = registerBlock("profundium_block",

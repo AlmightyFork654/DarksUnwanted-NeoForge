@@ -5,7 +5,7 @@
       "item": "unwanted:ruby"
     },
     {
-      "item": "#unwanted:chisels"
+      "tag": "unwanted:chisels"
     }
   ],
   "output": {

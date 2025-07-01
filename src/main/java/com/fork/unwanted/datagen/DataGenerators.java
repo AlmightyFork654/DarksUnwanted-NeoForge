@@ -34,6 +34,9 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
 
+        EnchantTagProvider enchantTagProvider = new EnchantTagProvider(packOutput, lookupProvider);
+        generator.addProvider(event.includeServer(), enchantTagProvider);
+
         generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
 
 

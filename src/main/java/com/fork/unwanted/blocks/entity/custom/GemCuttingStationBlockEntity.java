@@ -171,8 +171,8 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
 
         Optional<RecipeHolder<GemCuttingStationRecipe>> match = level.getRecipeManager()
                 .getRecipeFor(ModRecipes.GEM_CUTTING_TYPE.get(), new GemCuttingStationRecipeInput(
-                        entity.itemHandler.getStackInSlot(0), // Water
-                        entity.itemHandler.getStackInSlot(1)  // Gem
+                        entity.itemHandler.getStackInSlot(1), // Gem
+                        entity.itemHandler.getStackInSlot(2)  // Chisel
                 ), level);
 
         if(match.isPresent()) {
@@ -180,8 +180,18 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
             entity.itemHandler.extractItem(1,1, false);
             //entity.itemHandler.extractItem(2,1, false);
 //            entity.itemHandler.getStackInSlot(2).hurt(1, RandomSource.create(), null);
-            entity.itemHandler.getStackInSlot(2).hurtAndBreak(1, null, null);
+//            entity.itemHandler.getStackInSlot(2).setDamageValue(entity.itemHandler.getStackInSlot(2).getDamageValue() -1);
 
+            ItemStack chisel = entity.itemHandler.getStackInSlot(2);
+            if (!chisel.isEmpty() && chisel.isDamageableItem()) {
+                int newDamage = chisel.getDamageValue() + 1;
+                if (newDamage >= chisel.getMaxDamage()) {
+                    entity.itemHandler.setStackInSlot(2, ItemStack.EMPTY);
+                } else {
+                    chisel.setDamageValue(newDamage);
+                    entity.itemHandler.setStackInSlot(2, chisel);
+                }
+            }
             entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().value().output().getItem(),
                     entity.itemHandler.getStackInSlot(3).getCount() + 1));
 

@@ -1,11 +1,14 @@
 package com.fork.unwanted.misc;
 
 import com.fork.unwanted.Unwanted;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 
 public class ModTags {
@@ -18,13 +21,6 @@ public class ModTags {
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID, name));
         }
-
-//        private static TagKey<Block> forgeTag(String name) {
-//            return BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", name));
-//        }
-
-        //tags
-
     }
 
     public static class Items {
@@ -129,10 +125,49 @@ public class ModTags {
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID, name));
         }
+    }
 
-//        private static TagKey<Item> forgeTag(String name) {
-//            return ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", name));
-//        }
+    public static class Enchantments {
 
+        public static final TagKey<Enchantment> MENDING
+                = tag("mending");
+        public static final TagKey<Enchantment> FROST_WALKER
+                = tag("frost_walker");
+        public static final TagKey<Enchantment> SOUL_SPEED
+                = tag("soul_speed");
+        public static final TagKey<Enchantment> BINDING_CURSE
+                = tag("curse_of_binding");
+        public static final TagKey<Enchantment> VANISH_CURSE
+                = tag("curse_of_vanishing");
+        public static final TagKey<Enchantment> PROT
+                = tag("prot");
+        public static final TagKey<Enchantment> RIPTIDE
+                = tag("riptide");
+        public static final TagKey<Enchantment> UNBREAKING
+                = tag("unbreaking");
+        public static final TagKey<Enchantment> SWEEP
+                = tag("sweep");
+        public static final TagKey<Enchantment> FALL
+                = tag("fall");
+        public static final TagKey<Enchantment> BOA
+                = tag("boa");
+        public static final TagKey<Enchantment> QC
+                = tag("qc");
+        public static final TagKey<Enchantment> SMITE
+                = tag("smite");
+        public static final TagKey<Enchantment> CHANNELING
+                = tag("channeling");
+        public static final TagKey<Enchantment> LUCK
+                = tag("luck");
+        public static final TagKey<Enchantment> POWER
+                = tag("power");
+
+        private static TagKey<Enchantment> tag(String name) {
+            return createEnchantTag(String.valueOf(name));
+        }
+
+        private static TagKey<Enchantment> createEnchantTag(String name) {
+            return TagKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID, name));
+        }
     }
 }
