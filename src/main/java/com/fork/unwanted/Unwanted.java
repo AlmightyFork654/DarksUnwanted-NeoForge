@@ -472,7 +472,14 @@ public class Unwanted {
             event.accept(ModItems.ELYTRA_GLIDER);
             event.accept(ModItems.MECHANICAL_ELYTRA);
             event.accept(ModItems.WOODEN_SPEAR);
+            event.accept(ModItems.STONE_SPEAR);
+            event.accept(ModItems.GOLDEN_SPEAR);
             event.accept(ModItems.IRON_SPEAR);
+            event.accept(ModItems.EMBARIUM_SPEAR);
+            event.accept(ModItems.TORRID_STEEL_SPEAR);
+            event.accept(ModItems.DIAMOND_SPEAR);
+            event.accept(ModItems.NETHERITE_SPEAR);
+            event.accept(ModItems.PROFUNDIUM_SPEAR);
             event.accept(ModItems.CHISEL);
             event.accept(ModItems.NETHERITE_CHISEL);
         }
@@ -499,7 +506,14 @@ public class Unwanted {
             EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), p_174010_ -> new ModBoatRenderer(p_174010_, true));
 
             EntityRenderers.register(ModEntities.WOODEN_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.WOODEN_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/wooden_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.STONE_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.STONE_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/stone_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.GOLDEN_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.GOLDEN_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/golden_spear_in_hand.png")));
             EntityRenderers.register(ModEntities.IRON_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.IRON_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/iron_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.EMBARIUM_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.EMBARIUM_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/embarium_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.TORRID_STEEL_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.TORRID_STEEL_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/torrid_steel_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.DIAMOND_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.DIAMOND_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/diamond_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.NETHERITE_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.NETHERITE_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/netherite_spear_in_hand.png")));
+            EntityRenderers.register(ModEntities.PROFUNDIUM_SPEAR.get(), context -> new ThrownSpearRenderer(context, ModModelLayers.PROFUNDIUM_SPEAR, ResourceLocation.fromNamespaceAndPath(Unwanted.MOD_ID,"textures/entity/profundium_spear_in_hand.png")));
         }
 
         @SubscribeEvent

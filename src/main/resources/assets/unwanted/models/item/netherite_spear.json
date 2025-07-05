@@ -1,0 +1,18 @@
+{
+    "parent": "minecraft:item/handheld",
+    "loader": "neoforge:separate_transforms",
+    "base": {
+        "parent": "unwanted:item/netherite_spear_in_hand"
+    },
+    "perspectives": {
+        "gui": {
+            "parent": "unwanted:item/netherite_spear_inv"
+        },
+        "ground": {
+            "parent": "unwanted:item/netherite_spear_inv"
+        },
+        "fixed": {
+            "parent": "unwanted:item/netherite_spear_inv"
+        }
+    }
+}

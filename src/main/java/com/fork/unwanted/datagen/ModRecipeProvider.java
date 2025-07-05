@@ -490,12 +490,52 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.WOODEN_SPEAR_HEAD.get()), has(ModItems.WOODEN_SPEAR_HEAD.get()))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.STONE_SPEAR.get())
+                .pattern("  k")
+                .pattern(" s ")
+                .pattern("s  ")
+                .define('k', Items.STONE).define('s', Items.STICK)
+                .unlockedBy(getHasName(Items.STONE), has(Items.STONE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.GOLDEN_SPEAR.get())
+                .pattern("  k")
+                .pattern(" s ")
+                .pattern("s  ")
+                .define('k', Items.GOLD_INGOT).define('s', Items.STICK)
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IRON_SPEAR.get())
                 .pattern("  k")
                 .pattern(" s ")
                 .pattern("s  ")
                 .define('k', Items.IRON_INGOT).define('s', Items.STICK)
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.EMBARIUM_SPEAR.get())
+                .pattern("  k")
+                .pattern(" s ")
+                .pattern("s  ")
+                .define('k', ModItems.EMBARIUM.get()).define('s', Items.STICK)
+                .unlockedBy(getHasName(ModItems.EMBARIUM.get()), has(ModItems.EMBARIUM.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.TORRID_STEEL_INGOT.get())
+                .pattern("  k")
+                .pattern(" s ")
+                .pattern("s  ")
+                .define('k', ModItems.TORRID_STEEL_INGOT.get()).define('s', Items.STICK)
+                .unlockedBy(getHasName(ModItems.TORRID_STEEL_INGOT.get()), has(ModItems.TORRID_STEEL_INGOT.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.DIAMOND_SPEAR.get())
+                .pattern("  k")
+                .pattern(" s ")
+                .pattern("s  ")
+                .define('k', Items.DIAMOND).define('s', Items.STICK)
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOODEN_SPEAR_HEAD.get(), 2)

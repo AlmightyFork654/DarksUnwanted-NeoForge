@@ -1,9 +1,11 @@
 package com.fork.unwanted.items.spear;
 
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,10 +17,13 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
+
+import java.util.List;
 
 public class SpearItem extends Item implements ProjectileItem {
     public final float damageVal;
@@ -42,8 +47,6 @@ public class SpearItem extends Item implements ProjectileItem {
 //        return new Tool(List.of(), 1.0F, 2);
 //    }
 
-
-
     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
         return !player.isCreative();
     }
@@ -60,6 +63,7 @@ public class SpearItem extends Item implements ProjectileItem {
         if (entity instanceof Player player) {
             int i = this.getUseDuration(stack, entity) - p_43397_;
             if (i >= 10) {
+                stack.setDamageValue(stack.getDamageValue() + 1);
                 ThrownSpear thrownSpear = new ThrownSpear(level, player, stack, damageVal, entityType);
                 thrownSpear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F + (float) 0 * 0.5F, 1.0F);
                 if (player.getAbilities().instabuild) {
@@ -67,7 +71,7 @@ public class SpearItem extends Item implements ProjectileItem {
                 }
 
                 level.addFreshEntity(thrownSpear);
-//                level.playSound(null, thrownSpear, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, 1.0F);
+                level.playLocalSound(thrownSpear, SoundEvents.TRIDENT_THROW.value(), SoundSource.PLAYERS, 1f, 1f);
                 if (!player.getAbilities().instabuild) {
                     player.getInventory().removeItem(stack);
                 }
@@ -88,6 +92,8 @@ public class SpearItem extends Item implements ProjectileItem {
     private static boolean isTooDamagedToUse(ItemStack stack) {
         return stack.getDamageValue() >= stack.getMaxDamage() - 1;
     }
+
+
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         return true;
@@ -114,5 +120,12 @@ public class SpearItem extends Item implements ProjectileItem {
     @Override
     public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
         return repairCandidate.is(this.repairItem);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        tooltipComponents.add(Component.literal(this.damageVal + " Attack Damage").withStyle(ChatFormatting.DARK_GREEN));
+        tooltipComponents.add(Component.literal((this.useDur / 20) + " Attack Speed").withStyle(ChatFormatting.DARK_GREEN));
     }
 }

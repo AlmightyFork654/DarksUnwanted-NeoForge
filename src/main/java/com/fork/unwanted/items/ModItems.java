@@ -116,9 +116,23 @@ public class ModItems {
 
     public static final DeferredItem<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear",
             () -> new SpearItem(new Item.Properties().durability(32), 3f, 5, ModItems.WOODEN_SPEAR_HEAD.get(), ModEntities.WOODEN_SPEAR.get()));
-
+    public static final DeferredItem<Item> STONE_SPEAR = ITEMS.register("stone_spear",
+            () -> new SpearItem(new Item.Properties().durability(64), 5f, 4, Items.STONE, ModEntities.STONE_SPEAR.get()));
+    public static final DeferredItem<Item> GOLDEN_SPEAR = ITEMS.register("golden_spear",
+            () -> new SpearItem(new Item.Properties().durability(32), 5f, 1, Items.GOLD_INGOT, ModEntities.GOLDEN_SPEAR.get()));
     public static final DeferredItem<Item> IRON_SPEAR = ITEMS.register("iron_spear",
-            () -> new SpearItem(new Item.Properties().durability(64), 5f, 4, Items.IRON_INGOT, ModEntities.IRON_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(128), 6f, 3, Items.IRON_INGOT, ModEntities.IRON_SPEAR.get()));
+    public static final DeferredItem<Item> EMBARIUM_SPEAR = ITEMS.register("embarium_spear",
+            () -> new SpearItem(new Item.Properties().durability(196), 6f, 3, ModItems.EMBARIUM.get(), ModEntities.EMBARIUM_SPEAR.get()));
+    public static final DeferredItem<Item> TORRID_STEEL_SPEAR = ITEMS.register("torrid_steel_spear",
+            () -> new SpearItem(new Item.Properties().durability(128), 7f, 2, ModItems.TORRID_STEEL_INGOT.get(), ModEntities.TORRID_STEEL_SPEAR.get()));
+    public static final DeferredItem<Item> DIAMOND_SPEAR = ITEMS.register("diamond_spear",
+            () -> new SpearItem(new Item.Properties().durability(196), 8f, 2, Items.DIAMOND, ModEntities.DIAMOND_SPEAR.get()));
+    public static final DeferredItem<Item> NETHERITE_SPEAR = ITEMS.register("netherite_spear",
+            () -> new SpearItem(new Item.Properties().durability(256), 10f, 2, Items.NETHERITE_INGOT, ModEntities.NETHERITE_SPEAR.get()));
+    public static final DeferredItem<Item> PROFUNDIUM_SPEAR = ITEMS.register("profundium_spear",
+            () -> new SpearItem(new Item.Properties().durability(320), 12f, 1, ModItems.PROFUNDIUM_INGOT.get(), ModEntities.PROFUNDIUM_SPEAR.get()));
+
     
     //armor&tools
 

@@ -83,6 +83,13 @@ public class ModEventClientBusEvents {
         event.registerLayerDefinition(ModModelLayers.EBONY_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
 
         event.registerLayerDefinition(ModModelLayers.WOODEN_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.STONE_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.GOLDEN_SPEAR, SpearModel::createLayer);
         event.registerLayerDefinition(ModModelLayers.IRON_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.EMBARIUM_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.TORRID_STEEL_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.DIAMOND_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.NETHERITE_SPEAR, SpearModel::createLayer);
+        event.registerLayerDefinition(ModModelLayers.PROFUNDIUM_SPEAR, SpearModel::createLayer);
     }
 }

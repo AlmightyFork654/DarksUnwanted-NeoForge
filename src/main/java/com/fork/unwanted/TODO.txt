@@ -4,13 +4,46 @@ chest boat crash
 
 
 todo:
-house gen
-embarium lamp block retexture
 spear sounds line 70 in item class
 check all recipes, loottables
 item renderers in crafters
+
+old bricks return, new bricks are just a cut version
 
 gem infuser block ani
 update smithing recipes
 dia advances -> netherite advanced recipes
 add new plants to tea
+
+gem infuser ani
+
+change emb lamp recipe
+
+more village stuff, overhaul
+
+villages for each biome in each dimension
+
+Dungeons for each biome in each dimension
+
+oxidising silver
+
+spear melee damage = ranged damage, spear charge speed = attack speed, spear dur =- 1 when thrown and hit, spear enchants, spear item fire res torrid, netherite, profundium
+
+todo: v1.20 - combat update part 1
+
+
+Smithing recipes
+
+Shields
+
+Turtle Armor + Weapen?
+
+Bows
+
+todo: v1.30 - combat update part 2
+
+horse armor ( new armor types + netherite)
+
+Mod tiers spears
+
+Trims

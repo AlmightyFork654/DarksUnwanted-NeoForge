@@ -28,9 +28,31 @@ public class ModEntities {
     public static final Supplier<EntityType<ThrownSpear>> WOODEN_SPEAR =
             ENTITY_TYPES.register("wooden_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
                     MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("wooden_spear"));
+    public static final Supplier<EntityType<ThrownSpear>> STONE_SPEAR =
+            ENTITY_TYPES.register("stone_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
+                    MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("stone_spear"));
+    public static final Supplier<EntityType<ThrownSpear>> GOLDEN_SPEAR =
+            ENTITY_TYPES.register("golden_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
+                    MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("golden_spear"));
     public static final Supplier<EntityType<ThrownSpear>> IRON_SPEAR =
             ENTITY_TYPES.register("iron_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
                     MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("iron_spear"));
+    public static final Supplier<EntityType<ThrownSpear>> EMBARIUM_SPEAR =
+            ENTITY_TYPES.register("embarium_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
+                    MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("embarium_spear"));
+    public static final Supplier<EntityType<ThrownSpear>> TORRID_STEEL_SPEAR =
+            ENTITY_TYPES.register("torrid_steel_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
+                    MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("torrid_steel_spear"));
+    public static final Supplier<EntityType<ThrownSpear>> DIAMOND_SPEAR =
+            ENTITY_TYPES.register("diamond_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
+                    MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("diamond_spear"));
+    public static final Supplier<EntityType<ThrownSpear>> NETHERITE_SPEAR =
+            ENTITY_TYPES.register("netherite_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
+                    MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("netherite_spear"));
+    public static final Supplier<EntityType<ThrownSpear>> PROFUNDIUM_SPEAR =
+            ENTITY_TYPES.register("profundium_spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new,
+                    MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("profundium_spear"));
+
 
 
     public static void register(IEventBus eventBus) {

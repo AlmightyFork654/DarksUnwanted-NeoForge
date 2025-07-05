@@ -5,10 +5,10 @@
       "item": "unwanted:torrid_steel_ingot"
     },
     {
-      "item": "unwanted:iron_spear"
+      "item": "minecraft:iron_axe"
     }
   ],
   "output": {
-    "id": "unwanted:torrid_steel_spear"
+    "id": "unwanted:torrid_steel_axe"
   }
 }
