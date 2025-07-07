@@ -27,7 +27,13 @@ Dungeons for each biome in each dimension
 
 oxidising silver
 
-spear melee damage = ranged damage, spear charge speed = attack speed, spear dur =- 1 when thrown and hit, spear enchants, spear item fire res torrid, netherite, profundium
+spear melee damage = ranged damage, spear charge speed = attack speed, spear enchants
+
+torrid armor breaks randomly, -> durability
+
+wing fire armor item
+
+wing no fire damage armor item
 
 todo: v1.20 - combat update part 1
 

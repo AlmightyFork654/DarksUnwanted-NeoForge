@@ -125,13 +125,13 @@ public class ModItems {
     public static final DeferredItem<Item> EMBARIUM_SPEAR = ITEMS.register("embarium_spear",
             () -> new SpearItem(new Item.Properties().durability(196), 6f, 3, ModItems.EMBARIUM.get(), ModEntities.EMBARIUM_SPEAR.get()));
     public static final DeferredItem<Item> TORRID_STEEL_SPEAR = ITEMS.register("torrid_steel_spear",
-            () -> new SpearItem(new Item.Properties().durability(128), 7f, 2, ModItems.TORRID_STEEL_INGOT.get(), ModEntities.TORRID_STEEL_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(128).fireResistant(), 7f, 2, ModItems.TORRID_STEEL_INGOT.get(), ModEntities.TORRID_STEEL_SPEAR.get()));
     public static final DeferredItem<Item> DIAMOND_SPEAR = ITEMS.register("diamond_spear",
             () -> new SpearItem(new Item.Properties().durability(196), 8f, 2, Items.DIAMOND, ModEntities.DIAMOND_SPEAR.get()));
     public static final DeferredItem<Item> NETHERITE_SPEAR = ITEMS.register("netherite_spear",
-            () -> new SpearItem(new Item.Properties().durability(256), 10f, 2, Items.NETHERITE_INGOT, ModEntities.NETHERITE_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(256).fireResistant(), 10f, 2, Items.NETHERITE_INGOT, ModEntities.NETHERITE_SPEAR.get()));
     public static final DeferredItem<Item> PROFUNDIUM_SPEAR = ITEMS.register("profundium_spear",
-            () -> new SpearItem(new Item.Properties().durability(320), 12f, 1, ModItems.PROFUNDIUM_INGOT.get(), ModEntities.PROFUNDIUM_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(320).fireResistant(), 12f, 1, ModItems.PROFUNDIUM_INGOT.get(), ModEntities.PROFUNDIUM_SPEAR.get()));
 
     
     //armor&tools
