@@ -76,6 +76,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                       ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get(),
                         ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get(),
                         ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS.get(),
+                        ModBlocks.CUT_MARBLE_BRICKS.get(),
+                        ModBlocks.CUT_MARBLE_BRICKS_WALL.get(),
+                        ModBlocks.CUT_MARBLE_BRICKS_SLAB.get(),
+                        ModBlocks.CUT_MARBLE_BRICKS_STAIRS.get(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS.get(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_WALL.get(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_SLAB.get(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_STAIRS.get(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS.get(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_WALL.get(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_SLAB.get(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_STAIRS.get(),
                         ModBlocks.CHISELED_C_MARBLE.get(),
                         ModBlocks.CHISELED_E_MARBLE.get(),
                         ModBlocks.CHISELED_S_MARBLE.get(),
@@ -123,14 +135,20 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.SMOOTH_MARBLE_SLAB.get(),
                         ModBlocks.MARBLE_BRICKS_SLAB.get(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_SLAB.get(),
-                        ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get());
+                        ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get(),
+                        ModBlocks.CUT_MARBLE_BRICKS_SLAB.get(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_SLAB.get(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_SLAB.get());
         this.tag(BlockTags.STAIRS)
                 .add(ModBlocks.MARBLE_STAIRS.get(),
                         ModBlocks.POLISHED_MARBLE_STAIRS.get(),
                         ModBlocks.SMOOTH_MARBLE_STAIRS.get(),
                         ModBlocks.MARBLE_BRICKS_STAIRS.get(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_STAIRS.get(),
-                        ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS.get());
+                        ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS.get(),
+                        ModBlocks.CUT_MARBLE_BRICKS_STAIRS.get(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_STAIRS.get(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_STAIRS.get());
 
         this.tag(BlockTags.WOODEN_SLABS).add(ModBlocks.EBONY_SLAB.get());
         this.tag(BlockTags.WOODEN_STAIRS).add(ModBlocks.EBONY_STAIRS.get());
@@ -141,7 +159,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.SMOOTH_MARBLE_WALL.get(),
                         ModBlocks.MARBLE_BRICKS_WALL.get(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_WALL.get(),
-                        ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get());
+                        ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get(),
+                        ModBlocks.CUT_MARBLE_BRICKS_WALL.get(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_WALL.get(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_WALL.get());
 
         this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.EBONY_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.EBONY_FENCE_GATE.get());

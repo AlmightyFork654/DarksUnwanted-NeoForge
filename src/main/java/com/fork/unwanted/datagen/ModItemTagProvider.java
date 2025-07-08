@@ -643,14 +643,20 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.SMOOTH_MARBLE_SLAB.get().asItem(),
                         ModBlocks.MARBLE_BRICKS_SLAB.get().asItem(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_SLAB.get().asItem(),
-                        ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get().asItem());
+                        ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get().asItem(),
+                        ModBlocks.CUT_MARBLE_BRICKS_SLAB.get().asItem(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_SLAB.get().asItem(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_SLAB.get().asItem());
         this.tag(ItemTags.STAIRS)
                 .add(ModBlocks.MARBLE_STAIRS.get().asItem(),
                         ModBlocks.POLISHED_MARBLE_STAIRS.get().asItem(),
                         ModBlocks.SMOOTH_MARBLE_STAIRS.get().asItem(),
                         ModBlocks.MARBLE_BRICKS_STAIRS.get().asItem(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_STAIRS.get().asItem(),
-                        ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS.get().asItem());
+                        ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS.get().asItem(),
+                        ModBlocks.CUT_MARBLE_BRICKS_STAIRS.get().asItem(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_STAIRS.get().asItem(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_STAIRS.get().asItem());
 
         this.tag(ItemTags.WOODEN_SLABS).add(ModBlocks.EBONY_SLAB.get().asItem());
         this.tag(ItemTags.WOODEN_STAIRS).add(ModBlocks.EBONY_STAIRS.get().asItem());
@@ -661,7 +667,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.SMOOTH_MARBLE_WALL.get().asItem(),
                         ModBlocks.MARBLE_BRICKS_WALL.get().asItem(),
                         ModBlocks.CRACKED_MARBLE_BRICKS_WALL.get().asItem(),
-                        ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get().asItem());
+                        ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get().asItem(),
+                        ModBlocks.CUT_MARBLE_BRICKS_WALL.get().asItem(),
+                        ModBlocks.CUT_CRACKED_MARBLE_BRICKS_WALL.get().asItem(),
+                        ModBlocks.CUT_MOSSY_MARBLE_BRICKS_WALL.get().asItem());
 
         this.tag(ItemTags.WOODEN_FENCES).add(ModBlocks.EBONY_FENCE.get().asItem());
         this.tag(ItemTags.FENCE_GATES).add(ModBlocks.EBONY_FENCE_GATE.get().asItem());

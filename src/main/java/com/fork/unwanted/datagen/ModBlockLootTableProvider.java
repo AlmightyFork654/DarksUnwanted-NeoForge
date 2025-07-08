@@ -48,6 +48,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.MARBLE_BRICKS.get());
         dropSelf(ModBlocks.CRACKED_MARBLE_BRICKS.get());
         dropSelf(ModBlocks.MOSSY_MARBLE_BRICKS.get());
+        dropSelf(ModBlocks.CUT_MARBLE_BRICKS.get());
+        dropSelf(ModBlocks.CUT_CRACKED_MARBLE_BRICKS.get());
+        dropSelf(ModBlocks.CUT_MOSSY_MARBLE_BRICKS.get());
         dropSelf(ModBlocks.CHISELED_C_MARBLE.get());
         dropSelf(ModBlocks.CHISELED_S_MARBLE.get());
         dropSelf(ModBlocks.CHISELED_W_MARBLE.get());
@@ -65,6 +68,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.MARBLE_BRICKS_WALL.get());
         dropSelf(ModBlocks.CRACKED_MARBLE_BRICKS_WALL.get());
         dropSelf(ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get());
+
+        dropSelf(ModBlocks.CUT_MARBLE_BRICKS_STAIRS.get());
+        dropSelf(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_STAIRS.get());
+        dropSelf(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_STAIRS.get());
+
+        dropSelf(ModBlocks.CUT_MARBLE_BRICKS_WALL.get());
+        dropSelf(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_WALL.get());
+        dropSelf(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_WALL.get());
 
         dropSelf(ModBlocks.RED_BOUNCER_BLOCK.get());
         dropSelf(ModBlocks.ORANGE_BOUNCER_BLOCK.get());
@@ -122,6 +133,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get(),
                 (block -> createSlabItemTable(ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get())));
         add(ModBlocks.CRACKED_MARBLE_BRICKS_SLAB.get(),
+                (block -> createSlabItemTable(ModBlocks.CRACKED_MARBLE_BRICKS_SLAB.get())));
+        add(ModBlocks.CUT_MARBLE_BRICKS_SLAB.get(),
+                (block -> createSlabItemTable(ModBlocks.MARBLE_BRICKS_SLAB.get())));
+        add(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_SLAB.get(),
+                (block -> createSlabItemTable(ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get())));
+        add(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_SLAB.get(),
                 (block -> createSlabItemTable(ModBlocks.CRACKED_MARBLE_BRICKS_SLAB.get())));
 
         add(ModBlocks.TORRID_STEEL_DOOR.get(),

@@ -1,14 +1,14 @@
 bugs:
-armor durability
 chest boat crash
 
 
 todo:
-spear sounds line 70 in item class
 check all recipes, loottables
 item renderers in crafters
 
-old bricks return, new bricks are just a cut version
+more candle like blocks (multi blocks)
+
+redstone conductor block (wire block)
 
 gem infuser block ani
 update smithing recipes
@@ -17,28 +17,15 @@ add new plants to tea
 
 gem infuser ani
 
-change emb lamp recipe
-
-more village stuff, overhaul
-
-villages for each biome in each dimension
-
-Dungeons for each biome in each dimension
-
 oxidising silver
 
-spear melee damage = ranged damage, spear charge speed = attack speed, spear enchants
-
-torrid armor breaks randomly, -> durability
-
-wing fire armor item
-
-wing no fire damage armor item
+retexture bricks marble
 
 todo: v1.20 - combat update part 1
 
+torrid armor breaks randomly, - 165 dura
 
-Smithing recipes
+amethyst armor - emit light level - also a flash light?
 
 Shields
 
@@ -46,10 +33,30 @@ Turtle Armor + Weapen?
 
 Bows
 
+spear enchants, torrid spear sets on fire like sword
+
 todo: v1.30 - combat update part 2
 
 horse armor ( new armor types + netherite)
 
 Mod tiers spears
 
-Trims
+mod Trims
+
+todo: v1.40 - village update
+
+more village stuff, overhaul
+
+villages for each biome in each dimension
+
+Dungeons for each biome in each dimension
+
+todo: v1.50 - end update
+
+- deep end
+
+- deeper end
+
+ - void
+
+ - pocket dim

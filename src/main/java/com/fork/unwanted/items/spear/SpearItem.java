@@ -12,12 +12,15 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbilities;
@@ -26,7 +29,7 @@ import net.neoforged.neoforge.common.ItemAbility;
 import java.util.List;
 
 public class SpearItem extends Item implements ProjectileItem {
-    public final float damageVal;
+    public float damageVal;
     public final int useDur;
     public final Item repairItem;
     public final EntityType entityType;
@@ -39,13 +42,13 @@ public class SpearItem extends Item implements ProjectileItem {
         this.entityType = type;
     }
 
-//    public static ItemAttributeModifiers createAttributes() {
-//        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 8.0, Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.9000000953674316, Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
-//    }
-//
-//    public static Tool createToolProperties() {
-//        return new Tool(List.of(), 1.0F, 2);
-//    }
+    public static ItemAttributeModifiers createAttributes(float damageVal, float useDur) {
+        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damageVal, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, useDur, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
+    }
+
+    public static Tool createToolProperties() {
+        return new Tool(List.of(), 1.0F, 2);
+    }
 
     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
         return !player.isCreative();
@@ -56,7 +59,7 @@ public class SpearItem extends Item implements ProjectileItem {
     }
 
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return this.useDur;
+        return this.useDur * 400;
     }
 
     public void releaseUsing (ItemStack stack, Level level, LivingEntity entity, int p_43397_) {
@@ -122,10 +125,10 @@ public class SpearItem extends Item implements ProjectileItem {
         return repairCandidate.is(this.repairItem);
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        tooltipComponents.add(Component.literal(this.damageVal + " Attack Damage").withStyle(ChatFormatting.DARK_GREEN));
-        tooltipComponents.add(Component.literal((this.useDur / 20) + " Attack Speed").withStyle(ChatFormatting.DARK_GREEN));
-    }
+//    @Override
+//    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+//        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//        tooltipComponents.add(Component.literal(this.damageVal + " Attack Damage").withStyle(ChatFormatting.DARK_GREEN));
+//        tooltipComponents.add(Component.literal((this.useDur / 20) + " Attack Speed").withStyle(ChatFormatting.DARK_GREEN));
+//    }
 }

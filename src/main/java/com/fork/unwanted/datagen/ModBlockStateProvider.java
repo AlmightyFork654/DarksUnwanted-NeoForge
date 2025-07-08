@@ -36,6 +36,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.MARBLE_BRICKS);
         blockWithItem(ModBlocks.CRACKED_MARBLE_BRICKS);
         blockWithItem(ModBlocks.MOSSY_MARBLE_BRICKS);
+        blockWithItem(ModBlocks.CUT_MARBLE_BRICKS);
+        blockWithItem(ModBlocks.CUT_CRACKED_MARBLE_BRICKS);
+        blockWithItem(ModBlocks.CUT_MOSSY_MARBLE_BRICKS);
         horizontalBlock(ModBlocks.CHISELED_C_MARBLE.get(), modLoc("block/chiseled_c_marble"), modLoc("block/chiseled_c_marble"), modLoc("block/chiseled_c_marble_top"));
         horizontalBlock(ModBlocks.CHISELED_S_MARBLE.get(), modLoc("block/chiseled_s_marble"), modLoc("block/chiseled_s_marble"), modLoc("block/chiseled_s_marble_top"));
         horizontalBlock(ModBlocks.CHISELED_W_MARBLE.get(), modLoc("block/chiseled_w_marble"), modLoc("block/chiseled_w_marble"), modLoc("block/chiseled_w_marble_top"));
@@ -53,6 +56,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         stairsBlock(ModBlocks.MARBLE_BRICKS_STAIRS.get(), blockTexture(ModBlocks.MARBLE_BRICKS.get()));
         stairsBlock(ModBlocks.CRACKED_MARBLE_BRICKS_STAIRS.get(), blockTexture(ModBlocks.CRACKED_MARBLE_BRICKS.get()));
         stairsBlock(ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS.get(), blockTexture(ModBlocks.MOSSY_MARBLE_BRICKS.get()));
+        stairsBlock(ModBlocks.CUT_MARBLE_BRICKS_STAIRS.get(), blockTexture(ModBlocks.CUT_MARBLE_BRICKS.get()));
+        stairsBlock(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_STAIRS.get(), blockTexture(ModBlocks.CUT_CRACKED_MARBLE_BRICKS.get()));
+        stairsBlock(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_STAIRS.get(), blockTexture(ModBlocks.CUT_MOSSY_MARBLE_BRICKS.get()));
 
         blockItem(ModBlocks.MARBLE_STAIRS);
         blockItem(ModBlocks.POLISHED_MARBLE_STAIRS);
@@ -60,6 +66,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.MARBLE_BRICKS_STAIRS);
         blockItem(ModBlocks.CRACKED_MARBLE_BRICKS_STAIRS);
         blockItem(ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS);
+        blockItem(ModBlocks.CUT_MARBLE_BRICKS_STAIRS);
+        blockItem(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_STAIRS);
+        blockItem(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_STAIRS);
 
         slabBlock(ModBlocks.MARBLE_SLAB.get(), blockTexture(ModBlocks.MARBLE.get()), blockTexture(ModBlocks.MARBLE.get()));
         slabBlock(ModBlocks.POLISHED_MARBLE_SLAB.get(), blockTexture(ModBlocks.DOUBLE_POLISHED_MARBLE_SLAB.get()), blockTexture(ModBlocks.POLISHED_MARBLE.get()));
@@ -67,6 +76,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         slabBlock(ModBlocks.MARBLE_BRICKS_SLAB.get(), blockTexture(ModBlocks.MARBLE_BRICKS.get()), blockTexture(ModBlocks.MARBLE_BRICKS.get()));
         slabBlock(ModBlocks.CRACKED_MARBLE_BRICKS_SLAB.get(), blockTexture(ModBlocks.CRACKED_MARBLE_BRICKS.get()), blockTexture(ModBlocks.CRACKED_MARBLE_BRICKS.get()));
         slabBlock(ModBlocks.MOSSY_MARBLE_BRICKS_SLAB.get(), blockTexture(ModBlocks.MOSSY_MARBLE_BRICKS.get()), blockTexture(ModBlocks.MOSSY_MARBLE_BRICKS.get()));
+        slabBlock(ModBlocks.CUT_MARBLE_BRICKS_SLAB.get(), blockTexture(ModBlocks.CUT_MARBLE_BRICKS.get()), blockTexture(ModBlocks.CUT_MARBLE_BRICKS.get()));
+        slabBlock(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_SLAB.get(), blockTexture(ModBlocks.CUT_CRACKED_MARBLE_BRICKS.get()), blockTexture(ModBlocks.CUT_CRACKED_MARBLE_BRICKS.get()));
+        slabBlock(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_SLAB.get(), blockTexture(ModBlocks.CUT_MOSSY_MARBLE_BRICKS.get()), blockTexture(ModBlocks.CUT_MOSSY_MARBLE_BRICKS.get()));
 
         blockItem(ModBlocks.MARBLE_SLAB);
         blockItem(ModBlocks.POLISHED_MARBLE_SLAB);
@@ -74,6 +86,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.MARBLE_BRICKS_SLAB);
         blockItem(ModBlocks.CRACKED_MARBLE_BRICKS_SLAB);
         blockItem(ModBlocks.MOSSY_MARBLE_BRICKS_SLAB);
+        blockItem(ModBlocks.CUT_MARBLE_BRICKS_SLAB);
+        blockItem(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_SLAB);
+        blockItem(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_SLAB);
 
         wallBlock(ModBlocks.MARBLE_WALL.get(), blockTexture(ModBlocks.MARBLE.get()));
         wallBlock(ModBlocks.POLISHED_MARBLE_WALL.get(), blockTexture(ModBlocks.POLISHED_MARBLE.get()));
@@ -81,6 +96,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         wallBlock(ModBlocks.MARBLE_BRICKS_WALL.get(), blockTexture(ModBlocks.MARBLE_BRICKS.get()));
         wallBlock(ModBlocks.CRACKED_MARBLE_BRICKS_WALL.get(), blockTexture(ModBlocks.CRACKED_MARBLE_BRICKS.get()));
         wallBlock(ModBlocks.MOSSY_MARBLE_BRICKS_WALL.get(), blockTexture(ModBlocks.MOSSY_MARBLE_BRICKS.get()));
+        wallBlock(ModBlocks.CUT_MARBLE_BRICKS_WALL.get(), blockTexture(ModBlocks.CUT_MARBLE_BRICKS.get()));
+        wallBlock(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_WALL.get(), blockTexture(ModBlocks.CUT_CRACKED_MARBLE_BRICKS.get()));
+        wallBlock(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_WALL.get(), blockTexture(ModBlocks.CUT_MOSSY_MARBLE_BRICKS.get()));
 
         buttonBlock(ModBlocks.MARBLE_BUTTON.get(), blockTexture(ModBlocks.MARBLE.get()));
         pressurePlateBlock(ModBlocks.MARBLE_PRESSURE_PLATE.get(), blockTexture(ModBlocks.MARBLE.get()));

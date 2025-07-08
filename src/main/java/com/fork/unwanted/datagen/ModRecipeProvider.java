@@ -257,17 +257,33 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.SLIME_BLOCK), has(Items.SLIME_BLOCK))
                 .save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.EMBARIUM_LAMP_BLOCK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.EMBARIUM_LAMP_BLOCK.get(), 2)
                 .pattern("pgp")
                 .pattern("geg")
                 .pattern("pgp")
-                .define('e', ModItems.EMBARIUM.get())
+                .define('e', ModBlocks.EMBARIUM_BLOCK.get())
                 .define('g', Items.GLOWSTONE_DUST)
-                .define('p', ItemTags.PLANKS)
-                .unlockedBy(getHasName(Items.SLIME_BLOCK), has(Items.SLIME_BLOCK))
+                .define('p', ModBlocks.MARBLE_BRICKS)
+                .unlockedBy(getHasName(Items.GLOWSTONE_DUST), has(Items.GLOWSTONE_DUST))
                 .save(recipeOutput);
 
         //marble
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MARBLE_BRICKS, ModBlocks.MARBLE_BRICKS);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_CRACKED_MARBLE_BRICKS, ModBlocks.CRACKED_MARBLE_BRICKS);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MOSSY_MARBLE_BRICKS, ModBlocks.MOSSY_MARBLE_BRICKS);
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MARBLE_BRICKS_SLAB, ModBlocks.MARBLE_BRICKS_SLAB);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_CRACKED_MARBLE_BRICKS_SLAB, ModBlocks.CRACKED_MARBLE_BRICKS_SLAB);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MOSSY_MARBLE_BRICKS_SLAB, ModBlocks.MOSSY_MARBLE_BRICKS_SLAB);
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MARBLE_BRICKS_STAIRS, ModBlocks.MARBLE_BRICKS_STAIRS);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_CRACKED_MARBLE_BRICKS_STAIRS, ModBlocks.CRACKED_MARBLE_BRICKS_STAIRS);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MOSSY_MARBLE_BRICKS_STAIRS, ModBlocks.MOSSY_MARBLE_BRICKS_STAIRS);
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MARBLE_BRICKS_WALL, ModBlocks.MARBLE_BRICKS_WALL);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_CRACKED_MARBLE_BRICKS_WALL, ModBlocks.CRACKED_MARBLE_BRICKS_WALL);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CUT_MOSSY_MARBLE_BRICKS_WALL, ModBlocks.MOSSY_MARBLE_BRICKS_WALL);
 
         //crafting table
 

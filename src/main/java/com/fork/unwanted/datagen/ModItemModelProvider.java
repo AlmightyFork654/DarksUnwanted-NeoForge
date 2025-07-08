@@ -317,6 +317,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItem(ModBlocks.MARBLE_BRICKS_WALL, ModBlocks.MARBLE_BRICKS);
         wallItem(ModBlocks.CRACKED_MARBLE_BRICKS_WALL, ModBlocks.CRACKED_MARBLE_BRICKS);
         wallItem(ModBlocks.MOSSY_MARBLE_BRICKS_WALL, ModBlocks.MOSSY_MARBLE_BRICKS);
+        wallItem(ModBlocks.CUT_MARBLE_BRICKS_WALL, ModBlocks.CUT_MARBLE_BRICKS);
+        wallItem(ModBlocks.CUT_CRACKED_MARBLE_BRICKS_WALL, ModBlocks.CUT_CRACKED_MARBLE_BRICKS);
+        wallItem(ModBlocks.CUT_MOSSY_MARBLE_BRICKS_WALL, ModBlocks.CUT_MOSSY_MARBLE_BRICKS);
 
         fenceItem(ModBlocks.EBONY_FENCE, ModBlocks.EBONY_PLANKS);
 

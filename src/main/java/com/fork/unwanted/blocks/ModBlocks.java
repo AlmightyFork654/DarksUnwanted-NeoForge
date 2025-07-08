@@ -146,6 +146,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MOSSY_MARBLE_BRICKS = registerBlock("mossy_marble_bricks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
+    public static final DeferredBlock<Block> CUT_MARBLE_BRICKS = registerBlock("cut_marble_bricks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CUT_CRACKED_MARBLE_BRICKS = registerBlock("cut_cracked_marble_bricks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CUT_MOSSY_MARBLE_BRICKS = registerBlock("cut_mossy_marble_bricks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+
     public static final DeferredBlock<Block> CHISELED_W_MARBLE = registerBlock("chiseled_w_marble",
             () -> new SimpleRotateableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> CHISELED_S_MARBLE = registerBlock("chiseled_s_marble",
@@ -171,6 +178,12 @@ public class ModBlocks {
             () -> new StairBlock(ModBlocks.CRACKED_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
     public static final DeferredBlock<StairBlock> MOSSY_MARBLE_BRICKS_STAIRS = registerBlock("mossy_marble_bricks_stairs",
             () -> new StairBlock(ModBlocks.MOSSY_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> CUT_MARBLE_BRICKS_STAIRS = registerBlock("cut_marble_bricks_stairs",
+            () -> new StairBlock(ModBlocks.CUT_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> CUT_CRACKED_MARBLE_BRICKS_STAIRS = registerBlock("cut_cracked_marble_bricks_stairs",
+            () -> new StairBlock(ModBlocks.CUT_CRACKED_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<StairBlock> CUT_MOSSY_MARBLE_BRICKS_STAIRS = registerBlock("cut_mossy_marble_bricks_stairs",
+            () -> new StairBlock(ModBlocks.CUT_MOSSY_MARBLE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     //marble slabs
     public static final DeferredBlock<SlabBlock> MARBLE_SLAB = registerBlock("marble_slab",
@@ -185,6 +198,12 @@ public class ModBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
     public static final DeferredBlock<SlabBlock> MOSSY_MARBLE_BRICKS_SLAB = registerBlock("mossy_marble_bricks_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<SlabBlock> CUT_MARBLE_BRICKS_SLAB = registerBlock("cut_marble_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<SlabBlock> CUT_CRACKED_MARBLE_BRICKS_SLAB = registerBlock("cut_cracked_marble_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<SlabBlock> CUT_MOSSY_MARBLE_BRICKS_SLAB = registerBlock("cut_mossy_marble_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     //marble walls
     public static final DeferredBlock<WallBlock> MARBLE_WALL = registerBlock("marble_wall",
@@ -198,6 +217,12 @@ public class ModBlocks {
     public static final DeferredBlock<WallBlock> CRACKED_MARBLE_BRICKS_WALL = registerBlock("cracked_marble_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
     public static final DeferredBlock<WallBlock> MOSSY_MARBLE_BRICKS_WALL = registerBlock("mossy_marble_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<WallBlock> CUT_MARBLE_BRICKS_WALL = registerBlock("cut_marble_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<WallBlock> CUT_CRACKED_MARBLE_BRICKS_WALL = registerBlock("cut_cracked_marble_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(1).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<WallBlock> CUT_MOSSY_MARBLE_BRICKS_WALL = registerBlock("cut_mossy_marble_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE).strength(1.5F, 6F).destroyTime(2).requiresCorrectToolForDrops()));
 
     // non-blocks
