@@ -12,6 +12,7 @@ import com.fork.unwanted.items.food.TeaCupItem;
 import com.fork.unwanted.items.food.TeaItem;
 import com.fork.unwanted.items.spear.SpearItem;
 import com.fork.unwanted.sfx.ModSounds;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -115,23 +116,32 @@ public class ModItems {
             () -> new Item(new Item.Properties().fireResistant().stacksTo(1).durability(1024)));
 
     public static final DeferredItem<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear",
-            () -> new SpearItem(new Item.Properties().durability(32), 3f, 5, ModItems.WOODEN_SPEAR_HEAD.get(), ModEntities.WOODEN_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(32).attributes(SpearItem.createAttributes(2f, -3f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 3f, 5, ModItems.WOODEN_SPEAR_HEAD.get(), ModEntities.WOODEN_SPEAR.get()));
     public static final DeferredItem<Item> STONE_SPEAR = ITEMS.register("stone_spear",
-            () -> new SpearItem(new Item.Properties().durability(64), 5f, 4, Items.STONE, ModEntities.STONE_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(64).attributes(SpearItem.createAttributes(4f, -2f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 5f, 4, Items.STONE, ModEntities.STONE_SPEAR.get()));
     public static final DeferredItem<Item> GOLDEN_SPEAR = ITEMS.register("golden_spear",
-            () -> new SpearItem(new Item.Properties().durability(32), 5f, 1, Items.GOLD_INGOT, ModEntities.GOLDEN_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(32).attributes(SpearItem.createAttributes(4f, 1f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 5f, 1, Items.GOLD_INGOT, ModEntities.GOLDEN_SPEAR.get()));
     public static final DeferredItem<Item> IRON_SPEAR = ITEMS.register("iron_spear",
-            () -> new SpearItem(new Item.Properties().durability(128), 6f, 3, Items.IRON_INGOT, ModEntities.IRON_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(128).attributes(SpearItem.createAttributes(5f, -1f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 6f, 3, Items.IRON_INGOT, ModEntities.IRON_SPEAR.get()));
     public static final DeferredItem<Item> EMBARIUM_SPEAR = ITEMS.register("embarium_spear",
-            () -> new SpearItem(new Item.Properties().durability(196), 6f, 3, ModItems.EMBARIUM.get(), ModEntities.EMBARIUM_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(196).attributes(SpearItem.createAttributes(5f, -1f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 6f, 3, ModItems.EMBARIUM.get(), ModEntities.EMBARIUM_SPEAR.get()));
     public static final DeferredItem<Item> TORRID_STEEL_SPEAR = ITEMS.register("torrid_steel_spear",
-            () -> new SpearItem(new Item.Properties().durability(128).fireResistant(), 7f, 2, ModItems.TORRID_STEEL_INGOT.get(), ModEntities.TORRID_STEEL_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(128).fireResistant().attributes(SpearItem.createAttributes(6f, 0f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 7f, 2, ModItems.TORRID_STEEL_INGOT.get(), ModEntities.TORRID_STEEL_SPEAR.get()));
     public static final DeferredItem<Item> DIAMOND_SPEAR = ITEMS.register("diamond_spear",
-            () -> new SpearItem(new Item.Properties().durability(196), 8f, 2, Items.DIAMOND, ModEntities.DIAMOND_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(196).attributes(SpearItem.createAttributes(7f, 0f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 8f, 2, Items.DIAMOND, ModEntities.DIAMOND_SPEAR.get()));
     public static final DeferredItem<Item> NETHERITE_SPEAR = ITEMS.register("netherite_spear",
-            () -> new SpearItem(new Item.Properties().durability(256).fireResistant(), 10f, 2, Items.NETHERITE_INGOT, ModEntities.NETHERITE_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(256).fireResistant().attributes(SpearItem.createAttributes(9f, 0f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 10f, 2, Items.NETHERITE_INGOT, ModEntities.NETHERITE_SPEAR.get()));
     public static final DeferredItem<Item> PROFUNDIUM_SPEAR = ITEMS.register("profundium_spear",
-            () -> new SpearItem(new Item.Properties().durability(320).fireResistant(), 12f, 1, ModItems.PROFUNDIUM_INGOT.get(), ModEntities.PROFUNDIUM_SPEAR.get()));
+            () -> new SpearItem(new Item.Properties().durability(320).fireResistant().attributes(SpearItem.createAttributes(11f, 1f))
+                    .component(DataComponents.TOOL, SpearItem.createToolProperties()), 12f, 1, ModItems.PROFUNDIUM_INGOT.get(), ModEntities.PROFUNDIUM_SPEAR.get()));
 
     
     //armor&tools
@@ -445,243 +455,243 @@ public class ModItems {
     //embarium
 
     public static final DeferredItem<ArmorItem> EMBARIUM_HELMET = ITEMS.register("embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> EMBARIUM_CHESTPLATE = ITEMS.register("embarium_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> EMBARIUM_LEGGINGS = ITEMS.register("embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> EMBARIUM_BOOTS = ITEMS.register("embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> TORRID_HELMET = ITEMS.register("torrid_steel_helmet",
-            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 15)));
     public static final DeferredItem<ArmorItem> TORRID_CHESTPLATE = ITEMS.register("torrid_steel_chestplate",
-            () -> new FireArmorItem(ModArmorMaterials.TORRID, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new FireArmorItem(ModArmorMaterials.TORRID, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 15)));
     public static final DeferredItem<ArmorItem> TORRID_LEGGINGS = ITEMS.register("torrid_steel_leggings",
-            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 15)));
     public static final DeferredItem<ArmorItem> TORRID_BOOTS = ITEMS.register("torrid_steel_boots",
-            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.TORRID, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 15)));
 
     public static final DeferredItem<ArmorItem> TORRID_EMBARIUM_HELMET = ITEMS.register("torrid_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("torrid_embarium_chestplate",
-            () -> new NoDamageFireArmorItem(ModArmorMaterials.TORRID_EMBARIUM, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.TORRID_EMBARIUM, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> TORRID_EMBARIUM_LEGGINGS = ITEMS.register("torrid_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> TORRID_EMBARIUM_BOOTS = ITEMS.register("torrid_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.TORRID_EMBARIUM, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> PROFUNDIUM_HELMET = ITEMS.register("profundium_helmet",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_CHESTPLATE = ITEMS.register("profundium_chestplate",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.CHESTPLATE.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_LEGGINGS = ITEMS.register("profundium_leggings",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_BOOTS = ITEMS.register("profundium_boots",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM, WingArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 55)));
 
     // Leather
 
     public static final DeferredItem<ArmorItem> LEATHER_EMBARIUM_HELMET = ITEMS.register("leather_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.HELMET, new Item.Properties().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> LEATHER_EMBARIUM_CHESTPLATE = ITEMS.register("leather_embarium_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> LEATHER_EMBARIUM_LEGGINGS = ITEMS.register("leather_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> LEATHER_EMBARIUM_BOOTS = ITEMS.register("leather_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_HELMET = ITEMS.register("leather_torrid_helmet",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 15)));
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_CHESTPLATE = ITEMS.register("leather_torrid_chestplate",
-            () -> new FireArmorItem(ModArmorMaterials.LEATHER_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new FireArmorItem(ModArmorMaterials.LEATHER_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 15)));
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_LEGGINGS = ITEMS.register("leather_torrid_leggings",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 15)));
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_BOOTS = ITEMS.register("leather_torrid_boots",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 15)));
 
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_EMBARIUM_HELMET = ITEMS.register("leather_torrid_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("leather_torrid_embarium_chestplate",
-            () -> new NoDamageFireArmorItem(ModArmorMaterials.LEATHER_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.LEATHER_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_EMBARIUM_LEGGINGS = ITEMS.register("leather_torrid_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> LEATHER_TORRID_EMBARIUM_BOOTS = ITEMS.register("leather_torrid_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.LEATHER_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.LEATHER_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 33)));
 
     // Chain
 
     public static final DeferredItem<ArmorItem> CHAIN_EMBARIUM_HELMET = ITEMS.register("chain_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.HELMET, new Item.Properties().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> CHAIN_EMBARIUM_CHESTPLATE = ITEMS.register("chain_embarium_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> CHAIN_EMBARIUM_LEGGINGS = ITEMS.register("chain_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> CHAIN_EMBARIUM_BOOTS = ITEMS.register("chain_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_HELMET = ITEMS.register("chain_torrid_helmet",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 15)));
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_CHESTPLATE = ITEMS.register("chain_torrid_chestplate",
-            () -> new FireArmorItem(ModArmorMaterials.CHAINMAIL_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new FireArmorItem(ModArmorMaterials.CHAINMAIL_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 15)));
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_LEGGINGS = ITEMS.register("chain_torrid_leggings",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 15)));
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_BOOTS = ITEMS.register("chain_torrid_boots",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 15)));
 
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_EMBARIUM_HELMET = ITEMS.register("chain_torrid_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("chain_torrid_embarium_chestplate",
-            () -> new NoDamageFireArmorItem(ModArmorMaterials.CHAINMAIL_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.CHAINMAIL_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_EMBARIUM_LEGGINGS = ITEMS.register("chain_torrid_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> CHAIN_TORRID_EMBARIUM_BOOTS = ITEMS.register("chain_torrid_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.CHAINMAIL_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 33)));
 
     // gold 
 
     public static final DeferredItem<ArmorItem> GOLDEN_EMBARIUM_HELMET = ITEMS.register("golden_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.HELMET, new Item.Properties().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> GOLDEN_EMBARIUM_CHESTPLATE = ITEMS.register("golden_embarium_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> GOLDEN_EMBARIUM_LEGGINGS = ITEMS.register("golden_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> GOLDEN_EMBARIUM_BOOTS = ITEMS.register("golden_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_HELMET = ITEMS.register("golden_torrid_helmet",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 15)));
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_CHESTPLATE = ITEMS.register("golden_torrid_chestplate",
-            () -> new FireArmorItem(ModArmorMaterials.GOLD_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new FireArmorItem(ModArmorMaterials.GOLD_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 15)));
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_LEGGINGS = ITEMS.register("golden_torrid_leggings",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 15)));
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_BOOTS = ITEMS.register("golden_torrid_boots",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 15)));
 
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_EMBARIUM_HELMET = ITEMS.register("golden_torrid_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("golden_torrid_embarium_chestplate",
-            () -> new NoDamageFireArmorItem(ModArmorMaterials.GOLD_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.GOLD_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_EMBARIUM_LEGGINGS = ITEMS.register("golden_torrid_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> GOLDEN_TORRID_EMBARIUM_BOOTS = ITEMS.register("golden_torrid_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.GOLD_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.GOLD_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 33)));
 
     // iron 
 
     public static final DeferredItem<ArmorItem> IRON_EMBARIUM_HELMET = ITEMS.register("iron_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.HELMET, new Item.Properties().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> IRON_EMBARIUM_CHESTPLATE = ITEMS.register("iron_embarium_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> IRON_EMBARIUM_LEGGINGS = ITEMS.register("iron_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> IRON_EMBARIUM_BOOTS = ITEMS.register("iron_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> IRON_TORRID_HELMET = ITEMS.register("iron_torrid_helmet",
-            () -> new ArmorItem(ModArmorMaterials.IRON_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 15)));
     public static final DeferredItem<ArmorItem> IRON_TORRID_CHESTPLATE = ITEMS.register("iron_torrid_chestplate",
-            () -> new FireArmorItem(ModArmorMaterials.IRON_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new FireArmorItem(ModArmorMaterials.IRON_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 15)));
     public static final DeferredItem<ArmorItem> IRON_TORRID_LEGGINGS = ITEMS.register("iron_torrid_leggings",
-            () -> new ArmorItem(ModArmorMaterials.IRON_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 15)));
     public static final DeferredItem<ArmorItem> IRON_TORRID_BOOTS = ITEMS.register("iron_torrid_boots",
-            () -> new ArmorItem(ModArmorMaterials.IRON_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(15))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 15)));
 
     public static final DeferredItem<ArmorItem> IRON_TORRID_EMBARIUM_HELMET = ITEMS.register("iron_torrid_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.IRON_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> IRON_TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("iron_torrid_embarium_chestplate",
-            () -> new NoDamageFireArmorItem(ModArmorMaterials.IRON_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.IRON_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> IRON_TORRID_EMBARIUM_LEGGINGS = ITEMS.register("iron_torrid_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.IRON_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> IRON_TORRID_EMBARIUM_BOOTS = ITEMS.register("iron_torrid_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.IRON_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.IRON_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 33)));
 
     // dia 
 
     public static final DeferredItem<ArmorItem> DIAMOND_EMBARIUM_HELMET = ITEMS.register("diamond_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.HELMET, new Item.Properties().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_EMBARIUM_CHESTPLATE = ITEMS.register("diamond_embarium_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_EMBARIUM_LEGGINGS = ITEMS.register("diamond_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_EMBARIUM_BOOTS = ITEMS.register("diamond_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_HELMET = ITEMS.register("diamond_torrid_helmet",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_CHESTPLATE = ITEMS.register("diamond_torrid_chestplate",
-            () -> new FireArmorItem(ModArmorMaterials.DIAMOND_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new FireArmorItem(ModArmorMaterials.DIAMOND_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_LEGGINGS = ITEMS.register("diamond_torrid_leggings",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_BOOTS = ITEMS.register("diamond_torrid_boots",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 33)));
 
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_EMBARIUM_HELMET = ITEMS.register("diamond_torrid_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("diamond_torrid_embarium_chestplate",
-            () -> new NoDamageFireArmorItem(ModArmorMaterials.DIAMOND_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.DIAMOND_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_EMBARIUM_LEGGINGS = ITEMS.register("diamond_torrid_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 33)));
     public static final DeferredItem<ArmorItem> DIAMOND_TORRID_EMBARIUM_BOOTS = ITEMS.register("diamond_torrid_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.DIAMOND_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(33))));
+            () -> new ArmorItem(ModArmorMaterials.DIAMOND_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 33)));
 
     // netherite
 
     public static final DeferredItem<ArmorItem> NETHERITE_EMBARIUM_HELMET = ITEMS.register("netherite_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.HELMET, new Item.Properties().durability(11 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_EMBARIUM_CHESTPLATE = ITEMS.register("netherite_embarium_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_EMBARIUM_LEGGINGS = ITEMS.register("netherite_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_EMBARIUM_BOOTS = ITEMS.register("netherite_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_E, ArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 37)));
 
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_HELMET = ITEMS.register("netherite_torrid_helmet",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_T, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_CHESTPLATE = ITEMS.register("netherite_torrid_chestplate",
-            () -> new FireArmorItem(ModArmorMaterials.NETHERITE_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new FireArmorItem(ModArmorMaterials.NETHERITE_T, FireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_LEGGINGS = ITEMS.register("netherite_torrid_leggings",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_T, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_BOOTS = ITEMS.register("netherite_torrid_boots",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_T, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 37)));
 
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_EMBARIUM_HELMET = ITEMS.register("netherite_torrid_embarium_helmet",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_ET, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("netherite_torrid_embarium_chestplate",
-            () -> new NoDamageFireArmorItem(ModArmorMaterials.NETHERITE_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new NoDamageFireArmorItem(ModArmorMaterials.NETHERITE_ET, NoDamageFireArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_EMBARIUM_LEGGINGS = ITEMS.register("netherite_torrid_embarium_leggings",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_ET, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 37)));
     public static final DeferredItem<ArmorItem> NETHERITE_TORRID_EMBARIUM_BOOTS = ITEMS.register("netherite_torrid_embarium_boots",
-            () -> new ArmorItem(ModArmorMaterials.NETHERITE_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+            () -> new ArmorItem(ModArmorMaterials.NETHERITE_ET, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 37)));
 
     // profundium
 
     public static final DeferredItem<ArmorItem> PROFUNDIUM_EMBARIUM_HELMET = ITEMS.register("profundium_embarium_helmet",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.HELMET, new Item.Properties().durability(11 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_EMBARIUM_CHESTPLATE = ITEMS.register("profundium_embarium_chestplate",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.CHESTPLATE, new Item.Properties().durability(16 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_EMBARIUM_LEGGINGS = ITEMS.register("profundium_embarium_leggings",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.LEGGINGS, new Item.Properties().durability(15 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_EMBARIUM_BOOTS = ITEMS.register("profundium_embarium_boots",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_E, WingArmorItem.Type.BOOTS, new Item.Properties().durability(13 * 55)));
 
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_HELMET = ITEMS.register("profundium_torrid_helmet",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_CHESTPLATE = ITEMS.register("profundium_torrid_chestplate",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_LEGGINGS = ITEMS.register("profundium_torrid_leggings",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_BOOTS = ITEMS.register("profundium_torrid_boots",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_T, WingArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 55)));
 
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_EMBARIUM_HELMET = ITEMS.register("profundium_torrid_embarium_helmet",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.HELMET, new Item.Properties().fireResistant().durability(11 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_EMBARIUM_CHESTPLATE = ITEMS.register("profundium_torrid_embarium_chestplate",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().durability(16 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_EMBARIUM_LEGGINGS = ITEMS.register("profundium_torrid_embarium_leggings",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().durability(15 * 55)));
     public static final DeferredItem<ArmorItem> PROFUNDIUM_TORRID_EMBARIUM_BOOTS = ITEMS.register("profundium_torrid_embarium_boots",
-            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(ArmorItem.Type.HELMET.getDurability(55))));
+            () -> new WingArmorItem(ModArmorMaterials.PROFUNDIUM_ET, WingArmorItem.Type.BOOTS, new Item.Properties().fireResistant().durability(13 * 55)));
 
     //Block Items
 
