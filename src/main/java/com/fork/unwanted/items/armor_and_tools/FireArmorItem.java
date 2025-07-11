@@ -21,8 +21,23 @@ import java.util.Random;
 public class FireArmorItem extends ArmorItem {
     private static final Map<Holder<ArmorMaterial>, List<MobEffectInstance>> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<Holder<ArmorMaterial>, List<MobEffectInstance>>())
-                    .put(ModArmorMaterials.TORRID,
-                            List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false))).build();
+                    .put(ModArmorMaterials.TORRID, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.TORRID_EMBARIUM, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.LEATHER_T, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.LEATHER_ET, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.CHAINMAIL_T, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.CHAINMAIL_ET, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.GOLD_T, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.GOLD_ET, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.IRON_T, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.IRON_ET, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.DIAMOND_T, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.DIAMOND_ET, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.NETHERITE_T, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.NETHERITE_ET, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.PROFUNDIUM_ET, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .put(ModArmorMaterials.PROFUNDIUM_T, List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 25, 0, false, false)))
+                    .build();
 
     public FireArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type slot, Item.Properties settings) {
         super(material, slot, settings);
@@ -54,13 +69,6 @@ public class FireArmorItem extends ArmorItem {
                 player.addEffect(new MobEffectInstance(effect.getEffect(),
                         effect.getDuration(), effect.getAmplifier(), effect.isAmbient(), effect.isVisible()));
             }
-        }
-
-        if(new Random().nextFloat() > 0.001f) { // 0.1% of damaging the armor! Possibly!
-            player.getInventory().getArmor(0).hurtAndBreak(1, player, EquipmentSlot.FEET);
-            player.getInventory().getArmor(1).hurtAndBreak(1, player, EquipmentSlot.LEGS);
-            player.getInventory().getArmor(2).hurtAndBreak(1, player, EquipmentSlot.CHEST);
-            player.getInventory().getArmor(3).hurtAndBreak(1, player, EquipmentSlot.HEAD);
         }
     }
 

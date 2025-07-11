@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -87,6 +88,60 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> KETTLE = registerBlock("kettle",
             () -> new KettleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).noOcclusion()));
+    
+    //silver
+
+    // Unwaxed blocks
+    public static final DeferredBlock<Block> SILVER_BLOCK = registerBlock("silver_block",
+            () -> new ConductorBlock(0, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> EXPOSED_SILVER_BLOCK = registerBlock("exposed_silver_block",
+            () -> new ConductorBlock(1, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> WEATHERED_SILVER_BLOCK = registerBlock("weathered_silver_block",
+            () -> new ConductorBlock(2, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> OXIDIZED_SILVER_BLOCK = registerBlock("oxidized_silver_block",
+            () -> new ConductorBlock(4, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+
+    // Waxed blocks
+    public static final DeferredBlock<Block> WAXED_SILVER_BLOCK = registerBlock("waxed_silver_block",
+            () -> new ConductorBlock(0, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> WAXED_EXPOSED_SILVER_BLOCK = registerBlock("waxed_exposed_silver_block",
+            () -> new ConductorBlock(1, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> WAXED_WEATHERED_SILVER_BLOCK = registerBlock("waxed_weathered_silver_block",
+            () -> new ConductorBlock(2, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> WAXED_OXIDIZED_SILVER_BLOCK = registerBlock("waxed_oxidized_silver_block",
+            () -> new ConductorBlock(4, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
 
     //bouncy
 

@@ -17,8 +17,8 @@ public class GemInfuserBlockRenderer extends GeoBlockRenderer<GemInfuserBlockEnt
         super(new GemInfuserBlockModel());
     }
 
-//    @Override
-//    public RenderType getRenderType(GemInfuserBlockEntity animatable, float partialTicks, PoseStack stack, @Nullable MultiBufferSource renderTypeBuffer, @Nullable VertexConsumer vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
-//        return RenderType.entityTranslucent(getTextureLocation(animatable));
-//    }
+    @Override
+    public @org.jetbrains.annotations.Nullable RenderType getRenderType(GemInfuserBlockEntity animatable, ResourceLocation texture, @org.jetbrains.annotations.Nullable MultiBufferSource bufferSource, float partialTick) {
+        return RenderType.entityTranslucent(getTextureLocation(animatable));
+    }
 }

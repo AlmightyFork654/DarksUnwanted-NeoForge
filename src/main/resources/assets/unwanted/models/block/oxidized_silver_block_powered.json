@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "unwanted:block/oxidized_silver_block_powered"
+  }
+}

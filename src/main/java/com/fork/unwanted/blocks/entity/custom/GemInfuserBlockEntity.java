@@ -1,5 +1,6 @@
 package com.fork.unwanted.blocks.entity.custom;
 
+import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.blocks.entity.ModBlockEntities;
 import com.fork.unwanted.items.ModItems;
 import com.fork.unwanted.recipe.GemCuttingStationRecipe;
@@ -36,6 +37,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jline.utils.Log;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -45,6 +47,7 @@ import software.bernie.geckolib.util.RenderUtil;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public class GemInfuserBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this) {};

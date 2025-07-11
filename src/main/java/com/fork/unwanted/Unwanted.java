@@ -71,7 +71,7 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 @Mod(Unwanted.MOD_ID)
 public class Unwanted {
     public static final String MOD_ID = "unwanted";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Unwanted(IEventBus modEventBus, ModContainer modContainer)
     {
@@ -228,6 +228,15 @@ public class Unwanted {
             event.accept(ModBlocks.EBONY_TRAPDOOR);
             event.accept(ModBlocks.EBONY_BUTTON);
             event.accept(ModBlocks.EBONY_PRESSURE_PLATE);
+
+            event.accept(ModBlocks.SILVER_BLOCK);
+            event.accept(ModBlocks.EXPOSED_SILVER_BLOCK);
+            event.accept(ModBlocks.WEATHERED_SILVER_BLOCK);
+            event.accept(ModBlocks.OXIDIZED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_EXPOSED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_WEATHERED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK);
 
             event.accept(ModBlocks.RED_BOUNCER_BLOCK);
             event.accept(ModBlocks.ORANGE_BOUNCER_BLOCK);

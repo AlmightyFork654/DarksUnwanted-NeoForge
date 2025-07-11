@@ -10,20 +10,21 @@ more candle like blocks (multi blocks)
 
 redstone conductor block (wire block)
 
-gem infuser block ani
-update smithing recipes
-dia advances -> netherite advanced recipes
+gem infuser block ani fix
+dia advanced -> netherite advanced recipes
 add new plants to tea
 
 gem infuser ani
 
-oxidising silver
+SILVER TODO:
+
+names, textures, block variations, when no redstone source attached go off -> conductor is no source, just a conductor
+
+every tick output silver block
 
 retexture bricks marble
 
 todo: v1.20 - combat update part 1
-
-torrid armor breaks randomly, - 165 dura
 
 amethyst armor - emit light level - also a flash light?
 
