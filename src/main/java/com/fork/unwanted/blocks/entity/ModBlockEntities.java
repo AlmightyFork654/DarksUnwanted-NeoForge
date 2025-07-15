@@ -36,6 +36,19 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<ModHangingSignBlockEntity>> MOD_HANGING_SIGN = BLOCK_ENTITY_TYPES.register("mod_hanging_sign",
             () -> BlockEntityType.Builder.of(ModHangingSignBlockEntity::new, ModBlocks.EBONY_HANGING_SIGN.get(), ModBlocks.EBONY_WALL_HANGING_SIGN.get()).build(null));
 
+    public static final Supplier<BlockEntityType<ConductorBlockEntity>> CONDUCTOR_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register("conductor_block_entity",
+                    () -> BlockEntityType.Builder.of(ConductorBlockEntity::new,
+                                    ModBlocks.SILVER_BLOCK.get(),
+                                    ModBlocks.EXPOSED_SILVER_BLOCK.get(),
+                                    ModBlocks.WEATHERED_SILVER_BLOCK.get(),
+                                    ModBlocks.OXIDIZED_SILVER_BLOCK.get(),
+                                    ModBlocks.WAXED_SILVER_BLOCK.get(),
+                                    ModBlocks.WAXED_EXPOSED_SILVER_BLOCK.get(),
+                                    ModBlocks.WAXED_WEATHERED_SILVER_BLOCK.get(),
+                                    ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK.get())
+                            .build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY_TYPES.register(eventBus);
     }

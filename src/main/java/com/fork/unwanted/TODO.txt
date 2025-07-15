@@ -16,11 +16,21 @@ add new plants to tea
 
 gem infuser ani
 
-SILVER TODO:
+SILVER TODO: asking grok for all logic for the block in text that is ez to understand but doesnt leave details out
 
-names, textures, block variations, when no redstone source attached go off -> conductor is no source, just a conductor
+names, textures, block variations
+
+south,east and down are faster powering
+
+redstone output delete doesnt work
+
+redstone bugs
 
 every tick output silver block
+
+converter block -> restone wire, comparetor and repeater to conductor
+
+converter block -> conductor to restone wire, comparetor and repeater
 
 retexture bricks marble
 
@@ -61,3 +71,9 @@ todo: v1.50 - end update
  - void
 
  - pocket dim
+
+
+
+ https://youtu.be/g0qjn2h9JcY?si=N37TLw_xffic8Hcw
+
+ https://youtu.be/bfUDSdwp_KQ?si=Dplk_-NhU9AeKGLR

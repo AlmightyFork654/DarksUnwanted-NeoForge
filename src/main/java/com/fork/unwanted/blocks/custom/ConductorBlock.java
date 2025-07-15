@@ -1,6 +1,11 @@
 package com.fork.unwanted.blocks.custom;
 
+import com.fork.unwanted.Unwanted;
 import com.fork.unwanted.blocks.ModBlocks;
+import com.fork.unwanted.blocks.entity.ConductorBlockEntity;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,22 +20,41 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class ConductorBlock extends Block {
-    // Block state properties
+public class ConductorBlock extends BaseEntityBlock {
+    public static final MapCodec<ConductorBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(Codec.INT.fieldOf("delay").forGetter(block -> block.delay), propertiesCodec()).apply(instance, ConductorBlock::new)
+    );
     public static final IntegerProperty POWER = IntegerProperty.create("power", 0, 15);
     private final int delay;
 
     public ConductorBlock(int delay, Properties properties) {
-        super(properties);
-        this.delay = delay;
-        // Set default state: unpowered
+        super(properties.noOcclusion().isRedstoneConductor((state, getter, pos) -> false));
+        this.delay = Math.max(0, delay); // Ensure delay is at least 0 tick
         this.registerDefaultState(this.stateDefinition.any().setValue(POWER, 0));
+        Unwanted.LOGGER.debug("ConductorBlock initialized with delay: {}", this.delay);
+    }
+
+    public int getDelay() {
+        return this.delay;
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
     @Override
@@ -38,133 +62,284 @@ public class ConductorBlock extends Block {
         builder.add(POWER);
     }
 
-    // --- Redstone Signal Handling ---
+    @Override
+    public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        if (direction == null) return false;
+        BlockState targetState = level.getBlockState(pos.relative(direction));
+        Block targetBlock = targetState.getBlock();
+        return !(targetBlock == Blocks.REDSTONE_WIRE || targetBlock == Blocks.COMPARATOR || targetBlock == Blocks.REPEATER);
+    }
+
     @Override
     public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return state.getValue(POWER); // Outputs power in all directions
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof ConductorBlockEntity conductorBe && conductorBe.isResetScheduled()) {
+            Unwanted.LOGGER.debug("Returning 0 at {}: block is resetting", pos);
+            return 0;
+        }
+        BlockState targetState = level.getBlockState(pos.relative(direction));
+        Block targetBlock = targetState.getBlock();
+        if (targetBlock == Blocks.REDSTONE_WIRE || targetBlock == Blocks.COMPARATOR || targetBlock == Blocks.REPEATER) {
+            Unwanted.LOGGER.debug("Returning 0 to {} (target is {}) at {}", direction, targetBlock, pos);
+            return 0;
+        }
+        int power = state.getValue(POWER);
+        Unwanted.LOGGER.debug("Returning {} to {} (target is {}) at {}", power, direction, targetBlock, pos);
+        return power;
     }
 
     @Override
     public int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return state.getValue(POWER); // Direct signal matches weak signal
+        return getSignal(state, level, pos, direction);
     }
 
     @Override
     public boolean isSignalSource(BlockState state) {
-        return true; // Can provide redstone power
+        return state.getValue(POWER) > 0;
     }
 
-    // Update power when neighbors change or block is placed
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (!level.isClientSide) {
-            updatePower(level, pos, state);
+            Unwanted.LOGGER.debug("Neighbor changed at {} from {}", pos, fromPos);
+            level.scheduleTick(pos, this, delay);
         }
     }
 
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!oldState.is(this) && !level.isClientSide) {
-            updatePower(level, pos, state);
+            Unwanted.LOGGER.debug("Placed at {} with power {}", pos, state.getValue(POWER));
+            level.scheduleTick(pos, this, delay);
+        }
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock()) && !level.isClientSide) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof ConductorBlockEntity conductorBe) {
+                int originalDistance = conductorBe.getDistance();
+                conductorBe.setDistance(0);
+                conductorBe.setResetScheduled(false);
+                Unwanted.LOGGER.debug("Removed at {} with original distance {}", pos, originalDistance);
+                for (Direction dir : Direction.values()) {
+                    BlockPos neighborPos = pos.relative(dir);
+                    BlockState neighborState = level.getBlockState(neighborPos);
+                    if (neighborState.getBlock() instanceof ConductorBlock) {
+                        BlockEntity neighborBe = level.getBlockEntity(neighborPos);
+                        if (neighborBe instanceof ConductorBlockEntity neighborConductor && !neighborConductor.isResetScheduled()) {
+                            int neighborDistance = neighborConductor.getDistance();
+                            if (neighborDistance > originalDistance) {
+                                neighborConductor.scheduleReset(level, neighborPos, delay);
+                                Unwanted.LOGGER.debug("Propagating reset to {} with delay {}", neighborPos, delay);
+                            }
+                        }
+                    }
+                }
+            }
+            super.onRemove(state, level, pos, newState, isMoving);
+            for (Direction dir : Direction.values()) {
+                level.updateNeighborsAt(pos.relative(dir), this);
+            }
         }
     }
 
     private void updatePower(Level level, BlockPos pos, BlockState state) {
-        int targetPower = calculateTargetPower(level, pos);
-        if (targetPower != state.getValue(POWER)) {
-            // Schedule a tick with the block's delay for powering on, or 40 ticks (2 seconds) for powering off
-            int tickDelay = targetPower > 0 ? delay : 40;
-            level.scheduleTick(pos, this, tickDelay); // Schedule update
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof ConductorBlockEntity conductorBe)) return;
+
+        if (conductorBe.isResetScheduled()) {
+            Unwanted.LOGGER.debug("Skipping update at {}: reset scheduled", pos);
+            return;
         }
+
+        int currentPower = state.getValue(POWER);
+        int currentDistance = conductorBe.getDistance();
+        PowerCalculationResult result = calculateTargetPower(level, pos, currentPower, currentDistance);
+
+        if (result.power != currentPower || result.distance != currentDistance) {
+            Unwanted.LOGGER.debug("Updating at {}: power {} -> {}, distance {} -> {}", pos, currentPower, result.power, currentDistance, result.distance);
+            conductorBe.setDistance(result.distance);
+            level.setBlock(pos, state.setValue(POWER, result.power), 3);
+            if (result.power == 0 && currentPower > 0) {
+                conductorBe.scheduleReset(level, pos, delay);
+            } else if (result.power > 0) {
+                conductorBe.schedulePowerPropagation(level, pos, result.distance, result.power);
+            }
+        }
+    }
+
+    private static class PowerCalculationResult {
+        int power;
+        int distance;
+        PowerCalculationResult(int power, int distance) {
+            this.power = power;
+            this.distance = distance;
+        }
+    }
+
+    private PowerCalculationResult calculateTargetPower(Level level, BlockPos pos, int currentPower, int currentDistance) {
+        int maxPower = 0;
+        int minDistance = Integer.MAX_VALUE;
+        boolean hasValidSource = false;
+
+        for (Direction direction : Direction.values()) {
+            BlockPos neighborPos = pos.relative(direction);
+            BlockState neighborState = level.getBlockState(neighborPos);
+            Block neighborBlock = neighborState.getBlock();
+
+            if (neighborBlock == Blocks.REDSTONE_WIRE || neighborBlock == Blocks.COMPARATOR || neighborBlock == Blocks.REPEATER) {
+                continue;
+            }
+
+            if (neighborState.isSignalSource()) {
+                BlockEntity neighborBe = level.getBlockEntity(neighborPos);
+                if (neighborBlock instanceof ConductorBlock && neighborBe instanceof ConductorBlockEntity neighborConductor) {
+                    if (neighborConductor.isResetScheduled() || neighborConductor.getDistance() >= currentDistance) {
+                        continue; // Prevent feedback loops
+                    }
+                    int neighborDistance = neighborConductor.getDistance();
+                    if (neighborDistance <= 0) {
+                        continue;
+                    }
+                    int neighborPower = level.getSignal(neighborPos, direction.getOpposite());
+                    if (neighborPower > 0) {
+                        hasValidSource = true;
+                        int effectiveDistance = neighborDistance + 1;
+                        if (neighborPower > maxPower) {
+                            maxPower = neighborPower;
+                            minDistance = effectiveDistance;
+                        } else if (neighborPower == maxPower && effectiveDistance < minDistance) {
+                            minDistance = effectiveDistance;
+                        }
+                    }
+                } else {
+                    int neighborPower = level.getSignal(neighborPos, direction.getOpposite());
+                    if (neighborPower > 0) {
+                        hasValidSource = true;
+                        int effectiveDistance = 1;
+                        if (neighborPower > maxPower) {
+                            maxPower = neighborPower;
+                            minDistance = effectiveDistance;
+                        } else if (neighborPower == maxPower && effectiveDistance < minDistance) {
+                            minDistance = effectiveDistance;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!hasValidSource) {
+            return new PowerCalculationResult(0, 0);
+        }
+
+        return new PowerCalculationResult(maxPower, minDistance);
     }
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        int targetPower = calculateTargetPower(level, pos);
-        level.setBlock(pos, state.setValue(POWER, targetPower), 2);
-        level.updateNeighborsAt(pos, this);
+        Unwanted.LOGGER.debug("Ticking block at {} with delay {}", pos, delay);
+        updatePower(level, pos, state);
     }
 
-//    private int calculateTargetPower(Level level, BlockPos pos) {
-//        int maxPower = 0;
-//        for (Direction direction : Direction.values()) {
-//            BlockPos neighborPos = pos.relative(direction);
-//            int neighborPower = level.getSignal(neighborPos, direction.getOpposite());
-//            maxPower = Math.max(maxPower, neighborPower);
-//        }
-//        return maxPower; // No degradation
-//    }
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new ConductorBlockEntity(pos, state);
+    }
 
-    private int calculateTargetPower(Level level, BlockPos pos) {
-        int maxPower = 0;
-        for (Direction direction : Direction.values()) {
-            BlockPos neighborPos = pos.relative(direction);
-            BlockState neighborState = level.getBlockState(neighborPos);
-            // Only consider blocks that are redstone signal sources or ConductorBlocks
-            if (neighborState.isSignalSource() || neighborState.getBlock() instanceof ConductorBlock) {
-                int neighborPower = level.getSignal(neighborPos, direction.getOpposite());
-                maxPower = Math.max(maxPower, neighborPower);
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return level.isClientSide ? null : (lvl, pos, st, be) -> {
+            if (be instanceof ConductorBlockEntity conductor) {
+                conductor.tick(lvl, pos, st);
             }
-        }
-        return maxPower; // No degradation
+        };
     }
 
-    // --- Oxidation Progression ---
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return this == ModBlocks.SILVER_BLOCK.get() ||
-                this == ModBlocks.EXPOSED_SILVER_BLOCK.get() ||
-                this == ModBlocks.WEATHERED_SILVER_BLOCK.get();
+        return this == ModBlocks.SILVER_BLOCK.get()
+                || this == ModBlocks.EXPOSED_SILVER_BLOCK.get()
+                || this == ModBlocks.WEATHERED_SILVER_BLOCK.get();
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (isRandomlyTicking(state) && random.nextFloat() < 0.05688889F) { // Vanilla oxidation chance
+        if (isRandomlyTicking(state) && random.nextFloat() < 0.05688889F) {
             Block nextBlock = getNextOxidationBlock();
             if (nextBlock != null) {
-                level.setBlock(pos, nextBlock.defaultBlockState().setValue(POWER, state.getValue(POWER)), 2);
+                BlockEntity be = level.getBlockEntity(pos);
+                if (be instanceof ConductorBlockEntity conductorBe) {
+                    int distance = conductorBe.getDistance();
+                    boolean resetScheduled = conductorBe.isResetScheduled();
+                    int originalDistance = conductorBe.getOriginalDistance();
+                    BlockState newState = nextBlock.defaultBlockState().setValue(POWER, state.getValue(POWER));
+                    level.setBlock(pos, newState, 3);
+                    BlockEntity newBe = level.getBlockEntity(pos);
+                    if (newBe instanceof ConductorBlockEntity newConductorBe) {
+                        newConductorBe.setDistance(distance);
+                        newConductorBe.setResetScheduled(resetScheduled);
+                        newConductorBe.setOriginalDistance(originalDistance);
+                    }
+                }
             }
         }
     }
 
     private Block getNextOxidationBlock() {
-        if (this == ModBlocks.SILVER_BLOCK.get()) {
-            return ModBlocks.EXPOSED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.EXPOSED_SILVER_BLOCK.get()) {
-            return ModBlocks.WEATHERED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.WEATHERED_SILVER_BLOCK.get()) {
-            return ModBlocks.OXIDIZED_SILVER_BLOCK.get();
-        }
+        if (this == ModBlocks.SILVER_BLOCK.get()) return ModBlocks.EXPOSED_SILVER_BLOCK.get();
+        if (this == ModBlocks.EXPOSED_SILVER_BLOCK.get()) return ModBlocks.WEATHERED_SILVER_BLOCK.get();
+        if (this == ModBlocks.WEATHERED_SILVER_BLOCK.get()) return ModBlocks.OXIDIZED_SILVER_BLOCK.get();
         return null;
     }
 
-    // --- Player Interactions: Waxing and Stripping ---
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         Item item = stack.getItem();
 
-        // Waxing with honeycomb
         if (item == Items.HONEYCOMB) {
             Block waxedBlock = getWaxedBlock();
             if (waxedBlock != null) {
                 if (!level.isClientSide) {
-                    level.setBlock(pos, waxedBlock.defaultBlockState().setValue(POWER, state.getValue(POWER)), 11);
-                    if (!player.isCreative()) {
-                        stack.shrink(1); // Consume honeycomb
+                    BlockEntity be = level.getBlockEntity(pos);
+                    if (be instanceof ConductorBlockEntity conductorBe) {
+                        int distance = conductorBe.getDistance();
+                        boolean resetScheduled = conductorBe.isResetScheduled();
+                        int originalDistance = conductorBe.getOriginalDistance();
+                        BlockState newState = waxedBlock.defaultBlockState().setValue(POWER, state.getValue(POWER));
+                        level.setBlock(pos, newState, 11);
+                        BlockEntity newBe = level.getBlockEntity(pos);
+                        if (newBe instanceof ConductorBlockEntity newConductorBe) {
+                            newConductorBe.setDistance(distance);
+                            newConductorBe.setResetScheduled(resetScheduled);
+                            newConductorBe.setOriginalDistance(originalDistance);
+                        }
+                        if (!player.isCreative()) stack.shrink(1);
                     }
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide());
             }
         }
 
-        // Stripping with axe
         if (stack.getItem() instanceof AxeItem) {
             Block newBlock = getUnwaxedOrPreviousOxidationBlock();
             if (newBlock != null && newBlock != this) {
                 if (!level.isClientSide) {
-                    level.setBlock(pos, newBlock.defaultBlockState().setValue(POWER, state.getValue(POWER)), 11);
-                    if (!player.isCreative()) {
-                        stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND); // Damage axe
+                    BlockEntity be = level.getBlockEntity(pos);
+                    if (be instanceof ConductorBlockEntity conductorBe) {
+                        int distance = conductorBe.getDistance();
+                        boolean resetScheduled = conductorBe.isResetScheduled();
+                        int originalDistance = conductorBe.getOriginalDistance();
+                        BlockState newState = newBlock.defaultBlockState().setValue(POWER, state.getValue(POWER));
+                        level.setBlock(pos, newState, 11);
+                        BlockEntity newBe = level.getBlockEntity(pos);
+                        if (newBe instanceof ConductorBlockEntity newConductorBe) {
+                            newConductorBe.setDistance(distance);
+                            newConductorBe.setResetScheduled(resetScheduled);
+                            newConductorBe.setOriginalDistance(originalDistance);
+                        }
+                        if (!player.isCreative()) stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                     }
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide());
@@ -175,34 +350,21 @@ public class ConductorBlock extends Block {
     }
 
     private Block getWaxedBlock() {
-        if (this == ModBlocks.SILVER_BLOCK.get()) {
-            return ModBlocks.WAXED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.EXPOSED_SILVER_BLOCK.get()) {
-            return ModBlocks.WAXED_EXPOSED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.WEATHERED_SILVER_BLOCK.get()) {
-            return ModBlocks.WAXED_WEATHERED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.OXIDIZED_SILVER_BLOCK.get()) {
-            return ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK.get();
-        }
+        if (this == ModBlocks.SILVER_BLOCK.get()) return ModBlocks.WAXED_SILVER_BLOCK.get();
+        if (this == ModBlocks.EXPOSED_SILVER_BLOCK.get()) return ModBlocks.WAXED_EXPOSED_SILVER_BLOCK.get();
+        if (this == ModBlocks.WEATHERED_SILVER_BLOCK.get()) return ModBlocks.WAXED_WEATHERED_SILVER_BLOCK.get();
+        if (this == ModBlocks.OXIDIZED_SILVER_BLOCK.get()) return ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK.get();
         return null;
     }
 
     private Block getUnwaxedOrPreviousOxidationBlock() {
-        if (this == ModBlocks.WAXED_SILVER_BLOCK.get()) {
-            return ModBlocks.SILVER_BLOCK.get();
-        } else if (this == ModBlocks.WAXED_EXPOSED_SILVER_BLOCK.get()) {
-            return ModBlocks.EXPOSED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.WAXED_WEATHERED_SILVER_BLOCK.get()) {
-            return ModBlocks.WEATHERED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK.get()) {
-            return ModBlocks.OXIDIZED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.EXPOSED_SILVER_BLOCK.get()) {
-            return ModBlocks.SILVER_BLOCK.get();
-        } else if (this == ModBlocks.WEATHERED_SILVER_BLOCK.get()) {
-            return ModBlocks.EXPOSED_SILVER_BLOCK.get();
-        } else if (this == ModBlocks.OXIDIZED_SILVER_BLOCK.get()) {
-            return ModBlocks.WEATHERED_SILVER_BLOCK.get();
-        }
+        if (this == ModBlocks.WAXED_SILVER_BLOCK.get()) return ModBlocks.SILVER_BLOCK.get();
+        if (this == ModBlocks.WAXED_EXPOSED_SILVER_BLOCK.get()) return ModBlocks.EXPOSED_SILVER_BLOCK.get();
+        if (this == ModBlocks.WAXED_WEATHERED_SILVER_BLOCK.get()) return ModBlocks.WEATHERED_SILVER_BLOCK.get();
+        if (this == ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK.get()) return ModBlocks.OXIDIZED_SILVER_BLOCK.get();
+        if (this == ModBlocks.EXPOSED_SILVER_BLOCK.get()) return ModBlocks.SILVER_BLOCK.get();
+        if (this == ModBlocks.WEATHERED_SILVER_BLOCK.get()) return ModBlocks.EXPOSED_SILVER_BLOCK.get();
+        if (this == ModBlocks.OXIDIZED_SILVER_BLOCK.get()) return ModBlocks.WEATHERED_SILVER_BLOCK.get();
         return null;
     }
 }
