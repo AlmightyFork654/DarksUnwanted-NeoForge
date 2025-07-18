@@ -40,7 +40,6 @@ public class ConductorBlock extends BaseEntityBlock {
         super(properties.noOcclusion().isRedstoneConductor((state, getter, pos) -> false));
         this.delay = Math.max(0, delay); // Ensure delay is at least 0 tick
         this.registerDefaultState(this.stateDefinition.any().setValue(POWER, 0));
-        Unwanted.LOGGER.debug("ConductorBlock initialized with delay: {}", this.delay);
     }
 
     public int getDelay() {
@@ -74,17 +73,9 @@ public class ConductorBlock extends BaseEntityBlock {
     public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof ConductorBlockEntity conductorBe && conductorBe.isResetScheduled()) {
-            Unwanted.LOGGER.debug("Returning 0 at {}: block is resetting", pos);
-            return 0;
-        }
-        BlockState targetState = level.getBlockState(pos.relative(direction));
-        Block targetBlock = targetState.getBlock();
-        if (targetBlock == Blocks.REDSTONE_WIRE || targetBlock == Blocks.COMPARATOR || targetBlock == Blocks.REPEATER) {
-            Unwanted.LOGGER.debug("Returning 0 to {} (target is {}) at {}", direction, targetBlock, pos);
             return 0;
         }
         int power = state.getValue(POWER);
-        Unwanted.LOGGER.debug("Returning {} to {} (target is {}) at {}", power, direction, targetBlock, pos);
         return power;
     }
 
@@ -101,7 +92,6 @@ public class ConductorBlock extends BaseEntityBlock {
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (!level.isClientSide) {
-            Unwanted.LOGGER.debug("Neighbor changed at {} from {}", pos, fromPos);
             level.scheduleTick(pos, this, delay);
         }
     }
@@ -109,7 +99,6 @@ public class ConductorBlock extends BaseEntityBlock {
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!oldState.is(this) && !level.isClientSide) {
-            Unwanted.LOGGER.debug("Placed at {} with power {}", pos, state.getValue(POWER));
             level.scheduleTick(pos, this, delay);
         }
     }
@@ -122,7 +111,6 @@ public class ConductorBlock extends BaseEntityBlock {
                 int originalDistance = conductorBe.getDistance();
                 conductorBe.setDistance(0);
                 conductorBe.setResetScheduled(false);
-                Unwanted.LOGGER.debug("Removed at {} with original distance {}", pos, originalDistance);
                 for (Direction dir : Direction.values()) {
                     BlockPos neighborPos = pos.relative(dir);
                     BlockState neighborState = level.getBlockState(neighborPos);
@@ -132,7 +120,6 @@ public class ConductorBlock extends BaseEntityBlock {
                             int neighborDistance = neighborConductor.getDistance();
                             if (neighborDistance > originalDistance) {
                                 neighborConductor.scheduleReset(level, neighborPos, delay);
-                                Unwanted.LOGGER.debug("Propagating reset to {} with delay {}", neighborPos, delay);
                             }
                         }
                     }
@@ -150,7 +137,6 @@ public class ConductorBlock extends BaseEntityBlock {
         if (!(be instanceof ConductorBlockEntity conductorBe)) return;
 
         if (conductorBe.isResetScheduled()) {
-            Unwanted.LOGGER.debug("Skipping update at {}: reset scheduled", pos);
             return;
         }
 
@@ -159,7 +145,6 @@ public class ConductorBlock extends BaseEntityBlock {
         PowerCalculationResult result = calculateTargetPower(level, pos, currentPower, currentDistance);
 
         if (result.power != currentPower || result.distance != currentDistance) {
-            Unwanted.LOGGER.debug("Updating at {}: power {} -> {}, distance {} -> {}", pos, currentPower, result.power, currentDistance, result.distance);
             conductorBe.setDistance(result.distance);
             level.setBlock(pos, state.setValue(POWER, result.power), 3);
             if (result.power == 0 && currentPower > 0) {
@@ -189,9 +174,9 @@ public class ConductorBlock extends BaseEntityBlock {
             BlockState neighborState = level.getBlockState(neighborPos);
             Block neighborBlock = neighborState.getBlock();
 
-            if (neighborBlock == Blocks.REDSTONE_WIRE || neighborBlock == Blocks.COMPARATOR || neighborBlock == Blocks.REPEATER) {
-                continue;
-            }
+//            if (neighborBlock == Blocks.REDSTONE_WIRE || neighborBlock == Blocks.COMPARATOR || neighborBlock == Blocks.REPEATER) {
+//                continue;
+//            }
 
             if (neighborState.isSignalSource()) {
                 BlockEntity neighborBe = level.getBlockEntity(neighborPos);
@@ -239,7 +224,6 @@ public class ConductorBlock extends BaseEntityBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        Unwanted.LOGGER.debug("Ticking block at {} with delay {}", pos, delay);
         updatePower(level, pos, state);
     }
 

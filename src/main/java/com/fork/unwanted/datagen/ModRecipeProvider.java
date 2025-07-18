@@ -42,6 +42,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 0.2f, 200, "torrid_steel_ingot");
         oreBlasting(recipeOutput, List.of(ModBlocks.TORRID_STEEL_ORE.get()), RecipeCategory.MISC, ModItems.TORRID_STEEL_INGOT.get(),
                 0.3f, 160, "torrid_steel_ingot");
+        oreSmelting(recipeOutput, List.of(ModBlocks.SILVER_ORE.get()), RecipeCategory.MISC, ModItems.SILVER_INGOT.get(),
+                0.2f, 200, "silver_ingot");
+        oreBlasting(recipeOutput, List.of(ModBlocks.SILVER_ORE.get()), RecipeCategory.MISC, ModItems.SILVER_INGOT.get(),
+                0.3f, 160, "silver_ingot");
+        oreSmelting(recipeOutput, List.of(ModBlocks.DEEPSLATE_SILVER_ORE.get()), RecipeCategory.MISC, ModItems.SILVER_INGOT.get(),
+                0.2f, 200, "silver_ingot");
+        oreBlasting(recipeOutput, List.of(ModBlocks.DEEPSLATE_SILVER_ORE.get()), RecipeCategory.MISC, ModItems.SILVER_INGOT.get(),
+                0.3f, 160, "silver_ingot");
+        oreSmelting(recipeOutput, List.of(ModItems.RAW_SILVER.get()), RecipeCategory.MISC, ModItems.SILVER_INGOT.get(),
+                0.2f, 200, "silver_ingot");
+        oreBlasting(recipeOutput, List.of(ModItems.RAW_SILVER.get()), RecipeCategory.MISC, ModItems.SILVER_INGOT.get(),
+                0.3f, 160, "silver_ingot");
 
 
         //ore blocks
@@ -52,6 +64,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         nineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, ModItems.PROFUNDIUM_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ModBlocks.PROFUNDIUM_BLOCK.get());
         nineBlockStorageRecipesWithCustomPacking(recipeOutput, RecipeCategory.MISC, ModItems.TORRID_STEEL_NUGGET.get(), RecipeCategory.MISC, ModItems.TORRID_STEEL_INGOT.get(), "torrid_steel_ingot_from_nuggets", "torrid_steel_ingot");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TORRID_STEEL_POWDER.get()).requires(ModItems.TORRID_STEEL_NUGGET.get()).unlockedBy(getHasName(ModItems.TORRID_STEEL_NUGGET.get()), has(ModItems.TORRID_STEEL_NUGGET.get())).save(recipeOutput);
+        nineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, ModItems.SILVER_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ModBlocks.SILVER_BLOCK.get());
+        nineBlockStorageRecipesWithCustomPacking(recipeOutput, RecipeCategory.MISC, ModItems.SILVER_NUGGET.get(), RecipeCategory.MISC, ModItems.SILVER_INGOT.get(), "silver_ingot_from_nuggets", "silver_ingot");
+        nineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, ModItems.RAW_SILVER.get(), RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_SILVER_BLOCK.get());
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.PROFUNDIUM_SCRAP.get())
                 .requires(Ingredient.of(ModTags.Items.NUGGETS), 4)

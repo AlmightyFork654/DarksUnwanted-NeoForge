@@ -104,14 +104,27 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.TORRID_STEEL_TRAPDOOR.get(),
                         ModBlocks.TORRID_STEEL_BARS_TRAPDOOR.get(),
                         ModBlocks.TORRID_STEEL_BUTTON.get(),
-                        ModBlocks.TORRID_STEEL_PRESSURE_PLATE.get());
+                        ModBlocks.TORRID_STEEL_PRESSURE_PLATE.get(),
+                        ModBlocks.SILVER_ORE.get(),
+                        ModBlocks.DEEPSLATE_SILVER_ORE.get(),
+                        ModBlocks.SILVER_BLOCK.get(),
+                        ModBlocks.EXPOSED_SILVER_BLOCK.get(),
+                        ModBlocks.WEATHERED_SILVER_BLOCK.get(),
+                        ModBlocks.OXIDIZED_SILVER_BLOCK.get(),
+                        ModBlocks.WAXED_SILVER_BLOCK.get(),
+                        ModBlocks.WAXED_EXPOSED_SILVER_BLOCK.get(),
+                        ModBlocks.WAXED_WEATHERED_SILVER_BLOCK.get(),
+                        ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK.get(),
+                        ModBlocks.RAW_SILVER_BLOCK.get());
 
         this.tag(Tags.Blocks.ORES)
                 .add(ModBlocks.RUBY_ORE.get(),
                         ModBlocks.EMBARIUM_ORE.get(),
                         ModBlocks.DEEPSLATE_EMBARIUM_ORE.get(),
                         ModBlocks.TORRID_STEEL_ORE.get(),
-                        ModBlocks.PROFUNDIUM_ORE.get());
+                        ModBlocks.PROFUNDIUM_ORE.get(),
+                        ModBlocks.SILVER_ORE.get(),
+                        ModBlocks.DEEPSLATE_SILVER_ORE.get());
 
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.EBONY_PRESSURE_PLATE.get());
         this.tag(BlockTags.STONE_PRESSURE_PLATES).add(ModBlocks.MARBLE_PRESSURE_PLATE.get(), ModBlocks.TORRID_STEEL_PRESSURE_PLATE.get());

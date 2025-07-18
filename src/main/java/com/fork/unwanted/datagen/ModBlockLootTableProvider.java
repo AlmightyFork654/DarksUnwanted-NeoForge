@@ -27,6 +27,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePrope
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.fml.common.Mod;
 
 import java.util.Set;
 
@@ -42,6 +43,16 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.TORRID_STEEL_BLOCK.get());
         dropSelf(ModBlocks.TORRID_STEEL_BARS.get());
         dropSelf(ModBlocks.PROFUNDIUM_BLOCK.get());
+
+        dropSelf(ModBlocks.SILVER_BLOCK.get());
+        dropSelf(ModBlocks.EXPOSED_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.WEATHERED_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.OXIDIZED_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.WAXED_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.WAXED_EXPOSED_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.WAXED_WEATHERED_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.RAW_SILVER_BLOCK.get());
 
         dropSelf(ModBlocks.SMOOTH_MARBLE.get());
         dropSelf(ModBlocks.POLISHED_MARBLE.get());
@@ -104,6 +115,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.DEEPSLATE_EMBARIUM_ORE.get(),
                 (block -> createEmbariumOreDrops(ModBlocks.DEEPSLATE_EMBARIUM_ORE.get(), ModItems.EMBARIUM.get())));
         dropSelf(ModBlocks.PROFUNDIUM_ORE.get());
+        add(ModBlocks.SILVER_ORE.get(),
+                (block -> createSilverOreDrops(ModBlocks.SILVER_ORE.get(), ModItems.RAW_SILVER.get())));
+        add(ModBlocks.DEEPSLATE_SILVER_ORE.get(),
+                (block -> createSilverOreDrops(ModBlocks.DEEPSLATE_SILVER_ORE.get(), ModItems.RAW_SILVER.get())));
 
         add(ModBlocks.MARBLE.get(),
                 (block -> createOreDrop(ModBlocks.MARBLE.get(), ModItems.MARBLE_SHARD.get())));
@@ -206,6 +221,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 this.applyExplosionDecay(block,
                         LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+                                .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))));
+    }
+
+    protected LootTable.Builder createSilverOreDrops(Block block, Item item) {
+        HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        return createSilkTouchDispatchTable(block,
+                this.applyExplosionDecay(block,
+                        LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
                                 .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))));
     }
 

@@ -57,6 +57,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PROFUNDIUM_INGOT.get());
         basicItem(ModItems.PROFUNDIUM_SCRAP.get());
         basicItem(ModItems.PROFUNDIUM_FLAKE.get());
+        basicItem(ModItems.SILVER_INGOT.get());
+        basicItem(ModItems.SILVER_NUGGET.get());
+        basicItem(ModItems.RAW_SILVER.get());
 
         basicItem(ModItems.TEA_CUP.get());
         basicItem(ModItems.CUP_OF_WATER.get());

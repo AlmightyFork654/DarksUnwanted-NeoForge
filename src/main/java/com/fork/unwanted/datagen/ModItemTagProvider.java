@@ -620,7 +620,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.EMBARIUM_ORE.get().asItem(),
                         ModBlocks.DEEPSLATE_EMBARIUM_ORE.get().asItem(),
                         ModBlocks.TORRID_STEEL_ORE.get().asItem(),
-                        ModBlocks.PROFUNDIUM_ORE.get().asItem());
+                        ModBlocks.PROFUNDIUM_ORE.get().asItem(),
+                        ModBlocks.SILVER_ORE.get().asItem(),
+                        ModBlocks.DEEPSLATE_SILVER_ORE.get().asItem());
 
         this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.EBONY_PRESSURE_PLATE.get().asItem());
         this.tag(ItemTags.WOODEN_BUTTONS).add(ModBlocks.EBONY_BUTTON.get().asItem());
@@ -684,8 +686,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.STRIPPED_EBONY_WOOD.get().asItem(),
                         ModBlocks.STRIPPED_EBONY_LOG.get().asItem());
 
-        this.tag(ModTags.Items.NUGGETS).add(Items.IRON_NUGGET, ModItems.TORRID_STEEL_NUGGET.get());
-        this.tag(ModTags.Items.INGOTS).add(Items.IRON_INGOT, ModItems.TORRID_STEEL_INGOT.get());
+        this.tag(ModTags.Items.NUGGETS).add(Items.IRON_NUGGET, ModItems.TORRID_STEEL_NUGGET.get(), ModItems.SILVER_NUGGET.get());
+        this.tag(ModTags.Items.INGOTS).add(Items.IRON_INGOT, ModItems.TORRID_STEEL_INGOT.get(), ModItems.SILVER_INGOT.get());
 
         this.tag(ModTags.Items.BASE_TEA).addTags(ModTags.Items.GRASSY, ModTags.Items.WARPED, ModTags.Items.CRIMSON,
                 ModTags.Items.LEAVY, ModTags.Items.KELPED, ModTags.Items.VINEY,

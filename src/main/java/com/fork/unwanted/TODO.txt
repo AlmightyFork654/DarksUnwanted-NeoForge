@@ -1,5 +1,6 @@
 bugs:
 chest boat crash
+south,east and down are faster conductor powering (directional placement dependent)
 
 
 todo:
@@ -8,39 +9,38 @@ item renderers in crafters
 
 more candle like blocks (multi blocks)
 
-redstone conductor block (wire block)
-
 gem infuser block ani fix
 dia advanced -> netherite advanced recipes
 add new plants to tea
+retexture bricks marble, raw silver
 
-gem infuser ani
+SILVER TODO:
 
-SILVER TODO: asking grok for all logic for the block in text that is ez to understand but doesnt leave details out
+waxed block recipes
+silver block comparator output
 
-names, textures, block variations
+new block ideas:
 
-south,east and down are faster powering
+- every tick output silver block oxidizing (1,2,4,8 ticks)
+- silver crates -> double delay then full blocks (3 ticks, 5 ticks, 10 ticks, 20 ticks) reduces power by 1
+- slabs and stairs + oxi
+- door, trapdoor -> oxidizing determines redstone power need to open
+- full block acts like button, full block acts like pressure plate, both oxidizing determines time to stay activated
+- block is normal, when activated act like magma (if oxidizing -> 4, 3, 2, 1 damage)
+- cut silver blocks, slabs, stairs + oxi
+- original block type (deco)
+- block that overheats, when powered for x, turn of for x depending on oxidizing state
 
-redstone output delete doesnt work
-
-redstone bugs
-
-every tick output silver block
-
-converter block -> restone wire, comparetor and repeater to conductor
-
-converter block -> conductor to restone wire, comparetor and repeater
-
-retexture bricks marble
+silver items:
+- armor, tools, spear
 
 todo: v1.20 - combat update part 1
 
-amethyst armor - emit light level - also a flash light?
+amethyst armor - emit light level - also a flashlight?
 
 Shields
 
-Turtle Armor + Weapen?
+Turtle Armor + Weapon?
 
 Bows
 

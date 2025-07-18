@@ -48,6 +48,21 @@
 
   "item.unwanted.marble_shard": "Marble Shard",
 
+  "block.unwanted.silver_block": "Silver Block",
+  "block.unwanted.exposed_silver_block": "Exposed Silver Block",
+  "block.unwanted.weathered_silver_block": "Weathered Silver Block",
+  "block.unwanted.oxidized_silver_block": "Oxidized Silver Block",
+  "block.unwanted.waxed_silver_block": "Waxed Silver Block",
+  "block.unwanted.waxed_exposed_silver_block": "Waxed Exposed Silver Block",
+  "block.unwanted.waxed_weathered_silver_block": "Waxed Weathered Silver Block",
+  "block.unwanted.waxed_oxidized_silver_block": "Waxed Oxidized Silver Block",
+
+  "item.unwanted.silver_ingot": "Silver Ingot",
+  "item.unwanted.silver_nugget": "Silver Nugget",
+  "item.unwanted.raw_silver": "Raw Silver",
+
+  "block.unwanted.raw_silver_block": "Raw Silver Block",
+
   "item.unwanted.tea_cup": "Tea Cup",
   "item.unwanted.cup_of_water": "Cup of Water",
   "item.unwanted.grassy_tea": "Grassy Tea",

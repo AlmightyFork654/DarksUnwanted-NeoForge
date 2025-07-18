@@ -38,7 +38,7 @@ public class ModBlocks {
         //ores
 
     public static final DeferredBlock<DropExperienceBlock> RUBY_ORE = registerBlock("ruby_ore",
-            () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)
+            () -> new DropExperienceBlock(UniformInt.of(8, 17), BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)
                     .strength(6f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<DropExperienceBlock> TORRID_STEEL_ORE = registerBlock("torrid_steel_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
@@ -49,20 +49,26 @@ public class ModBlocks {
     public static final DeferredBlock<DropExperienceBlock> DEEPSLATE_EMBARIUM_ORE = registerBlock("deepslate_embarium_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
                     .strength(6f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<DropExperienceBlock> SILVER_ORE = registerBlock("silver_ore",
+            () -> new DropExperienceBlock(UniformInt.of(1, 4), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+                    .strength(6f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<DropExperienceBlock> DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver_ore",
+            () -> new DropExperienceBlock(UniformInt.of(1, 4), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
+                    .strength(6f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<DropExperienceBlock> PROFUNDIUM_ORE = registerBlock("profundium_ore",
-            () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
+            () -> new DropExperienceBlock(UniformInt.of(19, 27), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
                     .strength(6f).requiresCorrectToolForDrops()));
 
     //block
 
     public static final DeferredBlock<Block> RUBY_BLOCK = registerBlock("ruby_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_BLOCK).sound(SoundType.METAL).strength(5F, 6F).destroyTime(8).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_BLOCK).sound(SoundType.METAL).strength(5F, 6F).destroyTime(8)));
 
     public static final DeferredBlock<Block> TORRID_STEEL_BLOCK = registerBlock("torrid_steel_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).strength(5F, 6F).destroyTime(8).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).strength(5F, 6F).destroyTime(8)));
 
     public static final DeferredBlock<IronBarsBlock> TORRID_STEEL_BARS = registerBlock("torrid_steel_bars",
-            () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.METAL).strength(5F, 6F).destroyTime(5).requiresCorrectToolForDrops().noOcclusion()));
+            () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.METAL).strength(5F, 6F).destroyTime(5).noOcclusion()));
 
     public static final DeferredBlock<Block> EMBARIUM_BLOCK = registerBlock("embarium_block",
             () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(ModSounds.EMBARIUM_SOUNDS)
@@ -91,27 +97,31 @@ public class ModBlocks {
     
     //silver
 
+    public static final DeferredBlock<Block> RAW_SILVER_BLOCK = registerBlock("raw_silver_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_COPPER_BLOCK).mapColor(MapColor.COLOR_GRAY).sound(SoundType.COPPER).strength(5F, 6F).destroyTime(8)));
+
+
     // Unwaxed blocks
     public static final DeferredBlock<Block> SILVER_BLOCK = registerBlock("silver_block",
-            () -> new ConductorBlock(0, Block.Properties.of()
-                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
-                    .requiresCorrectToolForDrops()
-                    .strength(3.0F, 6.0F)
-                    .sound(SoundType.COPPER)));
-    public static final DeferredBlock<Block> EXPOSED_SILVER_BLOCK = registerBlock("exposed_silver_block",
             () -> new ConductorBlock(1, Block.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_GRAY)
                     .requiresCorrectToolForDrops()
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.COPPER)));
-    public static final DeferredBlock<Block> WEATHERED_SILVER_BLOCK = registerBlock("weathered_silver_block",
+    public static final DeferredBlock<Block> EXPOSED_SILVER_BLOCK = registerBlock("exposed_silver_block",
             () -> new ConductorBlock(2, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> WEATHERED_SILVER_BLOCK = registerBlock("weathered_silver_block",
+            () -> new ConductorBlock(4, Block.Properties.of()
                     .mapColor(MapColor.COLOR_GRAY)
                     .requiresCorrectToolForDrops()
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.COPPER)));
     public static final DeferredBlock<Block> OXIDIZED_SILVER_BLOCK = registerBlock("oxidized_silver_block",
-            () -> new ConductorBlock(4, Block.Properties.of()
+            () -> new ConductorBlock(8, Block.Properties.of()
                     .mapColor(MapColor.COLOR_BLACK)
                     .requiresCorrectToolForDrops()
                     .strength(3.0F, 6.0F)
@@ -119,25 +129,25 @@ public class ModBlocks {
 
     // Waxed blocks
     public static final DeferredBlock<Block> WAXED_SILVER_BLOCK = registerBlock("waxed_silver_block",
-            () -> new ConductorBlock(0, Block.Properties.of()
-                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
-                    .requiresCorrectToolForDrops()
-                    .strength(3.0F, 6.0F)
-                    .sound(SoundType.COPPER)));
-    public static final DeferredBlock<Block> WAXED_EXPOSED_SILVER_BLOCK = registerBlock("waxed_exposed_silver_block",
             () -> new ConductorBlock(1, Block.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_GRAY)
                     .requiresCorrectToolForDrops()
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.COPPER)));
-    public static final DeferredBlock<Block> WAXED_WEATHERED_SILVER_BLOCK = registerBlock("waxed_weathered_silver_block",
+    public static final DeferredBlock<Block> WAXED_EXPOSED_SILVER_BLOCK = registerBlock("waxed_exposed_silver_block",
             () -> new ConductorBlock(2, Block.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)));
+    public static final DeferredBlock<Block> WAXED_WEATHERED_SILVER_BLOCK = registerBlock("waxed_weathered_silver_block",
+            () -> new ConductorBlock(4, Block.Properties.of()
                     .mapColor(MapColor.COLOR_GRAY)
                     .requiresCorrectToolForDrops()
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.COPPER)));
     public static final DeferredBlock<Block> WAXED_OXIDIZED_SILVER_BLOCK = registerBlock("waxed_oxidized_silver_block",
-            () -> new ConductorBlock(4, Block.Properties.of()
+            () -> new ConductorBlock(8, Block.Properties.of()
                     .mapColor(MapColor.COLOR_BLACK)
                     .requiresCorrectToolForDrops()
                     .strength(3.0F, 6.0F)

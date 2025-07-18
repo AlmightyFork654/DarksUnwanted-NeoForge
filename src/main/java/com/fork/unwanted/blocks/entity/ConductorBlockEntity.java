@@ -55,14 +55,12 @@ public class ConductorBlockEntity extends BlockEntity {
             originalDistance = distance;
             setResetScheduled(true);
             level.scheduleTick(pos, getBlockState().getBlock(), delay);
-            Unwanted.LOGGER.debug("Scheduled reset at {} with original distance {} and delay {}", pos, originalDistance, delay);
         }
     }
 
     public void schedulePowerPropagation(Level level, BlockPos pos, int distance, int power) {
         if (!resetScheduled) {
             level.scheduleTick(pos, getBlockState().getBlock(), ((ConductorBlock) getBlockState().getBlock()).getDelay());
-            Unwanted.LOGGER.debug("Scheduled power propagation at {} with distance {} and power {}", pos, distance, power);
         }
     }
 
@@ -70,11 +68,7 @@ public class ConductorBlockEntity extends BlockEntity {
         if (level.isClientSide) return;
 
         if (!(state.getBlock() instanceof ConductorBlock conductorBlock)) return;
-
-        Unwanted.LOGGER.debug("Ticking block entity at {} with power {} and distance {}", pos, state.getValue(ConductorBlock.POWER), getDistance());
-
         if (resetScheduled) {
-            Unwanted.LOGGER.debug("Resetting at {}: setting distance=0, power=0", pos);
             int originalDistance = this.originalDistance;
             setDistance(0);
             setResetScheduled(false);
@@ -99,7 +93,6 @@ public class ConductorBlockEntity extends BlockEntity {
                     int neighborDistance = neighborConductor.getDistance();
                     if (neighborDistance > originalDistance) {
                         neighborConductor.scheduleReset(level, neighborPos, ((ConductorBlock) neighborState.getBlock()).getDelay());
-                        Unwanted.LOGGER.debug("Propagating reset to {} with delay {}", neighborPos, ((ConductorBlock) neighborState.getBlock()).getDelay());
                     }
                 }
             }
@@ -119,14 +112,12 @@ public class ConductorBlockEntity extends BlockEntity {
                     int newPower = currentPower;
                     if (neighborDistance == 0 || neighborDistance > currentDistance + 1) {
                         if (newDistance != neighborDistance || newPower != neighborPower) {
-                            Unwanted.LOGGER.debug("Pushing to {}: distance {} -> {}, power {} -> {}", neighborPos, neighborDistance, newDistance, neighborPower, newPower);
                             neighborConductor.setDistance(newDistance);
                             level.setBlock(neighborPos, neighborState.setValue(ConductorBlock.POWER, newPower), 3);
                             level.scheduleTick(neighborPos, neighborState.getBlock(), ((ConductorBlock) neighborState.getBlock()).getDelay());
                         }
                     } else if (neighborDistance == currentDistance + 1 && currentPower > neighborPower) {
                         if (newPower != neighborPower) {
-                            Unwanted.LOGGER.debug("Updating power at {}: power {} -> {}", neighborPos, neighborPower, newPower);
                             level.setBlock(neighborPos, neighborState.setValue(ConductorBlock.POWER, newPower), 3);
                             level.scheduleTick(neighborPos, neighborState.getBlock(), ((ConductorBlock) neighborState.getBlock()).getDelay());
                         }

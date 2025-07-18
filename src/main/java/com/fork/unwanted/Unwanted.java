@@ -123,6 +123,9 @@ public class Unwanted {
             event.accept(ModItems.TORRID_STEEL_NUGGET);
             event.accept(ModItems.TORRID_STEEL_POWDER);
             event.accept(ModItems.EMBARIUM);
+            event.accept(ModItems.SILVER_INGOT);
+            event.accept(ModItems.SILVER_NUGGET);
+            event.accept(ModItems.RAW_SILVER);
             event.accept(ModItems.PROFUNDIUM_FLAKE);
             event.accept(ModItems.PROFUNDIUM_SCRAP);
             event.accept(ModItems.PROFUNDIUM_INGOT);
@@ -152,10 +155,21 @@ public class Unwanted {
             event.accept(ModBlocks.RUBY_ORE);
             event.accept(ModBlocks.EMBARIUM_ORE);
             event.accept(ModBlocks.DEEPSLATE_EMBARIUM_ORE);
+            event.accept(ModBlocks.SILVER_ORE);
+            event.accept(ModBlocks.DEEPSLATE_SILVER_ORE);
             event.accept(ModBlocks.PROFUNDIUM_ORE);
             event.accept(ModBlocks.TORRID_STEEL_ORE);
             event.accept(ModBlocks.RUBY_BLOCK);
             event.accept(ModBlocks.EMBARIUM_BLOCK);
+            event.accept(ModBlocks.SILVER_BLOCK);
+            event.accept(ModBlocks.EXPOSED_SILVER_BLOCK);
+            event.accept(ModBlocks.WEATHERED_SILVER_BLOCK);
+            event.accept(ModBlocks.OXIDIZED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_EXPOSED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_WEATHERED_SILVER_BLOCK);
+            event.accept(ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK);
+            event.accept(ModBlocks.RAW_SILVER_BLOCK);
             event.accept(ModBlocks.PROFUNDIUM_BLOCK);
             event.accept(ModBlocks.TORRID_STEEL_BLOCK);
             event.accept(ModBlocks.TORRID_STEEL_BARS);
@@ -228,15 +242,6 @@ public class Unwanted {
             event.accept(ModBlocks.EBONY_TRAPDOOR);
             event.accept(ModBlocks.EBONY_BUTTON);
             event.accept(ModBlocks.EBONY_PRESSURE_PLATE);
-
-            event.accept(ModBlocks.SILVER_BLOCK);
-            event.accept(ModBlocks.EXPOSED_SILVER_BLOCK);
-            event.accept(ModBlocks.WEATHERED_SILVER_BLOCK);
-            event.accept(ModBlocks.OXIDIZED_SILVER_BLOCK);
-            event.accept(ModBlocks.WAXED_SILVER_BLOCK);
-            event.accept(ModBlocks.WAXED_EXPOSED_SILVER_BLOCK);
-            event.accept(ModBlocks.WAXED_WEATHERED_SILVER_BLOCK);
-            event.accept(ModBlocks.WAXED_OXIDIZED_SILVER_BLOCK);
 
             event.accept(ModBlocks.RED_BOUNCER_BLOCK);
             event.accept(ModBlocks.ORANGE_BOUNCER_BLOCK);

@@ -29,6 +29,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 blockTexture(ModBlocks.EMBARIUM_BLOCK.get())).renderType("translucent"));
         blockWithItem(ModBlocks.TORRID_STEEL_BLOCK);
         blockWithItem(ModBlocks.PROFUNDIUM_BLOCK);
+        blockWithItem(ModBlocks.SILVER_ORE);
+        blockWithItem(ModBlocks.DEEPSLATE_SILVER_ORE);
+        blockWithItem(ModBlocks.RAW_SILVER_BLOCK);
 
         blockWithItem(ModBlocks.MARBLE);
         blockWithItem(ModBlocks.SMOOTH_MARBLE);
